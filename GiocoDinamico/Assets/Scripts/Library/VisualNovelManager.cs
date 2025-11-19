@@ -183,7 +183,7 @@ public class VisualNovelManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"Audio {id} non trovato e non si può fare .Play()!");
+            Debug.LogError($"Audio {id} non trovato e non si puï¿½ fare .Play()!");
         }
     }
 }

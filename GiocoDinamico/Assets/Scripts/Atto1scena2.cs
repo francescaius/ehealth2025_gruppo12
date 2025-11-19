@@ -10,6 +10,8 @@ public class Atto1scena2 : MonoBehaviour
     [SerializeField] ControllerElementoDiScena Luca;
     [SerializeField] ControllerElementoDiScena Marta; 
  
+    [SerializeField] ControllerElementoDiScena Anonimo;
+
 
     void Start()
     {
@@ -46,7 +48,13 @@ public class Atto1scena2 : MonoBehaviour
             "Luca",
             "Mi hai spaventato"
         );
-        yield return VisualNovelManager.S.Element("Overlay").Appear();
+        yield return Anonimo.Appear();
+        Anonimo.MakeClickable (LeggiNotifica);
+        Marta.MakeClickable (Parla);
+
+
+        //yield return VisualNovelManager.S.Element("Overlay").Appear();
+
         /*yield return VisualNovelManager.S.Element("PuzzlePiece").Appear(); 
         yield return VisualNovelManager.S.dialog.DisplayText(
             "Puzzle",
@@ -80,6 +88,44 @@ public class Atto1scena2 : MonoBehaviour
 */
         
     }
+    public void LeggiNotifica()
+    {
+        StartCoroutine (Scelta1());
+    
+    }
+    private IEnumerator Scelta1 ()
+    {
+        Marta.UndoClickable();
+        Anonimo.UndoClickable();
+        yield return Anonimo.Disappear ();
+        yield return VisualNovelManager.S.dialog.DisplayText(
+            "Anonimo",
+            "Contenuto Notifica"
+        );
+        Marta.MakeClickable(Parla);
+    }
+    
+    public void Parla()
+    {
+        StartCoroutine (Scelta2());
+          
+    }
+    private IEnumerator Scelta2 ()
+    {
+        Marta.UndoClickable();
+        Anonimo.UndoClickable();
+        yield return Anonimo.Disappear ();
+        yield return VisualNovelManager.S.dialog.DisplayText(
+            "Marta",
+            "Ecco a te il puzzle!"
+        );
+        yield return VisualNovelManager.S.Element("PuzzlePiece").Appear();
+        yield return new WaitForSeconds(2);
+        yield return VisualNovelManager.S.Element("PuzzlePiece").Disappear();
+        yield return VisualNovelManager.S.Element("Overlay").Appear();
+    }
+
+    
 
     
 }
