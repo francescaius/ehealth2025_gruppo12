@@ -9,6 +9,7 @@ public class PulsantiEsuoniScene : MonoBehaviour
     [SerializeField] ControllerElementoDiScena stopBtn;
     [SerializeField] ControllerElementoDiScena playBtn; 
     [SerializeField] ControllerElementoDiScena justBtn; 
+    [SerializeField] ControllerElementoDiScena blueBtn; 
     void Start()
     {
         if (VisualNovelManager.S == null )
@@ -18,7 +19,8 @@ public class PulsantiEsuoniScene : MonoBehaviour
         }
         else
         {
-            StartCoroutine(Part1()); 
+            StartCoroutine(Part1());  
+            blueBtn.MakeClickable(clickblueBtn);
         }  
     }
      
@@ -28,10 +30,12 @@ public class PulsantiEsuoniScene : MonoBehaviour
 
         yield return VisualNovelManager.S.Element("Overlay").Disappear();
 
-        yield return new WaitForSeconds(2);
+
         yield return stopBtn.Appear();
         yield return playBtn.Appear();
         yield return justBtn.Appear();
+        
+ 
         stopBtn.MakeClickable(stopBtnClick);
         playBtn.MakeClickable(playBtnClick);
         justBtn.MakeClickable(justBtnClick);
@@ -42,6 +46,18 @@ public class PulsantiEsuoniScene : MonoBehaviour
         yield return VisualNovelManager.S.dialog.DisplayText("- System - ", "Ora passiamo alla seconda scena");
         yield return new WaitForSeconds(2);
         yield return VisualNovelManager.S.Element("Overlay").Appear();
+        VisualNovelManager.S.GoToScene("SampleScene");
+    }
+
+    public void clickblueBtn()
+    {
+        StartCoroutine(sequenzablueBtn());
+    }
+    //le sequenze non possono partire direttamente al click
+    //devono essere fatte partire con il comando "StartCoroutine()"
+    public IEnumerator sequenzablueBtn ()
+    {
+        yield return VisualNovelManager.S.dialog.DisplayText("- System - ", "Ora passiamo alla seconda scena");
         VisualNovelManager.S.GoToScene("SampleScene");
     }
 
