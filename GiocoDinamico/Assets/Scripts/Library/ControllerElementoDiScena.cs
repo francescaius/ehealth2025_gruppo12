@@ -106,16 +106,31 @@ public class ControllerElementoDiScena : MonoBehaviour, IPointerClickHandler
             return false;
 
         int hash = Animator.StringToHash(animationName);
-        return animator.HasState(0, hash);
-    }
+        if (animator.HasState(0, hash)) //prima guarda lo stato
+        {
+            return true;
+        }
 
-    /// <summary>
-    /// Wait exactly for the currently playing clip on layer 0.
-    /// </summary>
+        //se non ha lo stato guarda la clipname
+        if (animator.runtimeAnimatorController == null || string.IsNullOrEmpty(animationName))
+            return false;
+
+        foreach (AnimationClip clip in animator.runtimeAnimatorController.animationClips)
+        {
+            if (clip.name == animationName)
+            {
+
+                return true;
+            }
+        }
+        return false;
+    }
+     
     private YieldInstruction WaitForCurrentClip()
     {
         if (animator == null)
             return new WaitForSeconds(0);
+
 
         float duration = 0f;
         var clipInfo = animator.GetCurrentAnimatorClipInfo(0);
@@ -132,9 +147,10 @@ public class ControllerElementoDiScena : MonoBehaviour, IPointerClickHandler
 
         return new WaitForSeconds(0);
     }
-  
- 
+
+
     
+
     public IEnumerator Disappear(string animationName = null)
     {
         if (animator == null)
@@ -142,7 +158,7 @@ public class ControllerElementoDiScena : MonoBehaviour, IPointerClickHandler
             SetVisibility(false);
             yield break;
         }
-            
+           
 
         EnsureDefaultAnimation();
          
@@ -150,6 +166,9 @@ public class ControllerElementoDiScena : MonoBehaviour, IPointerClickHandler
         {
             animator.speed = 1f;
             animator.Play(animationName, 0, 0f);
+
+            yield return null;
+
             yield return WaitForCurrentClip(); 
             SetVisibility(false);
             yield break;
@@ -159,6 +178,9 @@ public class ControllerElementoDiScena : MonoBehaviour, IPointerClickHandler
         {
             animator.speed = 1f;
             animator.Play("Hide", 0, 0f);
+
+            yield return null;
+
             yield return WaitForCurrentClip(); 
             SetVisibility(false);
             yield break;
@@ -166,11 +188,11 @@ public class ControllerElementoDiScena : MonoBehaviour, IPointerClickHandler
          
         if (defaultAnimationInitialized)
         { 
-            animator.speed = -1f;
-            animator.Play(defaultAnimationName, 0, 1f);  
-            yield return WaitForCurrentClip();
-            SetVisibility(false);
-            animator.speed = 1f;  
+            //non gira al contrario, ma basta andare nell'animator, duplicare "show" chiamarlo "hide" e mettere speed -1
+            //yield return StartCoroutine(PlayBackwards(defaultAnimationName));
+            //yield return WaitForCurrentClip();
+            //SetVisibility(false);
+            //animator.speed = 1f;  
         }
         SetVisibility(false);
         yield break;
@@ -197,12 +219,18 @@ public class ControllerElementoDiScena : MonoBehaviour, IPointerClickHandler
         if (!string.IsNullOrEmpty(animationName) && HasAnimation(animationName))
         {
             animator.Play(animationName, 0, 0f);
+
+            yield return null;
+
             yield return WaitForCurrentClip();
             yield break;
         }
         if (HasAnimation("Show"))
         {
             animator.Play("Show", 0, 0f);
+
+            yield return null;
+
             yield return WaitForCurrentClip();
             yield break;
         }
@@ -210,6 +238,9 @@ public class ControllerElementoDiScena : MonoBehaviour, IPointerClickHandler
         if (defaultAnimationInitialized)
         {
             animator.Play(defaultAnimationName, 0, 0f);
+
+            yield return null;
+
             yield return  WaitForCurrentClip();
             yield break;
         }
