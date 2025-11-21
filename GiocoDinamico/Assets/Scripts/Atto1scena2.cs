@@ -174,28 +174,21 @@ public class Atto1scena2 : MonoBehaviour
             "Questa foto me la fece vedere tuo fratello e mi disse che, se mai qualcuno me l'avesse mostrata, dovevo dargli questo"
         );
     }
-        {
-            StartCoroutine (Scelta2());
-        } 
-        
-    {
-    
-    private IEnumerator Scelta2 ()
-    
-    {
-        Marta.UndoClickable();
-        Anonimo.UndoClickable();
-        yield return Anonimo.Disappear ();
-        yield return VisualNovelManager.S.dialog.DisplayText(
-            "Marta",
-            "Ecco a te il puzzle!"
-        );
-        yield return VisualNovelManager.S.Element("PuzzlePiece").Appear();
-        yield return new WaitForSeconds(2);
-        yield return VisualNovelManager.S.Element("PuzzlePiece").Disappear();
-        yield return VisualNovelManager.S.Element("Overlay").Appear();
-    }
-    
-    
-     
+   
+
+
+private IEnumerator Scelta2 ()
+{
+    Marta.UndoClickable();
+    Anonimo.UndoClickable();
+    yield return Anonimo.Disappear ();
+    yield return VisualNovelManager.S.dialog.DisplayText(
+        "Marta",
+        "Ecco a te il puzzle!"
+    );
+    yield return VisualNovelManager.S.Element("PuzzlePiece").Appear();
+    yield return new WaitForSeconds(2);
+    yield return VisualNovelManager.S.Element("PuzzlePiece").Disappear();
+    yield return VisualNovelManager.S.Element("Overlay").Appear();
+}
 }
