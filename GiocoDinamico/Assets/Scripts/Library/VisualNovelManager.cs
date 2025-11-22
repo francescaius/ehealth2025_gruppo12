@@ -76,7 +76,7 @@ public class VisualNovelManager : MonoBehaviour
 
     public ControllerElementoDiScena Element(string ID)
     {
-        Debug.LogWarning("Looking for " + ID);
+        Debug.Log("Looking for " + ID);
         foreach (ControllerElementoDiScena prefab in elementiControllati)
         {
             if (prefab.ID == ID)

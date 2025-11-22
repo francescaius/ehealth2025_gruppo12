@@ -77,8 +77,7 @@ public class ControllerElementoDiScena : MonoBehaviour, IPointerClickHandler
         if (activeByDefault)
         {
             ChangePose(defaultPose); 
-            SetVisibility(true);
-            Debug.LogWarning("DefaultPose for ID " + ID + " is true");
+            SetVisibility(true); 
         }
     }
 
@@ -311,8 +310,7 @@ public class ControllerElementoDiScena : MonoBehaviour, IPointerClickHandler
             else
             {
                 onClickAction.DynamicInvoke();
-            }
-            Debug.Log("Callback onClickAction.Invoke() CHIAMATA."); 
+            } 
         }
         else
         {
