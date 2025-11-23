@@ -29,7 +29,7 @@ public class ControllerElementoDiScena : MonoBehaviour, IPointerClickHandler
      
     [SerializeField] private List<PoseEntry> poseList = new List<PoseEntry>();
 
-    private Action onClickAction;  // Importante
+    private Delegate onClickAction;  // Importante
 
 
 
@@ -77,8 +77,7 @@ public class ControllerElementoDiScena : MonoBehaviour, IPointerClickHandler
         if (activeByDefault)
         {
             ChangePose(defaultPose); 
-            SetVisibility(true);
-            Debug.LogWarning("DefaultPose for ID " + ID + " is true");
+            SetVisibility(true); 
         }
     }
 
@@ -279,10 +278,19 @@ public class ControllerElementoDiScena : MonoBehaviour, IPointerClickHandler
         return new WaitForSeconds(0);
     }
 
+    // Versione 1: Per funzioni normali (void)
     public void MakeClickable(Action a)
+    {
+
+        onClickAction = a;
+    }
+
+    // Versione 2: Per Coroutine
+    public void MakeClickable(Func<IEnumerator> a)
     {
         onClickAction = a;
     }
+     
 
     //questo bisognerebbe usarlo per gli oggetti globali a cui sono stati aggiunti listener di scene non globali (roba strana però)
     public void UndoClickable()
@@ -295,8 +303,14 @@ public class ControllerElementoDiScena : MonoBehaviour, IPointerClickHandler
         if (onClickAction != null)
         {
             // Se ci sono callback configurate
-            onClickAction.Invoke();
-            Debug.Log("Callback onClickAction.Invoke() CHIAMATA."); 
+            if(onClickAction is Func<IEnumerator> coroutine)
+            { 
+                StartCoroutine(coroutine());
+            }
+            else
+            {
+                onClickAction.DynamicInvoke();
+            } 
         }
         else
         {
