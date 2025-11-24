@@ -14,6 +14,7 @@ public class Atto1scena2 : MonoBehaviour
 
 
     void Start()
+    
     {
         if (VisualNovelManager.S == null )
         {
@@ -116,6 +117,11 @@ public class Atto1scena2 : MonoBehaviour
         StartCoroutine (Scelta1());
     
     }
+    public void Parla()
+    {
+    StartCoroutine(Scelta2());
+    }
+
     private IEnumerator Scelta1 ()
     {
         Marta.UndoClickable();
