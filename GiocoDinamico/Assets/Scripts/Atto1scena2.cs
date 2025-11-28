@@ -42,6 +42,29 @@ public class Atto1scena2 : MonoBehaviour
         yield return VisualNovelManager.S.dialog.DisplayText(
             "Luca",
             "Non ho molta fame... un semplice caffè, grazie"
+            );
+        yield return VisualNovelManager.S.dialog.DisplayText(
+            "Luca",
+            "anzi fammelo doppio, sono cosi stanco che potrei addormentarmi qui"
+            );  
+        yield return VisualNovelManager.S.dialog.DisplayText(
+            "Marta",
+            "Come mai sei così stanco?"
+        ); 
+        yield return Luca.ChangePose("Triste");
+        yield return VisualNovelManager.S.dialog.DisplayText(
+            "Luca",
+            "non so troppi pensieri... poi mi sveglio e... boh, è già abbastanza, è sempre tutto cosi uguale e monotono, anche se stamattina..."
+            ); 
+        yield return Marta.ChangePose("Arrabiata");
+        yield return VisualNovelManager.S.dialog.DisplayText(
+            "Marta",
+            "Sicuro che oltre ai pensieri tu non abbia passato la notte con gli occh sbarrati di fronte al cellulare?"
+        ); 
+        yield return Luca.ChangePose("Arrabiato");
+        yield return VisualNovelManager.S.dialog.DisplayText(
+            "Luca",
+            "Fammi solo questo caffè e basta!"
         );    
         yield return VisualNovelManager.S.dialog.DisplayText(
             "Marta",
@@ -51,6 +74,11 @@ public class Atto1scena2 : MonoBehaviour
         yield return VisualNovelManager.S.dialog.DisplayText(
             "Luca",
             "Cercavo qualcuno che conosci bene"
+        );
+        yield return Luca.ChangePose("Preoccupato");
+        yield return VisualNovelManager.S.dialog.DisplayText(
+            "Luca",
+            "Sì, in relatà ero venuto qui per cercare qualcunon che conosci bene"
         );   
         yield return Marta.ChangePose("Preoccupata");
         yield return VisualNovelManager.S.dialog.DisplayText(
@@ -74,42 +102,20 @@ public class Atto1scena2 : MonoBehaviour
         );
         Anonimo.MakeClickable (LeggiNotifica);
         Marta.MakeClickable(Parla);
+        
+        yield return Marta.ChangePose("Arrabiata");
+        yield return VisualNovelManager.S.dialog.DisplayText(
+            "Marta",
+            "Mi senti? Oi sto parlando con te!"
+        );
+        yield return Marta.ChangePose("Preoccupata");
+        yield return VisualNovelManager.S.dialog.DisplayText(
+            "Marta",
+            "Luca?"
+        );
       
 
 
-        //yield return VisualNovelManager.S.Element("Overlay").Appear();
-
-        /*yield return VisualNovelManager.S.Element("PuzzlePiece").Appear(); 
-        yield return VisualNovelManager.S.dialog.DisplayText(
-            "Puzzle",
-            "SONO IL PUZZLE"
-        );
-        yield return VisualNovelManager.S.Element("PuzzlePiece").Disappear(); 
-        yield return VisualNovelManager.S.dialog.DisplayText(
-            "- Sistema -",
-            "Il puzzle è stato messo nell'inventario"
-        );
-        yield return personaggio2.Appear("EntryFromRight");
-        yield return new WaitForSeconds(3);
-        yield return VisualNovelManager.S.dialog.DisplayText(
-            "Personaggio verde",
-            "Tu mi hai fatto davvero arrabbiare vedi di sparire, sto diventando rosso!"
-        );
-        yield return personaggio2.ChangePose("Rossa");
-        yield return new WaitForSeconds(2);
-        yield return VisualNovelManager.S.dialog.DisplayText(
-            "Personaggio rosa",
-            "Sparisco subito!"
-        );
-        yield return personaggio.Disappear();
-        yield return VisualNovelManager.S.dialog.DisplayText(
-           "Personaggio verde",
-           "Ora mi calmo!"
-       );
-        yield return personaggio2.ChangePose("Verde");
-        yield return new WaitForSeconds(2);
-        yield return personaggio2.Disappear();
-*/
         
     }
     public void LeggiNotifica()
@@ -117,11 +123,7 @@ public class Atto1scena2 : MonoBehaviour
         StartCoroutine (Scelta1());
     
     }
-    public void Parla()
-    {
-    StartCoroutine(Scelta2());
-    }
-
+   
     private IEnumerator Scelta1 ()
     {
         Marta.UndoClickable();
