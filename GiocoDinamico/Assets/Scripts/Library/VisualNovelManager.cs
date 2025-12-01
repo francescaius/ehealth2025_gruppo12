@@ -108,14 +108,14 @@ public class VisualNovelManager : MonoBehaviour
      
     public void hideShowPuzzle()
     {
-        playAudio("Click");
+        playAudio("Bag");
         StartCoroutine(showPuzzleBtn.Appear());
         SceneManager.UnloadSceneAsync("Puzzle");
     }
 
     private void showPuzzleCallback()
     {
-        playAudio("Click");
+        playAudio("Bag");
         StartCoroutine(showPuzzleBtn.Disappear());
         SceneManager.LoadScene("Puzzle", LoadSceneMode.Additive);
     }

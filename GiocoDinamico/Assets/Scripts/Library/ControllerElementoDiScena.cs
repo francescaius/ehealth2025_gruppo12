@@ -148,7 +148,20 @@ public class ControllerElementoDiScena : MonoBehaviour, IPointerClickHandler
     }
 
 
-    
+    public IEnumerator Animate(string animationName)
+    {
+        if (!string.IsNullOrEmpty(animationName) && HasAnimation(animationName))
+        {
+            animator.speed = 1f;
+            animator.Play(animationName, 0, 0f);
+
+            yield return null;
+
+            yield return WaitForCurrentClip(); 
+            yield break;
+        }
+        yield break;
+    }
 
     public IEnumerator Disappear(string animationName = null)
     {
