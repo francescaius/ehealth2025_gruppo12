@@ -33,6 +33,7 @@ public class Atto1scena2 : MonoBehaviour
 
         
         yield return new WaitForSeconds(1);
+        yield return background.Appear("BGbar");
         yield return Luca.Appear();
         yield return Marta.Appear();
         yield return VisualNovelManager.S.dialog.DisplayText(
@@ -173,7 +174,8 @@ public class Atto1scena2 : MonoBehaviour
         );
         yield return Luca.Disappear (); //luca esce dal bar perchè l'utente ha deciso di cliccare la notifica
         // caso in cui l'utente sceglie di cliccare su marta ed ignorare la notifica
-        yield return Luca.ChangePose("Rilassato");
+        yield return Luca.Appear ();
+        yield return Luca.ChangePose("Triste");
         yield return VisualNovelManager.S.dialog.DisplayText(
             "Luca",
             "Aspetta. Forse questo ti farà capire che non mento"
