@@ -649,6 +649,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 638190036}
+  - component: {fileID: 638190038}
   - component: {fileID: 638190037}
   m_Layer: 0
   m_Name: SceneController
@@ -682,6 +683,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38ad90639b1ceae498ac5b3e6e9577b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  background: {fileID: 1531226541}
+  Luca: {fileID: 1151938909}
+  Marta: {fileID: 1357731991}
+  Anonimo: {fileID: 1132051235}
+--- !u!114 &638190038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638190034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d459bb85071709b4f99248c98c293b73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   background: {fileID: 1531226541}
