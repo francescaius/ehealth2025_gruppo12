@@ -29,7 +29,8 @@ public class VisualNovelManager : MonoBehaviour
 
     [Header("Riferimenti globali")]
     public List<ControllerElementoDiScena> elementiControllati;
-    public DialogueManager dialog; 
+    public DialogueManager dialog;
+    public PhoneDialogueManager phone;
     [SerializeField] ControllerElementoDiScena showPuzzleBtn;
 
 
@@ -42,6 +43,8 @@ public class VisualNovelManager : MonoBehaviour
     private Dictionary<string, SceneProgressStep> scenesData = new Dictionary<string, SceneProgressStep>();
     private Dictionary<string, AudioClip> audioDict = new Dictionary<string, AudioClip>();
 
+
+    public bool ForteDipendenza = false;
      
 
 

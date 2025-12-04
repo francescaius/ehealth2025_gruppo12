@@ -4,6 +4,8 @@ using System.Collections;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using System;
+using TMPro;
+using UnityEngine.UI;
 
 [System.Serializable] // OBBLIGATORIO: Dice a Unity di includere questa classe nel sistema di serializzazione
 public class PoseEntry
@@ -44,6 +46,9 @@ public class ControllerElementoDiScena : MonoBehaviour, IPointerClickHandler
 
     private string defaultAnimationName;
     private bool defaultAnimationInitialized = false;
+
+
+    private bool isShining = false;
 
 
     public void Awake()
@@ -291,17 +296,74 @@ public class ControllerElementoDiScena : MonoBehaviour, IPointerClickHandler
         return new WaitForSeconds(0);
     }
 
+    public IEnumerator Shine()
+    {
+
+        isShining = true;
+
+        // Prova a capire che tipo di "render" ha l'oggetto
+        var spriteRenderer = currentPoseObject.GetComponent<SpriteRenderer>();
+        var uiImage = currentPoseObject.GetComponent<Image>();
+        var meshRenderer = currentPoseObject.GetComponent<MeshRenderer>();
+        var tmpText = currentPoseObject.GetComponent<TMP_Text>();
+
+        Color originalColor = new Color();
+
+        // Prendi il colore originale
+        if (spriteRenderer) originalColor = spriteRenderer.color;
+        else if (uiImage) originalColor = uiImage.color;
+        else if (meshRenderer) originalColor = meshRenderer.material.color;
+        else if (tmpText) originalColor = tmpText.color;
+
+         
+        float t = 0f; 
+
+        // Parametri per un effetto più morbido
+        float targetHue = 0f;
+        float currentHue = 0f;
+
+        while (t < 1f)
+        {
+            // Muove lentamente il target hue
+            targetHue = Mathf.Repeat(Time.time * 0.2f, 1f);
+
+            // Transizione morbida dell'hue
+            currentHue = Mathf.Lerp(currentHue, targetHue, Time.deltaTime * 2f);
+
+            // Saturazione bassa => colori più morbidi
+            float saturation = 0.3f;   // 0.2–0.5 = pastello
+            float brightness = 1f;
+
+            Color rainbow = Color.HSVToRGB(currentHue, saturation, brightness);
+
+
+            if (spriteRenderer) spriteRenderer.color = rainbow;
+            else if (uiImage) uiImage.color = rainbow;
+            else if (meshRenderer) meshRenderer.material.color = rainbow;
+            else if (tmpText) tmpText.color = rainbow;
+
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        if (spriteRenderer) spriteRenderer.color = originalColor;
+        else if (uiImage) uiImage.color = originalColor;
+        else if (meshRenderer) meshRenderer.material.color = originalColor;
+        else if (tmpText) tmpText.color = originalColor;
+    }
+
     // Versione 1: Per funzioni normali (void)
     public void MakeClickable(Action a)
     {
-
         onClickAction = a;
+        StartCoroutine(Shine());
     }
 
     // Versione 2: Per Coroutine
     public void MakeClickable(Func<IEnumerator> a)
     {
         onClickAction = a;
+        StartCoroutine(Shine());
     }
      
 

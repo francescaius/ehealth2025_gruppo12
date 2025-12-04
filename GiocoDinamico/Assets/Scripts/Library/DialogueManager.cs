@@ -9,9 +9,12 @@ public class DialogueManager : MonoBehaviour
 { 
 
     [Header("UI References")] 
-    [SerializeField] TextMeshProUGUI speakerText;
-    [SerializeField] TextMeshProUGUI bodyText;
-    [SerializeField] GameObject goOnButton;
+    [SerializeField] protected TextMeshProUGUI speakerText;
+    [SerializeField] protected TextMeshProUGUI bodyText;
+    [SerializeField] protected GameObject goOnButton;
+    [SerializeField] protected GameObject divider;
+
+    public int segmentLength = 200;
 
     bool active = false; //mi dice se il dialog è acceso
     bool editing = false; //mi dice se sto modificando
@@ -50,7 +53,7 @@ public class DialogueManager : MonoBehaviour
 
     //mostra un testo di un personaggio e restituisce un evento che termina quando è terminato il dialogo
     //il dialogo può andare a
-    public CustomYieldInstruction DisplayText(string speaker, string text, bool autoContinue = false)
+    public virtual CustomYieldInstruction DisplayText(string speaker, string text, bool autoContinue = false)
     {
 
         if(!active)
@@ -59,8 +62,22 @@ public class DialogueManager : MonoBehaviour
             gameObject.SetActive(true);
             active = true;
             this.autoContinue = autoContinue;
+            if(divider)
+            {
+                if(speaker.Length > 0)
+                { 
+                    divider.SetActive(true);
+                }
+                else
+                { 
+                    divider.SetActive(false); 
+                }
+            }
 
-            if (speakerText) speakerText.text = speaker;
+            if (speakerText)
+            {
+                speakerText.text = speaker;
+            } 
             if (bodyText)
             {
                 paragraphs = SplitText(text);
@@ -130,25 +147,68 @@ public class DialogueManager : MonoBehaviour
 
     }
 
-    private static List<string> SplitText(string text, int segmentLength = 200)
+    private List<string> SplitText(string text)
     {
         List<string> segments = new List<string>();
-
         if (string.IsNullOrEmpty(text))
         {
             return segments;
         }
 
+        int currentIndex = 0;
         int totalLength = text.Length;
+        bool previousWasTruncated = false;
 
-        for (int i = 0; i < totalLength; i += segmentLength)
+        while (currentIndex < totalLength)
         {
-            int length = Math.Min(segmentLength, totalLength - i);
-             
-            string segment = text.Substring(i, length);
+            int remainingLength = totalLength - currentIndex;
+            int length = Math.Min(segmentLength, remainingLength);
+
+            string segment = "";
+
+            // Aggiungi ellipsis all'inizio se il segmento precedente era troncato
+            if (previousWasTruncated)
+            {
+                segment = "...";
+                length = Math.Min(segmentLength - 3, remainingLength);
+            }
+
+            // Se c'è ancora testo
+            if (currentIndex + length < totalLength)
+            {
+                // Cerca l'ultimo spazio prima della fine del segmento
+                int lastSpaceIndex = text.LastIndexOf(' ', currentIndex + length - 1, length);
+
+                if (lastSpaceIndex > currentIndex)
+                {
+                    // tronca allo spazio
+                    length = lastSpaceIndex - currentIndex + 1;
+                    segment += text.Substring(currentIndex, length).TrimEnd();
+                    currentIndex += length;
+                    previousWasTruncated = false;
+                }
+                else
+                {
+                    // se non trova spazio, tronca a segmentLength-3 e aggiungi ellipsis
+                    int adjustedLength = (previousWasTruncated ? length : segmentLength - 3) - (previousWasTruncated ? 3 : 0);
+                    adjustedLength = Math.Min(adjustedLength, remainingLength);
+                    segment += text.Substring(currentIndex, adjustedLength) + "...";
+                    currentIndex += adjustedLength;
+                    previousWasTruncated = true;
+                }
+            }
+            else
+            {
+                // se è l'ultimo segmento, prendi tutto
+                segment += text.Substring(currentIndex, length);
+                currentIndex += length;
+                previousWasTruncated = false;
+            }
+
             segments.Add(segment);
         }
 
         return segments;
     }
+
 }

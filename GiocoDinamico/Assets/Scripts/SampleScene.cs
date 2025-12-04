@@ -26,13 +26,38 @@ public class SampleScene : MonoBehaviour
     { 
         yield return VisualNovelManager.S.Element("Overlay").Disappear();
         yield return personaggio.Appear();
-        yield return new WaitForSeconds(2);
+        yield return VisualNovelManager.S.phone.DisplayText(
+           "Luca",
+           "Provo con un testo molto lungo che quasi sicuramente dovrà essere spezzato inpiù parti sicuramente dovrà essere spezzato inpiù parti sicuramente dovrà essere\n spezzato inpiù parti  ora facciamo una parte senza spazi: oajsajsdlkfhalksjdhflkasjdhflkajshdflkajshdflkajhsdlfkjahsdlfkjhasldkfjhalksdjhflaksdjhflkasjdhflkajsdhflkajhdsflkasjhdflkajsdhflkjasdhflkasjh a questo punto direi invece di terminare."
+       );
+        yield return VisualNovelManager.S.dialog.DisplayText(
+            "",
+            "Qui provo a scrivere senza un nome"
+        );
+        yield return VisualNovelManager.S.phone.DisplayText(
+            "Luca",
+            "luca manda un messaggio"
+        );
+        yield return VisualNovelManager.S.phone.DisplayText(
+            "Anonimo",
+            "Anonimo risponde"
+        );
 
         yield return personaggio.ChangePose("Rosa"); 
-        yield return VisualNovelManager.S.dialog.DisplayText(
-            "Personaggio rosa",
-            "Ecco a voi il puzzle che sblocca il verde"
-        );
+        if(VisualNovelManager.S.ForteDipendenza)
+        { 
+            yield return VisualNovelManager.S.dialog.DisplayText(
+                "Personaggio rosa",
+                "FORTEMENTE DIPENDENTE"
+            );
+        }
+        else
+        {
+            yield return VisualNovelManager.S.dialog.DisplayText(
+                 "Personaggio rosa",
+                 "NON FORTEMENTE DIPENDENTE"
+             );
+        }
         yield return VisualNovelManager.S.Element("PuzzlePiece").Appear(); 
         yield return VisualNovelManager.S.dialog.DisplayText(
             "Puzzle",
