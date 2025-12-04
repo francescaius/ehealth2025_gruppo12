@@ -50,7 +50,7 @@ public class ControllerElementoDiScena : MonoBehaviour, IPointerClickHandler
 
     private bool isShining = false;
 
-
+    private bool hasBeenInitialized = false;
     public void Awake()
     {
         animator = GetComponent<Animator>();
@@ -74,16 +74,20 @@ public class ControllerElementoDiScena : MonoBehaviour, IPointerClickHandler
             entry.poseObject.SetActive(false);
         }
 
-
-        if(!activeByDefault)
-        { 
-            SetVisibility(false);
-        }
-        if (activeByDefault)
+        if (!hasBeenInitialized)
         {
-            ChangePose(defaultPose); 
-            SetVisibility(true); 
-        }
+            hasBeenInitialized = true;
+
+            if (!activeByDefault)
+            {
+                SetVisibility(false);
+            }
+            if (activeByDefault)
+            {
+                ChangePose(defaultPose);
+                SetVisibility(true);
+            }
+        } 
     }
 
     public void Start()
@@ -268,6 +272,24 @@ public class ControllerElementoDiScena : MonoBehaviour, IPointerClickHandler
     private void SetVisibility(bool isVisible)
     {
         gameObject.SetActive(isVisible);
+
+        if (isVisible)
+        {
+            Debug.Log("Provo CAMBIO POSA: ");
+            if(currentPoseObject)
+            {
+
+
+                Debug.Log("NAME: "+currentPoseName); 
+                ChangePose(currentPoseName);//potrebbe essere ridondante ma si sa mai...
+            }
+            else
+            {
+                Debug.Log("DEFAULT: "+ defaultPose);
+                ChangePose(defaultPose);
+            }
+        } 
+
     }
 
     // --- FUNZIONE PER CAMBIARE POSA ---
