@@ -131,12 +131,13 @@ public class DialogueManager : MonoBehaviour
 #if UNITY_EDITOR
 
                 bodyText.text = text;
-#endif
+#else 
                 foreach (char c in text)
                 {
                     bodyText.text += c;
                     yield return new WaitForSeconds((float)1 / 60);
                 }
+#endif
 
                 editing = false;
             }
