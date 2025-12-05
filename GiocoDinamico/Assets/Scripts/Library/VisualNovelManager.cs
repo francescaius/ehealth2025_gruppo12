@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public enum SceneProgressStep
 {
     NotVisited,      // mai entrato
-    Start,           // appena entrato 
+    Choice,           // appena entrato 
     WrongChoiceDone, // ha visto la scelta sbagliata
     RightChoiceDone, // ha scelto quella giusta
     Finished         // scena conclusa
@@ -164,7 +164,7 @@ public class VisualNovelManager : MonoBehaviour
         if (!scenesData.ContainsKey(sceneId))
         {
             // se non esiste ancora, creiamo uno stato nuovo
-            var data = SceneProgressStep.Start;
+            var data = SceneProgressStep.NotVisited;
             scenesData[sceneId] = data;
         }
 
