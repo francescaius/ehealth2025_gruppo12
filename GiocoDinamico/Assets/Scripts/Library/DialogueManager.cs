@@ -127,6 +127,11 @@ public class DialogueManager : MonoBehaviour
                 string text = paragraphs[paragraphIndex];
 
                 bodyText.text = "";
+
+#if UNITY_EDITOR
+
+                bodyText.text = text;
+#endif
                 foreach (char c in text)
                 {
                     bodyText.text += c;
@@ -137,7 +142,7 @@ public class DialogueManager : MonoBehaviour
             }
             if(autoContinue)
             {
-                yield return new WaitForSeconds(3);
+                yield return new WaitForSeconds(2);
                 nextParagraph();
                 
             }
