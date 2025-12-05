@@ -53,6 +53,20 @@ public class EmptyScene : MonoBehaviour
         //entrambi appaiono con l'animazione che è creata dall'editor nominata "Show" 
 
 
+
+        //se ci sono dei dialoghi solamente per il caso in cui ci sia forte dipendenza
+        //usare il seguente controllo:
+
+        if(VisualNovelManager.S.ForteDipendenza) //controllo per parti di scena che abbiano forte dipendenza
+        {
+
+        }
+
+        
+
+
+
+
         //cambiare posa della marionetta personaggio --> il nome dev'essere quello dato nella barra laterale di unity all'oggetto da controllare
         yield return marionetta1.ChangePose("nomeposa");
 
