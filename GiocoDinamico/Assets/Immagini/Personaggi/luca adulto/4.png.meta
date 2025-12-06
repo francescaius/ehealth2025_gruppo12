@@ -121,7 +121,11 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
+<<<<<<< HEAD
     buildTarget: Android
+=======
+    buildTarget: WebGL
+>>>>>>> 89fdfba14481c01d41604278907220340694a63a
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1

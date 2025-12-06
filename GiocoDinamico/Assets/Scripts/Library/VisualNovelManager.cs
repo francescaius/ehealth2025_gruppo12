@@ -45,7 +45,15 @@ public class VisualNovelManager : MonoBehaviour
     private Dictionary<string, AudioClip> audioDict = new Dictionary<string, AudioClip>();
 
 
+    //la variabile ForteDipendenza serviva per una prima versione del gioco, ora è cambiato
+    //ma la si tiene per evitare errori o punti della storia dove serve
     public bool ForteDipendenza = false;
+    public bool StipendioBasso = false;
+    public bool NonStudiato = false;
+    public bool Single = false;
+    public bool Insoddisfatto = false;
+    public bool Alcool_Azzardo = false;
+    public bool Droga_Traumi = false;
 
     public List<int> takenPuzzlePieces = new List<int>();
 

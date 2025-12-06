@@ -10,6 +10,7 @@ public class TrenoScene : MonoBehaviour
     [SerializeField] ControllerElementoDiScena telefonoBtn;
     [SerializeField] ControllerElementoDiScena telefono;
     [SerializeField] Image lineaProgresso;
+    [SerializeField] RawImage cartello;
 
 
 
@@ -32,11 +33,20 @@ public class TrenoScene : MonoBehaviour
 
     // Funzione da claude per far cambiare la linea in percentuale
     public void SetProgress(float percentage)
-    { 
+    {
+
+        float widthDelParent = cartello.GetComponent<RectTransform>().rect.width;
+
+        maxWidth = (1285f / 1920f) * widthDelParent;
+        baseX = (487.286f / 3081f) * widthDelParent;
+
+        Debug.Log("Base X: " + baseX);
+
+
         percentage = Mathf.Clamp(percentage, 0f, 100f); 
         float newWidth = (percentage / 100f) * maxWidth; 
         rectTransform.sizeDelta = new Vector2(newWidth, rectTransform.sizeDelta.y);
-        rectTransform.position = new Vector3(baseX, rectTransform.position.y);
+        //rectTransform.position = new Vector3(baseX, rectTransform.position.y);
     }
 
     void Start()
@@ -53,6 +63,7 @@ public class TrenoScene : MonoBehaviour
             // preso da claude per far spostare la linea da sinistra
             rectTransform = lineaProgresso.GetComponent<RectTransform>();
             baseX = rectTransform.position.x;
+            
             //rectTransform.pivot = new Vector2(0, 0.5f); 
             //rectTransform.anchorMin = new Vector2(0, 0.5f);
             //rectTransform.anchorMax = new Vector2(0, 0.5f);
@@ -94,7 +105,7 @@ public class TrenoScene : MonoBehaviour
                 {
                     yield return VisualNovelManager.S.dialog.DisplayText(
                          "- Treno -",
-                         "Fermata " + fermata + "/30   -  Mancano " + (santuario - fermata) + " fermate al Santuario",
+                         "Station " + fermata + "/30   -  " + (santuario - fermata) + " stations before the Sanctuary",
                          true
                     );
 
@@ -103,7 +114,7 @@ public class TrenoScene : MonoBehaviour
 
                         yield return VisualNovelManager.S.dialog.DisplayText(
                              "Luca",
-                             "Sembrerebbero esserci un sacco di fermate... forse mi conviene usare il telefono per far passare il tempo più in fretta..."
+                             "Looks like there are lot of stations... maybe I should use my phone to make the time go by faster..."
 
                         );
                         yield return telefonoBtn.Appear();
@@ -119,7 +130,7 @@ public class TrenoScene : MonoBehaviour
                 {
                     yield return VisualNovelManager.S.dialog.DisplayText(
                          "Luca",
-                         "ARRIVATO!"
+                         "ARRIVED!"
                     );
                     //far partire altra scena
                     yield return VisualNovelManager.S.Element("Overlay").Disappear();
