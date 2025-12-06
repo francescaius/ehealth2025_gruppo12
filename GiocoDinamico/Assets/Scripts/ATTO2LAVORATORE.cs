@@ -4,13 +4,13 @@ using UnityEngine;
 
 
 //questo script va trascinato su SceneController (un oggetto vuoto fuori dal canva) 
-public class EmptyScene : MonoBehaviour
+public class ATTO2LAVORATORE : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     [SerializeField] ControllerElementoDiScena background;
     [SerializeField] ControllerElementoDiScena Luca; //potrebbe essere luca, marta, etc... chiamare questa variabile
-    [SerializeField] ControllerElementoDiScena Mattia; //ipotizziamo 2 marionette
+    [SerializeField] ControllerElementoDiScena Mattia;
     //inserire in questo elenco tutti gli elementi cliccabili o che devono apparire e sparire!
     //poi inserire l'elemento effettivo su unity in questo campo
 
@@ -41,4 +41,29 @@ public class EmptyScene : MonoBehaviour
         //////////////////// QUESTA PARLA TENERLA SEMPRE UGUALE ///////////////
         yield return VisualNovelManager.S.Element("Overlay").Disappear(); 
         //////////////////////////////////////////////////////////////////////
+
         
+        yield return new WaitForSeconds(1);
+        yield return background.ChangePose("ufficio interno");
+        yield return new WaitForSeconds(1);
+        yield return background.ChangePose("ufficio sfocato");
+        yield return Luca.Appear();
+        yield return Mattia.Appear();
+        
+        
+
+
+
+        //////////////////// ESEMPI DI COSE CHE SI POSSONO FARE //////////////////
+        //far apparrire gli elementi
+        
+        
+        //entrambi appaiono con l'animazione che è creata dall'editor nominata "Show" 
+
+
+
+        //se ci sono dei dialoghi solamente per il caso in cui ci sia forte dipendenza
+        //usare il seguente controllo:
+    }
+
+}       
