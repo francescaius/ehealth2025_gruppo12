@@ -30,7 +30,7 @@ EditorBuildSettings:
     path: Assets/Scenes/TrenoScene.unity
     guid: 96199d8453d242b4ba351e4282632dfb
   - enabled: 1
-    path: Assets/Scenes/ATTO2 STUDENTE.unity
+    path: Assets/Scenes/ATTO2STUDENTE.unity
     guid: 924cbb5b2ecf3564a9ad18d89a48f464
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
