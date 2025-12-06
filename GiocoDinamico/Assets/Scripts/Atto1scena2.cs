@@ -14,6 +14,7 @@ public class Atto1scena2 : MonoBehaviour
 
 
     void Start()
+    
     {
         if (VisualNovelManager.S == null )
         {
@@ -30,17 +31,42 @@ public class Atto1scena2 : MonoBehaviour
     { 
         yield return VisualNovelManager.S.Element("Overlay").Disappear();
 
-        // yield return personaggio.Appear();
+        
         yield return new WaitForSeconds(1);
+        yield return background.Appear("BGbar");
+        yield return Luca.Appear();
         yield return Marta.Appear();
         yield return VisualNovelManager.S.dialog.DisplayText(
             "Marta",
             "Da quanto tempo! Cosa posso prepararti?"
         );        
-        yield return Luca.Appear();
+        
         yield return VisualNovelManager.S.dialog.DisplayText(
             "Luca",
             "Non ho molta fame... un semplice caffè, grazie"
+            );
+        yield return VisualNovelManager.S.dialog.DisplayText(
+            "Luca",
+            "anzi fammelo doppio, sono cosi stanco che potrei addormentarmi qui"
+            );  
+        yield return VisualNovelManager.S.dialog.DisplayText(
+            "Marta",
+            "Come mai sei così stanco?"
+        ); 
+        yield return Luca.ChangePose("Triste");
+        yield return VisualNovelManager.S.dialog.DisplayText(
+            "Luca",
+            "non so troppi pensieri... poi mi sveglio e... boh, è già abbastanza, è sempre tutto cosi uguale e monotono, anche se stamattina..."
+            ); 
+        yield return Marta.ChangePose("Arrabbiata");
+        yield return VisualNovelManager.S.dialog.DisplayText(
+            "Marta",
+            "Sicuro che oltre ai pensieri tu non abbia passato la notte con gli occh sbarrati di fronte al cellulare?"
+        ); 
+        yield return Luca.ChangePose("Arrabbiato");
+        yield return VisualNovelManager.S.dialog.DisplayText(
+            "Luca",
+            "Fammi solo questo caffè e basta!"
         );    
         yield return VisualNovelManager.S.dialog.DisplayText(
             "Marta",
@@ -50,6 +76,11 @@ public class Atto1scena2 : MonoBehaviour
         yield return VisualNovelManager.S.dialog.DisplayText(
             "Luca",
             "Cercavo qualcuno che conosci bene"
+        );
+        yield return Luca.ChangePose("Preoccupato");
+        yield return VisualNovelManager.S.dialog.DisplayText(
+            "Luca",
+            "Sì, in relatà ero venuto qui per cercare qualcunon che conosci bene"
         );   
         yield return Marta.ChangePose("Preoccupata");
         yield return VisualNovelManager.S.dialog.DisplayText(
@@ -73,49 +104,24 @@ public class Atto1scena2 : MonoBehaviour
         );
         Anonimo.MakeClickable (LeggiNotifica);
         Marta.MakeClickable(Parla);
-      
-
-
-        //yield return VisualNovelManager.S.Element("Overlay").Appear();
-
-        /*yield return VisualNovelManager.S.Element("PuzzlePiece").Appear(); 
-        yield return VisualNovelManager.S.dialog.DisplayText(
-            "Puzzle",
-            "SONO IL PUZZLE"
-        );
-        yield return VisualNovelManager.S.Element("PuzzlePiece").Disappear(); 
-        yield return VisualNovelManager.S.dialog.DisplayText(
-            "- Sistema -",
-            "Il puzzle è stato messo nell'inventario"
-        );
-        yield return personaggio2.Appear("EntryFromRight");
-        yield return new WaitForSeconds(3);
-        yield return VisualNovelManager.S.dialog.DisplayText(
-            "Personaggio verde",
-            "Tu mi hai fatto davvero arrabbiare vedi di sparire, sto diventando rosso!"
-        );
-        yield return personaggio2.ChangePose("Rossa");
-        yield return new WaitForSeconds(2);
-        yield return VisualNovelManager.S.dialog.DisplayText(
-            "Personaggio rosa",
-            "Sparisco subito!"
-        );
-        yield return personaggio.Disappear();
-        yield return VisualNovelManager.S.dialog.DisplayText(
-           "Personaggio verde",
-           "Ora mi calmo!"
-       );
-        yield return personaggio2.ChangePose("Verde");
-        yield return new WaitForSeconds(2);
-        yield return personaggio2.Disappear();
-*/
         
+        yield return Marta.ChangePose("Arrabbiata");
+        yield return VisualNovelManager.S.dialog.DisplayText(
+            "Marta",
+            "Mi senti? Oi sto parlando con te!"
+        );
+        yield return Marta.ChangePose("Preoccupata");
+        yield return VisualNovelManager.S.dialog.DisplayText(
+            "Marta",
+            "Luca?"
+        );
     }
     public void LeggiNotifica()
     {
         StartCoroutine (Scelta1());
     
     }
+   
     private IEnumerator Scelta1 ()
     {
         Marta.UndoClickable();
@@ -126,27 +132,33 @@ public class Atto1scena2 : MonoBehaviour
             "Non fidarti di nessuno. Esci ora. Ti guiderò io."
         );
         
-        yield return Marta.ChangePose("Arrabiata");
+        yield return Marta.ChangePose("Arrabbiata");
         yield return VisualNovelManager.S.dialog.DisplayText(
             "Marta",
             "Mi stai ascoltando??"
         );
-       yield return VisualNovelManager.S.dialog.DisplayText(
+        yield return Luca.ChangePose("Preoccupato");
+        yield return VisualNovelManager.S.dialog.DisplayText(
             "Luca",
             "Aspetta... che significa? Chi sei tu?"
-
-        );
+            );
         yield return Marta.ChangePose("Preoccupata");
         yield return VisualNovelManager.S.dialog.DisplayText(
             "Marta",
             "Ma cosa dici? Parli con me?"
         );
-         yield return Luca.ChangePose("Triste");
+        yield return Marta.ChangePose("Arrabbiata");
+        yield return VisualNovelManager.S.dialog.DisplayText(
+            "Marta",
+            "e poi smettila di sbadigliare!"
+        );
+        
+        yield return Luca.ChangePose("Triste");
         yield return VisualNovelManager.S.dialog.DisplayText(
             "Luca",
             "No scusa, sto cercando di capire... qualcuno mi sta aiutando..."
         );
-        yield return Marta.ChangePose("Arrabiata");
+        yield return Marta.ChangePose("Arrabbiata");
         yield return VisualNovelManager.S.dialog.DisplayText(
             "Marta",
             "Aiutando? O controllando? Da quando sei entrato non hai mai smesso di guardare quel telefono"
@@ -162,7 +174,8 @@ public class Atto1scena2 : MonoBehaviour
         );
         yield return Luca.Disappear (); //luca esce dal bar perchè l'utente ha deciso di cliccare la notifica
         // caso in cui l'utente sceglie di cliccare su marta ed ignorare la notifica
-        yield return Luca.ChangePose("Rilassato");
+        yield return Luca.Appear ();
+        yield return Luca.ChangePose("Triste");
         yield return VisualNovelManager.S.dialog.DisplayText(
             "Luca",
             "Aspetta. Forse questo ti farà capire che non mento"
@@ -185,10 +198,27 @@ public class Atto1scena2 : MonoBehaviour
         Marta.UndoClickable();
         Anonimo.UndoClickable();
         yield return Anonimo.Disappear ();
+         // caso in cui l'utente sceglie di cliccare su marta ed ignorare la notifica
+        yield return Luca.ChangePose("Rilassato");
+        yield return VisualNovelManager.S.dialog.DisplayText(
+            "Luca",
+            "Aspetta. Forse questo ti farà capire che non mento"
+
+        );
+        yield return Marta.ChangePose("Rilassata");
+        yield return VisualNovelManager.S.dialog.DisplayText(
+            "Marta",
+            "Questa foto me la fece vedere tuo fratello e mi disse che, se mai qualcuno me l'avesse mostrata, dovevo dargli questo"
+        );
+        yield return VisualNovelManager.S.dialog.DisplayText(
+            "Marta",
+            "Disse che un giorno avrebbe voluto tornare a casa. Ma non era sicuro che ci sarebbe riuscito"        
+            );
         yield return VisualNovelManager.S.dialog.DisplayText(
             "Marta",
             "Ecco a te il puzzle!"
         );
+        
         yield return VisualNovelManager.S.Element("PuzzlePiece").Appear();
         yield return new WaitForSeconds(2);
         yield return VisualNovelManager.S.Element("PuzzlePiece").Disappear();

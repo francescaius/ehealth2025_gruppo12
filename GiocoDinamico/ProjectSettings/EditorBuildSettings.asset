@@ -8,18 +8,30 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Persistent.unity
     guid: 92f020d010b350b4b896396902cfbb3d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PulsantiESuoni.unity
     guid: 99d843d9b5fcd1f4f82955d0952598e6
   - enabled: 1
     path: Assets/Scenes/Puzzle.unity
     guid: 2210a0c4a1efff6498ae05c34e83a48e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Atto1scena2.unity
     guid: a870e8dc4a44e304ca24225c2e4db172
+  - enabled: 0
+    path: Assets/Scenes/MenuScene.unity
+    guid: 1c6a6b020f1968e4984fe442d3a46e6e
+  - enabled: 0
+    path: Assets/Scenes/SondaggioScene.unity
+    guid: 352704a6332a41048af29b3cd988d91b
+  - enabled: 1
+    path: Assets/Scenes/TrenoScene.unity
+    guid: 96199d8453d242b4ba351e4282632dfb
+  - enabled: 1
+    path: Assets/Scenes/ATTO2 STUDENTE.unity
+    guid: 924cbb5b2ecf3564a9ad18d89a48f464
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
