@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class SondaggioScene : MonoBehaviour
@@ -138,10 +137,51 @@ public class SondaggioScene : MonoBehaviour
 
     private void Inizia()
     {
-        if(IAT > 80)
+        float soglia1 = 28.75f;
+        float soglia2 = 51.35f;
+        float soglia3 = 78.05f;
+        //la variabile ForteDipendenza serviva per una prima versione del gioco, ora è cambiato
+        //ma la si tiene per evitare errori o punti della storia dove serve
+        if(IAT < soglia1)
+        {
+            VisualNovelManager.S.ForteDipendenza = false;
+            VisualNovelManager.S.StipendioBasso = false;
+            VisualNovelManager.S.Single = false;
+            VisualNovelManager.S.NonStudiato = false;
+            VisualNovelManager.S.Insoddisfatto = false;
+            VisualNovelManager.S.Alcool_Azzardo = false;
+            VisualNovelManager.S.Droga_Traumi = false;
+        }
+        else if (IAT < soglia2)
+        {
+            VisualNovelManager.S.ForteDipendenza = false;
+            VisualNovelManager.S.StipendioBasso = true;
+            VisualNovelManager.S.NonStudiato = true;
+            VisualNovelManager.S.Single = false;
+            VisualNovelManager.S.Insoddisfatto = false;
+            VisualNovelManager.S.Alcool_Azzardo = true;
+            VisualNovelManager.S.Droga_Traumi = false;
+        }
+        else if (IAT < soglia3)
+        {
+            VisualNovelManager.S.ForteDipendenza = IAT > 40; //qui considero solo quelli con IAT ALTO dal paper, ma tanto non serve 
+            VisualNovelManager.S.StipendioBasso = false;
+            VisualNovelManager.S.Single = false;
+            VisualNovelManager.S.NonStudiato = false;
+            VisualNovelManager.S.Insoddisfatto = true;
+            VisualNovelManager.S.Alcool_Azzardo = false;
+            VisualNovelManager.S.Droga_Traumi = true;
+        }
+        else
         {
             VisualNovelManager.S.ForteDipendenza = true;
-        }
+            VisualNovelManager.S.StipendioBasso = true;
+            VisualNovelManager.S.Single = true;
+            VisualNovelManager.S.NonStudiato = true;
+            VisualNovelManager.S.Insoddisfatto = false;
+            VisualNovelManager.S.Alcool_Azzardo = false;
+            VisualNovelManager.S.Droga_Traumi = false;
+        } 
         VisualNovelManager.S.GoToScene("SampleScene"); 
     }
      
