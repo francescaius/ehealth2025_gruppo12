@@ -83,7 +83,7 @@ public class Atto2STUDENTE : MonoBehaviour
         Mattia.MakeClickable(SceltaGiusta); 
     }
 
-    private IEnumerator SceltaSbagliata()
+private IEnumerator SceltaSbagliata()
     {
         //NON CAMBIARE
         VisualNovelManager.S.SetSceneData(GetType().Name, SceneProgressStep.WrongChoiceDone);
