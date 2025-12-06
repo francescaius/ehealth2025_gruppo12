@@ -28,61 +28,70 @@ public class PuzzleScene : MonoBehaviour
         else
         {
             closeBtn.MakeClickable(closeBtnClick);
-            //in base al progresso delle scene mostrare/nascondere pezzi di puzzle!
-            testoBorsa.text = "La borsa è vuota.";
+            foreach(int piece in VisualNovelManager.S.takenPuzzlePieces)
+            { 
+               switch(piece)
+                {
+                    case 1:
+                        StartCoroutine(puzzle1.Appear());
+                        break; 
+                    case 2:
+                        StartCoroutine(puzzle2.Appear());
+                        break;
+                    case 3:
+                        StartCoroutine(puzzle3.Appear());
+                        break;
+                    case 4:
+                        StartCoroutine(puzzle4.Appear());
+                        break;
+                    case 5:
+                        StartCoroutine(puzzle5.Appear());
+                        break;
+                    case 6:
+                        StartCoroutine(puzzle6.Appear());
+                        break;
+                }
+            }
 
-            StartCoroutine(Test());
+            int c = VisualNovelManager.S.takenPuzzlePieces.Count;
+            switch(c)
+            {
+                case 0: 
+                    testoBorsa.text = "La borsa è vuota.";
+                    break;
+                case 6:
+                    testoBorsa.text = "Sembra tu abbia tutti i pezzi del puzzle!"; 
+                    StartCoroutine(assemblaBtn.Appear());
+                    assemblaBtn.MakeClickable(Assembla);
+                    break;
+                default: 
+                    testoBorsa.text = "Il puzzle sembra fatto da 6 pezzi: tu ne hai "+c+"!";
+                    break;
+            } 
+            
         }  
     }
       
-
-    public IEnumerator Test()
-    {
-        yield return new WaitForSeconds(0);
-        yield return puzzle1.Appear();
-        testoBorsa.text = "Il puzzle sembra fatto da 6 pezzi: tu ne hai 1!";
-
-        yield return new WaitForSeconds(0);
-        yield return puzzle2.Appear();
-        testoBorsa.text = "Il puzzle sembra fatto da 6 pezzi: tu ne hai 2!";
-
-        yield return new WaitForSeconds(0);
-        yield return puzzle3.Appear();
-        testoBorsa.text = "Il puzzle sembra fatto da 6 pezzi: tu ne hai 3!";
-
-        yield return new WaitForSeconds(0);
-        yield return puzzle4.Appear();
-        testoBorsa.text = "Il puzzle sembra fatto da 6 pezzi: tu ne hai 4!";
-
-        yield return new WaitForSeconds(0);
-        yield return puzzle5.Appear();
-        testoBorsa.text = "Il puzzle sembra fatto da 6 pezzi: tu ne hai 5!";
-
-        yield return new WaitForSeconds(0);
-        yield return puzzle6.Appear();
-        yield return assemblaBtn.Appear();
-        assemblaBtn.MakeClickable(Assembla);
-        testoBorsa.text = "Il puzzle sembra fatto da 6 pezzi: tu ne hai 6!";
-
-    }
+ 
      
     public IEnumerator Assembla()
     {
         yield return puzzleGroup.Animate("Assembla");
-        testoBorsa.text = "È il luogo delle vostre vacanze!";
-        yield return assemblaBtn.Disappear(); 
+        //testoBorsa.text = "È il luogo delle vostre vacanze!";
+        yield return assemblaBtn.Disappear();
+        finalScene();
     }
 
     private void finalScene()
     {
-        VisualNovelManager.S.hideShowPuzzle();
+        VisualNovelManager.S.CloseBag();
         VisualNovelManager.S.GoToScene("SampleScene");
     }
 
     public void closeBtnClick()
     { 
         Debug.Log("Click stop!");
-        VisualNovelManager.S.hideShowPuzzle();
+        VisualNovelManager.S.CloseBag();
     } 
 
     

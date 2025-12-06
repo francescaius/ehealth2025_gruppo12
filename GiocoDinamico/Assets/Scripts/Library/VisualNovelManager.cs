@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,7 +7,7 @@ using UnityEngine.SceneManagement;
 public enum SceneProgressStep
 {
     NotVisited,      // mai entrato
-    Start,           // appena entrato 
+    Choice,           // appena entrato 
     WrongChoiceDone, // ha visto la scelta sbagliata
     RightChoiceDone, // ha scelto quella giusta
     Finished         // scena conclusa
@@ -29,8 +30,9 @@ public class VisualNovelManager : MonoBehaviour
 
     [Header("Riferimenti globali")]
     public List<ControllerElementoDiScena> elementiControllati;
-    public DialogueManager dialog; 
-    [SerializeField] ControllerElementoDiScena showPuzzleBtn;
+    public DialogueManager dialog;
+    public PhoneDialogueManager phone;
+    [SerializeField] ControllerElementoDiScena bagBtn;
 
 
 
@@ -42,13 +44,17 @@ public class VisualNovelManager : MonoBehaviour
     private Dictionary<string, SceneProgressStep> scenesData = new Dictionary<string, SceneProgressStep>();
     private Dictionary<string, AudioClip> audioDict = new Dictionary<string, AudioClip>();
 
-     
+
+    public bool ForteDipendenza = false;
+
+    public List<int> takenPuzzlePieces = new List<int>();
 
 
 
 
-     
-      
+
+
+
     void Awake()
     {
         if (S != null && S != this)
@@ -69,7 +75,7 @@ public class VisualNovelManager : MonoBehaviour
         }
 
 
-        showPuzzleBtn.MakeClickable(showPuzzleCallback);
+        bagBtn.MakeClickable(OpenBag);
 
     }
 
@@ -106,20 +112,51 @@ public class VisualNovelManager : MonoBehaviour
         SceneManager.LoadScene(name, LoadSceneMode.Additive);
     }
      
-    public void hideShowPuzzle()
+    public void CloseBag()
     {
         playAudio("Bag");
-        StartCoroutine(showPuzzleBtn.Appear());
+        StartCoroutine(bagBtn.Appear());
         SceneManager.UnloadSceneAsync("Puzzle");
     }
 
-    private void showPuzzleCallback()
+    private void OpenBag()
     {
         playAudio("Bag");
-        StartCoroutine(showPuzzleBtn.Disappear());
+        StartCoroutine(bagBtn.Disappear());
         SceneManager.LoadScene("Puzzle", LoadSceneMode.Additive);
     }
 
+
+    public IEnumerator ObtainPuzzle(int puzzle)
+    {
+        if (takenPuzzlePieces.Contains(puzzle)) yield break;
+        if (puzzle < 1 || puzzle > 6) yield break;
+
+
+        var puzzleController = S.Element("PuzzlePiece"); 
+
+        yield return puzzleController.ChangePose("Puzzle" + puzzle);
+        yield return puzzleController.Appear();
+
+        if (takenPuzzlePieces.Count == 0) //se è il primo puzzle che ottengo
+        {
+            StartCoroutine(bagBtn.Appear());
+        }
+        yield return puzzleController.Disappear(); 
+        takenPuzzlePieces.Add(puzzle);
+
+    }
+    public void ShowBag(bool show = true)
+    {
+        if(show)
+        { 
+            StartCoroutine(bagBtn.Appear());
+        }
+        else
+        {
+            StartCoroutine(bagBtn.Disappear());
+        }
+    }
 
 
     public SceneProgressStep GetSceneData(string sceneId)
@@ -127,7 +164,7 @@ public class VisualNovelManager : MonoBehaviour
         if (!scenesData.ContainsKey(sceneId))
         {
             // se non esiste ancora, creiamo uno stato nuovo
-            var data = SceneProgressStep.Start;
+            var data = SceneProgressStep.NotVisited;
             scenesData[sceneId] = data;
         }
 
