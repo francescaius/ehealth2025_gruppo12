@@ -374,6 +374,13 @@ public class ControllerElementoDiScena : MonoBehaviour, IPointerClickHandler
         else if (tmpText) tmpText.color = originalColor;
     }
 
+    public bool IsClickable
+    {
+        get
+        {
+            return onClickAction != null;
+        }
+    }
     // Versione 1: Per funzioni normali (void)
     public void MakeClickable(Action a)
     {
