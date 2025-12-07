@@ -980,8 +980,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 998434146}
-  - {fileID: 1694679951}
   - {fileID: 1931097727}
+  - {fileID: 1694679951}
   m_Father: {fileID: 971997836}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1006,10 +1006,10 @@ MonoBehaviour:
   poseList:
   - poseName: ufficio esterno
     poseObject: {fileID: 998434145}
-  - poseName: ufficio interno
-    poseObject: {fileID: 1694679950}
   - poseName: ufficio sfocato
     poseObject: {fileID: 1931097726}
+  - poseName: ufficio interno
+    poseObject: {fileID: 1694679950}
 --- !u!1 &1694679950
 GameObject:
   m_ObjectHideFlags: 0
