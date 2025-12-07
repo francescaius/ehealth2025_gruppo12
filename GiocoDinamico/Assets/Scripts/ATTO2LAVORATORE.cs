@@ -43,13 +43,22 @@ public class ATTO2LAVORATORE : MonoBehaviour
         //////////////////////////////////////////////////////////////////////
 
         
+        yield return background.Appear();
         yield return new WaitForSeconds(1);
+        yield return VisualNovelManager.S.Element("Overlay").Appear();
+        
         yield return background.ChangePose("ufficio interno");
         yield return new WaitForSeconds(1);
         yield return background.ChangePose("ufficio sfocato");
         yield return Luca.Appear();
         yield return Mattia.Appear();
+        yield return VisualNovelManager.S.dialog.DisplayText(
+            "Mattia",
+            "Hey Luca, how’s it going?"
+        ); 
         
+
+     
         
 
 
