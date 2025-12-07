@@ -15,12 +15,12 @@ public class SondaggioScene : MonoBehaviour
     string[] domande = new string[]
     {
         "Trovi di restare online più a lungo di quanto avevi intenzione?",
-        //"Trascuri le faccende domestiche per passare più tempo online?",
-        //"Preferisci l’eccitazione di Internet all’intimità con il tuo partner?",
-        //"Stringi nuove relazioni con altri utenti online?",
-        //"Le persone nella tua vita si lamentano del tempo che trascorri online?",
-        //"I tuoi voti o il tuo rendimento scolastico peggiorano a causa del tempo che trascorri online?",
-        //"Controlli la tua email prima di fare qualcos’altro che dovresti fare?",
+        "Trascuri le faccende domestiche per passare più tempo online?",
+        "Preferisci l’eccitazione di Internet all’intimità con il tuo partner?",
+        "Stringi nuove relazioni con altri utenti online?",
+        "Le persone nella tua vita si lamentano del tempo che trascorri online?",
+        "I tuoi voti o il tuo rendimento scolastico peggiorano a causa del tempo che trascorri online?",
+        "Controlli la tua email prima di fare qualcos’altro che dovresti fare?",
         //"Il tuo rendimento o la tua produttività sul lavoro peggiorano a causa di Internet?",
         //"Diventi difensivo o segreto quando qualcuno ti chiede cosa fai online?",
         //"Blocchi pensieri disturbanti sulla tua vita rifugiandoti in pensieri rassicuranti sull’uso di Internet?",
