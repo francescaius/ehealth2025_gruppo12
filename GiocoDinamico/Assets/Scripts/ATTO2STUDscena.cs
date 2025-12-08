@@ -29,7 +29,15 @@ public class Atto2STUDENTE : MonoBehaviour
     {
         yield return VisualNovelManager.S.Element("Overlay").Disappear();
 
-        
+        yield return tell.Appear();
+        yield return Mattia.Appear();
+
+        tell.MakeClickable(SceltaSbagliata);
+        Mattia.MakeClickable(SceltaGiusta);
+
+        yield break;
+
+
         yield return new WaitForSeconds(1);
         yield return background.Appear();
         yield return Luca.Appear();
@@ -94,10 +102,11 @@ private IEnumerator SceltaSbagliata()
 
         yield return new WaitForSeconds(1);
         yield return VisualNovelManager.S.Element("Overlay").Appear();
-        yield return Luca.ChangePose("primopiano");
-        yield return Mattia.Disappear();
-        yield return tell.Disappear();
+        yield return Luca.ChangePose("primopiano"); 
+        StartCoroutine(Mattia.Disappear());
+        StartCoroutine(tell.Disappear());
         yield return background.ChangePose("aula");
+        yield return null;
         yield return VisualNovelManager.S.Element("Overlay").Disappear();
 
         yield return new WaitForSeconds(1);
