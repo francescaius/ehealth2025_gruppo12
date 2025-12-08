@@ -23,11 +23,11 @@ public class Atto1scena2 : MonoBehaviour
         }
         else
         {
-            StartCoroutine(Part1()); 
+            StartCoroutine(Part2()); 
         }  
     }
      
-    IEnumerator Part1()
+    IEnumerator Part2()
     { 
         yield return VisualNovelManager.S.Element("Overlay").Disappear();
 

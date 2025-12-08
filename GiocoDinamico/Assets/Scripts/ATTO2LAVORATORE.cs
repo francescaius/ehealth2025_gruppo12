@@ -62,13 +62,55 @@ public class ATTO2LAVORATORE : MonoBehaviour
         "scusa non ti stavo ascoltando");
         
         yield return VisualNovelManager.S.Element("Overlay").Appear();
+        yield return background.ChangePose("scrivania");
+        yield return Mattia.Disappear();
+        yield return Luca.Disappear();
+        yield return VisualNovelManager.S.Element("Overlay").Disappear();
+        yield return VisualNovelManager.S.dialog.DisplayText(
+            "Mattia",
+            "xxxxx"
+        );
+
+        yield return VisualNovelManager.S.Element("Overlay").Appear();
         yield return background.ChangePose("ufficio interno");
         yield return VisualNovelManager.S.Element("Overlay").Disappear();
+        
+        yield return Luca.ChangePose("triste");
+        yield return Luca.Appear();
+        yield return Mattia.ChangePose("normale");
+        yield return Mattia.Appear();
+        yield return VisualNovelManager.S.dialog.DisplayText("Luca",
+        "si scusa non ho dormito molto");
 
-        yield return VisualNovelManager.S.dialog.DisplayText(
-            "Mattia",""
-            
-        );
+        yield return Mattia.ChangePose("ridendo");
+        yield return VisualNovelManager.S.dialog.DisplayText ("Mattia", 
+        "stavi pensando a quella proposta");
+
+        yield return Mattia.ChangePose("parlando");
+        yield return VisualNovelManager.S.dialog.DisplayText ("Mattia", "ti ricordi....?");
+        yield return Luca.ChangePose ("incuriosito");
+        yield return VisualNovelManager.S.dialog.DisplayText ("Luca", "in effetti..");
+
+        yield return VisualNovelManager.S.Element("Overlay").Appear();
+        yield return background.ChangePose("graffito telefono");
+        yield return Luca.Disappear();
+        yield return Mattia.Disappear();
+        yield return VisualNovelManager.S.Element("Overlay").Disappear();
+
+        yield return VisualNovelManager.S.dialog.DisplayText ("Mattia","HHh");
+        yield return VisualNovelManager.S.dialog.DisplayText ("Luca","HHH");
+
+        yield return VisualNovelManager.S.Element("Overlay").Appear();
+        yield return background.ChangePose("ufficio sfocato");
+        yield return VisualNovelManager.S.Element("Overlay").Disappear();
+
+
+
+
+    
+
+
+    
 
 
         

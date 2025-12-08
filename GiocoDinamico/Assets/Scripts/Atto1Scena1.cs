@@ -30,7 +30,7 @@ public class Atto1scena1 : MonoBehaviour
 
         
         yield return new WaitForSeconds(1);
-        yield return background.Appear("casa");
+        yield return background.Appear();
         yield return Luca.Appear();
         yield return VisualNovelManager.S.dialog.DisplayText(
             "Luca",
