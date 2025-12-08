@@ -119,6 +119,81 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &107843498
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 107843499}
+  - component: {fileID: 107843501}
+  - component: {fileID: 107843500}
+  m_Layer: 5
+  m_Name: primo piano
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &107843499
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107843498}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1151938908}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -610, y: -1966}
+  m_SizeDelta: {x: 3218.657, y: 4401.655}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &107843500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107843498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 09c5a8225de1e4b42bf98a4f76b4bdd0, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &107843501
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107843498}
+  m_CullTransparentMesh: 1
 --- !u!1 &176826695
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,8 +727,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -516, y: 245}
-  m_SizeDelta: {x: 682.311, y: 1426.907}
+  m_AnchoredPosition: {x: -567.4811, y: 281.77222}
+  m_SizeDelta: {x: 785.273, y: 1500.451}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &664274294
 Animator:
@@ -772,8 +847,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -9.173004, y: 44.127014}
-  m_SizeDelta: {x: -18.99701, y: -87.347046}
+  m_AnchoredPosition: {x: 49.418, y: 7.481018}
+  m_SizeDelta: {x: 39.839, y: 15.615}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &710925917
 MonoBehaviour:
@@ -923,8 +998,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -6.872986, y: 36.679993}
-  m_SizeDelta: {x: -2.7730103, y: -100.938965}
+  m_AnchoredPosition: {x: 51.418, y: 10.867}
+  m_SizeDelta: {x: 56.062, y: 38.796}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &855303055
 MonoBehaviour:
@@ -998,8 +1073,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.16000366, y: 44.127014}
-  m_SizeDelta: {x: 0.30999756, y: -87.30005}
+  m_AnchoredPosition: {x: 29.572, y: 0.000061035156}
+  m_SizeDelta: {x: 59.146, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &941999464
 MonoBehaviour:
@@ -1255,6 +1330,7 @@ RectTransform:
   - {fileID: 272549568}
   - {fileID: 176826696}
   - {fileID: 274080101}
+  - {fileID: 107843499}
   m_Father: {fileID: 971997836}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
@@ -1285,6 +1361,8 @@ MonoBehaviour:
     poseObject: {fileID: 176826695}
   - poseName: incuriosito
     poseObject: {fileID: 274080100}
+  - poseName: primo piano
+    poseObject: {fileID: 107843498}
 --- !u!114 &1151938910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1376,8 +1454,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.16000366, y: 44.11801}
-  m_SizeDelta: {x: 0.32000732, y: -87.30005}
+  m_AnchoredPosition: {x: -0.0005187988, y: 43.650024}
+  m_SizeDelta: {x: 0.00091553, y: -87.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1182480939
 MonoBehaviour:

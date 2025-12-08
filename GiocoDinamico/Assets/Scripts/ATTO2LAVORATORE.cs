@@ -127,7 +127,12 @@ public class ATTO2LAVORATORE : MonoBehaviour
 
         yield return VisualNovelManager.S.Element("Overlay").Appear();
         yield return background.ChangePose("ufficio sfocato");
+        yield return Luca.Appear ();
+        yield return Luca.ChangePose("primo piano");
         yield return VisualNovelManager.S.Element("Overlay").Disappear();
+        yield return VisualNovelManager.S.dialog.DisplayText ("Luca","Or maybe… a sign. But what if it’s just my mind seeing what it wants to see?");
+
+
 
         
 
