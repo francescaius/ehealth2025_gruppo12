@@ -102,9 +102,12 @@ private IEnumerator SceltaSbagliata()
 
         yield return new WaitForSeconds(1);
         yield return VisualNovelManager.S.Element("Overlay").Appear();
-        yield return Luca.ChangePose("primopiano"); 
-        StartCoroutine(Mattia.Disappear());
-        StartCoroutine(tell.Disappear());
+        yield return Luca.ChangePose("primopiano");
+        Debug.Log("Mattia disappearing");
+        yield return Mattia.Disappear();
+        Debug.Log("Tell disappearing");
+        //yield return tell.Disappear();
+        Debug.Log("Tell disappearing");
         yield return background.ChangePose("aula");
         yield return null;
         yield return VisualNovelManager.S.Element("Overlay").Disappear();
