@@ -112,7 +112,14 @@ public class EmptyScene : MonoBehaviour
         // in alternativa si può fare anche if-else if(StipendioBasso) {...} else {...}
 
 
-
+        if(VisualNovelManager.S.Insoddisfatto)
+        {
+            //........
+        }
+        else //soddisfatto
+        {
+            //........
+        }
 
 
         //cambiare posa della marionetta personaggio --> il nome dev'essere quello dato nella barra laterale di unity all'oggetto da controllare
