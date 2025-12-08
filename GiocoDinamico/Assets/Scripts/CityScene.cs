@@ -8,6 +8,7 @@ public class CityScene : MonoBehaviour
     [SerializeField] ControllerElementoDiScena bar;
     [SerializeField] ControllerElementoDiScena ufficio;
     [SerializeField] ControllerElementoDiScena parco;
+    [SerializeField] ControllerElementoDiScena metro;
 
 
     void Start()
@@ -28,7 +29,14 @@ public class CityScene : MonoBehaviour
     {
         yield return VisualNovelManager.S.Element("Overlay").Disappear();
         yield return VisualNovelManager.S.ObtainPuzzle(2);
-        if (VisualNovelManager.S.takenPuzzlePieces.Contains(2))
+        if (VisualNovelManager.S.takenPuzzlePieces.Contains(3))
+        {
+            yield return VisualNovelManager.S.dialog.DisplayText("Luca", "I have to go to the metro...");
+            yield return metro.Appear();
+            yield return new WaitForSeconds(1);
+            metro.MakeClickable(() => VisualNovelManager.S.GoToScene("SampleScene"));
+        }
+        else if (VisualNovelManager.S.takenPuzzlePieces.Contains(2))
         {
             yield return VisualNovelManager.S.dialog.DisplayText("Luca", "After all the day I can finally go home, going throug the park...");
             yield return parco.Appear();

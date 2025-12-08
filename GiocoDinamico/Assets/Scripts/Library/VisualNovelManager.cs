@@ -94,7 +94,8 @@ public class VisualNovelManager : MonoBehaviour
         foreach (ControllerElementoDiScena prefab in elementiControllati)
         {
             if (prefab.ID == ID)
-            {  
+            {
+                Debug.Log("Trovato " + ID);
                 return prefab;
             }
         }
