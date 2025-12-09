@@ -11,6 +11,7 @@ public class ATTO2LAVORATORE : MonoBehaviour
     [SerializeField] ControllerElementoDiScena background;
     [SerializeField] ControllerElementoDiScena Luca; //potrebbe essere luca, marta, etc... chiamare questa variabile
     [SerializeField] ControllerElementoDiScena Mattia;
+    [SerializeField] ControllerElementoDiScena telefono;
     //inserire in questo elenco tutti gli elementi cliccabili o che devono apparire e sparire!
     //poi inserire l'elemento effettivo su unity in questo campo
 
@@ -127,14 +128,40 @@ public class ATTO2LAVORATORE : MonoBehaviour
 
         yield return VisualNovelManager.S.Element("Overlay").Appear();
         yield return background.ChangePose("ufficio sfocato");
-        yield return Luca.Appear ();
-        yield return Luca.ChangePose("primo piano");
         yield return VisualNovelManager.S.Element("Overlay").Disappear();
         yield return VisualNovelManager.S.dialog.DisplayText ("Luca","Or maybe… a sign. But what if it’s just my mind seeing what it wants to see?");
 
-
-
+        yield return Mattia.Appear();
+        yield return //telefono appare
         
+        telefono.MakeClickable(Restareneldubbio);
+        Mattia.MakeClickable(Ascoltare Mattia); 
+    }
+        
+    public void Restareneldubbio();
+    {
+        StartCoroutine (Scelta1());
+    
+    }
+   
+    private IEnumerator Scelta1 ()
+    {       
+        telefono.UndoClickable();
+        Mattia.UndoClickable();
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    }
+
 
 
 
@@ -154,16 +181,4 @@ public class ATTO2LAVORATORE : MonoBehaviour
 
 
 
-        //////////////////// ESEMPI DI COSE CHE SI POSSONO FARE //////////////////
-        //far apparrire gli elementi
-        
-        
-        //entrambi appaiono con l'animazione che è creata dall'editor nominata "Show" 
-
-
-
-        //se ci sono dei dialoghi solamente per il caso in cui ci sia forte dipendenza
-        //usare il seguente controllo:
-    }
-
-}       
+       
