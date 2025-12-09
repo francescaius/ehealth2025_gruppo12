@@ -11,7 +11,7 @@ public class ATTO2LAVORATORE : MonoBehaviour
     [SerializeField] ControllerElementoDiScena background;
     [SerializeField] ControllerElementoDiScena Luca; //potrebbe essere luca, marta, etc... chiamare questa variabile
     [SerializeField] ControllerElementoDiScena Mattia;
-    [SerializeField] ControllerElementoDiScena telefono;
+    [SerializeField] ControllerElementoDiScena tell;
     //inserire in questo elenco tutti gli elementi cliccabili o che devono apparire e sparire!
     //poi inserire l'elemento effettivo su unity in questo campo
 
@@ -44,7 +44,7 @@ public class ATTO2LAVORATORE : MonoBehaviour
         //////////////////////////////////////////////////////////////////////
 
         
-        yield return background.Appear("uffico esterno");
+        yield return background.Appear("ufficio esterno");
         yield return new WaitForSeconds(1);
         yield return VisualNovelManager.S.Element("Overlay").Appear();
         
@@ -132,36 +132,79 @@ public class ATTO2LAVORATORE : MonoBehaviour
         yield return VisualNovelManager.S.dialog.DisplayText ("Luca","Or maybe… a sign. But what if it’s just my mind seeing what it wants to see?");
 
         yield return Mattia.Appear();
-        yield return //telefono appare
+        yield return tell.Appear();
         
-        telefono.MakeClickable(Restareneldubbio);
-        Mattia.MakeClickable(Ascoltare Mattia); 
+        tell.MakeClickable(Restareneldubbio);
+        Mattia.MakeClickable(AscoltareMattia); 
+        VisualNovelManager.S.SetSceneData(GetType().Name, SceneProgressStep.Choice);
     }
-        
-    public void Restareneldubbio();
+
+    private IEnumerator Restareneldubbio()
     {
-        StartCoroutine (Scelta1());
-    
-    }
-   
-    private IEnumerator Scelta1 ()
-    {       
-        telefono.UndoClickable();
+        //NON CAMBIARE
+        VisualNovelManager.S.SetSceneData(GetType().Name, SceneProgressStep.WrongChoiceDone);
+        //le due marionette per scegliere non devono più essere cliccabili
+        //fino alla fine di questa scena corrispondente alla scelta "sbagliata"
+        tell.UndoClickable();
         Mattia.UndoClickable();
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    }
+        yield return VisualNovelManager.S.Element("Overlay").Appear();
+        yield return background.ChangePose("ufficio interno");
+        yield return Luca.ChangePose ("al telefono");
+        yield return Luca.Appear();
+        yield return Mattia.ChangePose ("parlando");
+        yield return VisualNovelManager.S.Element("Overlay").Disappear();   
 
+
+        ///////// QUI INSERIRE COSA SUCCEDE NELLA SCELTA SBAGLIATA /////////
+        yield return new WaitForSeconds(1); 
+        ////////////////////////////////////////////////////////////////////
+        
+        //alla fine della scelta sbagliata deve ritornare possibile fare la scelta giusta
+        Mattia.MakeClickable(AscoltareMattia);
+    } 
+
+    private IEnumerator AscoltareMattia()
+    {
+
+        //NON CAMBIARE
+        VisualNovelManager.S.SetSceneData(GetType().Name, SceneProgressStep.RightChoiceDone);
+        //le due marionette per scegliere non devono più essere cliccabili
+        //fino alla fine di questa scena corrispondente alla scelta "sbagliata"
+        tell.UndoClickable();
+        Mattia.UndoClickable();
+
+        ///////// QUI INSERIRE COSA SUCCEDE NELLA SCELTA SBAGLIATA /////////
+
+        yield return new WaitForSeconds(1);
+
+        //a un certo punto dev'essere dato il PUZZLE!!
+        //IMPORTANTE: mettere il numero corrispondente al tassello di puzzle (1-6) 
+        yield return VisualNovelManager.S.ObtainPuzzle(4);
+        VisualNovelManager.S.SetSceneData(GetType().Name, SceneProgressStep.Finished);
+
+
+        ////////////////////////////////////////////////////////////////////
+
+
+        //alla fine lo sfondo diventa nero
+        yield return VisualNovelManager.S.Element("Overlay").Appear(); //NON CAMBIARE
+        
+
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}
 
 
 
