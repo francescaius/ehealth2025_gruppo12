@@ -33,7 +33,7 @@ public class Atto1scena2 : MonoBehaviour
 
         
         yield return new WaitForSeconds(1);
-        yield return Background.Appear(BGbar);
+        yield return Background.Appear("BGbar");
         yield return Luca.Appear();
         yield return Marta.Appear();
         yield return VisualNovelManager.S.dialog.DisplayText(
