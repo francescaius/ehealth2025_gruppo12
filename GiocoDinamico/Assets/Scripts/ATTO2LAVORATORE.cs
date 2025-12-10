@@ -152,11 +152,37 @@ public class ATTO2LAVORATORE : MonoBehaviour
         yield return background.ChangePose("ufficio interno");
         yield return Luca.ChangePose ("al telefono");
         yield return Luca.Appear();
+        yield return tell.Disappear();
         yield return Mattia.ChangePose ("parlando");
-        yield return VisualNovelManager.S.Element("Overlay").Disappear();   
+        yield return VisualNovelManager.S.Element("Overlay").Disappear();  
+        yield return VisualNovelManager.S.dialog.DisplayText ("Luca","I… I don’t think going there will help. If there’s anything about my brother, it must be online. A forum, an article… something we haven’t seen yet.");
+        
+        if (VisualNovelManager.S.ForteDipendenza)
+        { yield return VisualNovelManager.S.dialog.DisplayText ("Mattia", "you can’t find every answer on a phone.");
+        }
+        
+        yield return VisualNovelManager.S.dialog.DisplayText ("Mattia","That graﬃti is real. It’s there, not on a screen.");
+        yield return VisualNovelManager.S.dialog.DisplayText ("Luca","Yeah, but someone must have posted something. Maybe a report… an old post… I just need to… keep searching.");
+        
+        if (VisualNovelManager.S.ForteDipendenza)
+        {
+         yield return VisualNovelManager.S.dialog.DisplayText ("Mattia","You could spend hours searching and find nothing. You need to stop.");
+         yield return VisualNovelManager.S.dialog.DisplayText ("Luca","What would you know?!");
+        }
+        yield return VisualNovelManager.S.dialog.DisplayText ("Mattia","You’re losing yourself, man. I can see it from here. You’re looking everywhere except the right place.");
+
+        if (VisualNovelManager.S.ForteDipendenza)
+        {
+        yield return VisualNovelManager.S.Element("Overlay").Appear();   
+        yield return Luca.Disappear();
+        yield return Mattia.Disappear();
+        yield return background.ChangePose("Luca primo piano");
+        yield return VisualNovelManager.S.Element("Overlay").Disappear();
+        yield return VisualNovelManager.S.dialog.DisplayText ("Luca","Every time I didn’t want to face something, I hid inside the noise of the screen. Every time I didn’t feel enough. I would scroll, search, click… until I convinced myself that sooner or later, a response would appear.But it wasn’t a response. It was only silence disguised as information.");
+        }
 
 
-        ///////// QUI INSERIRE COSA SUCCEDE NELLA SCELTA SBAGLIATA /////////
+
         yield return new WaitForSeconds(1); 
         ////////////////////////////////////////////////////////////////////
         
@@ -176,15 +202,38 @@ public class ATTO2LAVORATORE : MonoBehaviour
 
         ///////// QUI INSERIRE COSA SUCCEDE NELLA SCELTA SBAGLIATA /////////
 
+        
+        yield return VisualNovelManager.S.Element("Overlay").Appear();
+        yield return Luca.ChangePose ("incuriosito");
+        yield return Luca.Appear();
+        yield return tell.Disappear();
+        yield return VisualNovelManager.S.Element("Overlay").Disappear();
+
+        yield return VisualNovelManager.S.dialog.DisplayText ("Luca","Take me there. I want to see that wall.");
+        yield return Mattia.ChangePose("perplesso");
+        yield return VisualNovelManager.S.dialog.DisplayText("Mattia","Really? You’re usually the first to disappear");
+
+        if (VisualNovelManager.S.ForteDipendenza)
+        {
+        yield return VisualNovelManager.S.dialog.DisplayText("Mattia","Always glued to that phone for who knows what.");
+        }
+        yield return VisualNovelManager.S.dialog.DisplayText("Luca","Not today. Today I want to understand");
+
+
+
+        
+        
+        
+        
+        
+        
+        
         yield return new WaitForSeconds(1);
 
         //a un certo punto dev'essere dato il PUZZLE!!
         //IMPORTANTE: mettere il numero corrispondente al tassello di puzzle (1-6) 
         yield return VisualNovelManager.S.ObtainPuzzle(4);
         VisualNovelManager.S.SetSceneData(GetType().Name, SceneProgressStep.Finished);
-
-
-        ////////////////////////////////////////////////////////////////////
 
 
         //alla fine lo sfondo diventa nero
