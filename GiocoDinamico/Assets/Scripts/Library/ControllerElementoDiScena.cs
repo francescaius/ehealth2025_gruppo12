@@ -192,6 +192,7 @@ public class ControllerElementoDiScena : MonoBehaviour, IPointerClickHandler
         Debug.Log("Disappearing " + ID);
         if (animator == null)
         {
+            SetVisibility(false);
             yield break;
         } 
         else
