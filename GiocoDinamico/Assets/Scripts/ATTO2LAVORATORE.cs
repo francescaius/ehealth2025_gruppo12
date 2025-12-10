@@ -229,17 +229,11 @@ public class ATTO2LAVORATORE : MonoBehaviour
         yield return VisualNovelManager.S.dialog.DisplayText ("Mattia","Who are you talking about?");
         yield return VisualNovelManager.S.dialog.DisplayText("Luca","My brother. A few too many coincidences are starting to happen.");
         
-        
-        
-        
-        
-        
-        
         yield return new WaitForSeconds(1);
 
         //a un certo punto dev'essere dato il PUZZLE!!
         //IMPORTANTE: mettere il numero corrispondente al tassello di puzzle (1-6) 
-        yield return VisualNovelManager.S.ObtainPuzzle(4);
+        yield return VisualNovelManager.S.ObtainPuzzle(2);
         VisualNovelManager.S.SetSceneData(GetType().Name, SceneProgressStep.Finished);
 
 
@@ -248,17 +242,6 @@ public class ATTO2LAVORATORE : MonoBehaviour
         
 
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 }
 
