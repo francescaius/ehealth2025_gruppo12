@@ -219,8 +219,15 @@ public class ATTO2LAVORATORE : MonoBehaviour
         }
         yield return VisualNovelManager.S.dialog.DisplayText("Luca","Not today. Today I want to understand");
 
-
-
+        yield return VisualNovelManager.S.Element("Overlay").Appear();
+        yield return background.ChangePose("biblioteca browser");
+        yield return Mattia.ChangePose ("normale");
+        yield return VisualNovelManager.S.Element("Overlay").Disappear();
+        yield return VisualNovelManager.S.dialog.DisplayText("Mattia","Wait. There it is.");
+        yield return VisualNovelManager.S.dialog.DisplayText("Luca","Someone is leaving clues. I don’t know why… could it be him?");
+        yield return VisualNovelManager.S.dialog.DisplayText("Luca","It’s probably a coincidence, but this little monster is Bowser, the same character from the game we spent our Sunday afternoons playing as kids.");
+        yield return VisualNovelManager.S.dialog.DisplayText ("Mattia","Who are you talking about?");
+        yield return VisualNovelManager.S.dialog.DisplayText("Luca","My brother. A few too many coincidences are starting to happen.");
         
         
         
