@@ -7,13 +7,10 @@ using System;
 using TMPro;
 using UnityEngine.UI;
 
-[System.Serializable] // OBBLIGATORIO: Dice a Unity di includere questa classe nel sistema di serializzazione
+[System.Serializable]
 public class PoseEntry
-{
-    // La chiave (il nome della posa che userai nel codice)
-    public string poseName;
-
-    // Il valore (il GameObject/SpriteRenderer che rappresenta la posa)
+{ 
+    public string poseName; 
     public GameObject poseObject;
 
     public PoseEntry(string poseName, GameObject poseObject)
@@ -405,7 +402,7 @@ public class ControllerElementoDiScena : MonoBehaviour, IPointerClickHandler
             return onClickAction != null;
         }
     }
-    // Versione 1: Per funzioni normali (void)
+    // Per funzioni
     public void MakeClickable(Action a)
     {
         onClickAction = a;
@@ -413,7 +410,7 @@ public class ControllerElementoDiScena : MonoBehaviour, IPointerClickHandler
             VisualNovelManager.S.StartCoroutine(Shine());
     }
 
-    // Versione 2: Per Coroutine
+    // Per coroutine 
     public void MakeClickable(Func<IEnumerator> a)
     {
         onClickAction = a;
@@ -421,8 +418,7 @@ public class ControllerElementoDiScena : MonoBehaviour, IPointerClickHandler
             VisualNovelManager.S.StartCoroutine(Shine());
     }
      
-
-    //questo bisognerebbe usarlo per gli oggetti globali a cui sono stati aggiunti listener di scene non globali (roba strana però)
+     
     public void UndoClickable()
     {
         onClickAction = null;
