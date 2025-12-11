@@ -257,7 +257,7 @@ public class Atto1scena2 : MonoBehaviour
         "Marta",
         "Your brother came here to disconnect from the world, not to sink deeper into it. But I see you’re very different."
         );
-        yield return Luca.Disappear();
+        Marta.MakeClickable(Parla);
         
    
     }
@@ -283,7 +283,7 @@ public class Atto1scena2 : MonoBehaviour
             "Luca",
             "There was no one outside… and I really need this coffee. You told me my brother came here to disconnect, right?"
         );
-        yield return Background.ChangePose("foto");
+        yield return Background.ChangePose("foto piccoli");
         yield return VisualNovelManager.S.dialog.DisplayText(
             "Luca",
             "Maybe this will help you understand I'm not lying."
@@ -300,12 +300,13 @@ public class Atto1scena2 : MonoBehaviour
         );
         yield return VisualNovelManager.S.dialog.DisplayText(
             "Marta",
-            "Ecco a te il puzzle!"
+            "Here it is this puzzle piece! It is for you, keep it!"
         );
-        
-        yield return VisualNovelManager.S.Element("PuzzlePiece").Appear();
-        yield return new WaitForSeconds(2);
-        yield return VisualNovelManager.S.Element("PuzzlePiece").Disappear();
+        yield return VisualNovelManager.S.ObtainPuzzle(1);
+
         yield return VisualNovelManager.S.Element("Overlay").Appear();
+        yield return new WaitForSeconds(1);
+        VisualNovelManager.S.SetSceneData(GetType().Name, SceneProgressStep.Finished);
+        VisualNovelManager.S.GoToScene("CityScene");
     }
 }
