@@ -45,7 +45,7 @@ public class ATTO5 : MonoBehaviour
         yield return Lucia.Appear();
         yield return Luca.ChangePose("incuriosito");
         yield return Luca.Appear();
-        yield return VisualNovelManager.S.dialog.DisplayText("Luca",""
+        
         
         
 
