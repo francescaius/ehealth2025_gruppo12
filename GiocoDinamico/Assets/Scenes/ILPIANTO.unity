@@ -678,8 +678,8 @@ MonoBehaviour:
     poseObject: {fileID: 1409790639}
   - poseName: primopiano
     poseObject: {fileID: 1337353017}
-  - poseName: primopiano
-    poseObject: {fileID: 1337353017}
+  - poseName: scioccato
+    poseObject: {fileID: 252425938}
 --- !u!114 &428735669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2012,7 +2012,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3465286685962602723, guid: 1e0bf81539534244fafbb256d5ced59a,
+  m_Sprite: {fileID: 2517139960007081993, guid: 29fde680509305342b8915fb9509f9fb,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
