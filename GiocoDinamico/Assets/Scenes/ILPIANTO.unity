@@ -660,14 +660,12 @@ MonoBehaviour:
   ID: Luca
   activeByDefault: 0
   poseList:
-  - poseName: piange
-    poseObject: {fileID: 1335101532}
+  - poseName: al telefono
+    poseObject: {fileID: 1510576204}
   - poseName: stanco
     poseObject: {fileID: 1055402244}
   - poseName: sereno
     poseObject: {fileID: 817370065}
-  - poseName: al telefono
-    poseObject: {fileID: 1510576204}
   - poseName: 'guarda '
     poseObject: {fileID: 1340587211}
   - poseName: sorride

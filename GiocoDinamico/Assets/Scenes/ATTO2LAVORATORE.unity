@@ -1479,8 +1479,6 @@ MonoBehaviour:
     poseObject: {fileID: 176826695}
   - poseName: incuriosito
     poseObject: {fileID: 274080100}
-  - poseName: primo piano
-    poseObject: {fileID: 0}
 --- !u!114 &1151938910
 MonoBehaviour:
   m_ObjectHideFlags: 0
