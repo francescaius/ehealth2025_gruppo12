@@ -63,6 +63,7 @@ public class EmptyScene : MonoBehaviour
         //ANDARE IN FONDO ALLA SEZIONE PER DETTAGLI
         if (VisualNovelManager.S.StipendioBasso)
         { 
+            ///.....
         } 
          
 
@@ -83,12 +84,20 @@ public class EmptyScene : MonoBehaviour
 
         if (VisualNovelManager.S.Insoddisfatto)
         {
-
+            //....
+        }
+        else {
+            //....
         }
 
 
 
         if (VisualNovelManager.S.Alcool_Azzardo)
+        {
+
+        }
+
+        if (VisualNovelManager.S.ForteDipendenza)
         {
 
         }
