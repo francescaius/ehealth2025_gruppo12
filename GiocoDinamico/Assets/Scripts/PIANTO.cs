@@ -274,10 +274,6 @@ IEnumerator Part1()
          yield return VisualNovelManager.S.ObtainPuzzle(4);
     
     
-    
-    
-    
-    
     }    
     
     
