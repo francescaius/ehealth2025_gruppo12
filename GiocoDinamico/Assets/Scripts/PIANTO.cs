@@ -70,7 +70,7 @@ IEnumerator Part1()
         panchina.UndoClickable();
 
        
-        yield return new WaitForSeconds(1);ù
+        yield return new WaitForSeconds(1);
         yield return VisualNovelManager.S.Element("Overlay").Appear();
         yield return panchina.Disappear();
         yield return Luca.ChangePose("primopiano");
@@ -135,7 +135,7 @@ IEnumerator Part1()
         yield return VisualNovelManager.S.dialog.DisplayText(
            "Luca",
            "...you too? What do you mean?");
-        yield return Marta.ChangePose("preoccupata");
+        yield return Marta.ChangePose("Preoccupata");
         yield return VisualNovelManager.S.dialog.DisplayText(
            "Marta",
            "I had… the same problem.");
@@ -153,7 +153,6 @@ IEnumerator Part1()
            "Luca",
            "Every morning I wake up without knowing what I’m doing with my life, nor where I’ll be in a few years… imagine if I could resemble someone like him.");
         }
-        yield return Marta.ChangePose("Preoccupata");
         yield return VisualNovelManager.S.dialog.DisplayText(
            "Marta",
            "You two have more in common than you think… for better or worse");  
@@ -248,12 +247,31 @@ IEnumerator Part1()
          yield return VisualNovelManager.S.dialog.DisplayText( 
          "Luca",
          "Maybe you’re right…I don’t know what makes me think you have something for me.");
-          yield return VisualNovelManager.S.dialog.DisplayText(
+         yield return VisualNovelManager.S.dialog.DisplayText(
            "Marta",
            "Not one… but two.Here.");
+         yield return VisualNovelManager.S.Element("Overlay").Appear(); 
+         yield return Luca.Disappear();
+         yield return Marta.Disappear();
+         yield return background.ChangePose("biglietto"); 
+         yield return VisualNovelManager.S.Element("Overlay").Disappear(); 
+         yield return new WaitForSeconds(1);
 
+         yield return VisualNovelManager.S.Element("Overlay").Appear(); 
+         yield return Luca.Appear();
+         yield return Marta.Appear();
+         yield return Marta.ChangePose("Rilassata");
+         yield return background.ChangePose("parco3"); 
+         yield return VisualNovelManager.S.Element("Overlay").Disappear();
+       
 
-    
+         yield return VisualNovelManager.S.dialog.DisplayText(
+           "Marta",
+           "This… this is the key Aldo gave me the last time I saw him. He told me that one day you’d come looking for it. That you would understand. I don’t know what door it opens… but I know only you are meant to discover it.");
+          yield return VisualNovelManager.S.dialog.DisplayText(
+           "Marta",
+           "And this… is a ticket he also gave me. He said you would understand it. I… know nothing. I only know it’s up to you to figure it out.");
+         yield return VisualNovelManager.S.ObtainPuzzle(4);
     
     
     
