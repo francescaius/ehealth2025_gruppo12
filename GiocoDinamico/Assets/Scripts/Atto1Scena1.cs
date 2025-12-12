@@ -6,9 +6,7 @@ public class Atto1scena1 : MonoBehaviour
 {
     
     [SerializeField] ControllerElementoDiScena background;
-    [SerializeField] ControllerElementoDiScena Luca;
-    [SerializeField] ControllerElementoDiScena Marta; 
-    [SerializeField] ControllerElementoDiScena Anonimo;
+
 
 
     void Start()
@@ -30,29 +28,25 @@ public class Atto1scena1 : MonoBehaviour
 
         
         yield return new WaitForSeconds(1);
-        yield return background.Appear("casa");
-        yield return Luca.Appear();
+        yield return background.Appear();
         yield return VisualNovelManager.S.dialog.DisplayText(
             "Luca",
-            "Anche stanotte è come se non avessi chiuso occhio"
+            "Even tonight it feels like I didn’t sleep at all…"
         );     
         yield return VisualNovelManager.S.dialog.DisplayText(
             "Luca",
-            "Non ho voglia di alzarmi... non ho voglia di niente"
+            "I don’t feel like getting up. I don’t feel like anything"
         );      
-        yield return Anonimo.Appear();
-        Anonimo.MakeClickable (LeggiNotifica);
-        yield return VisualNovelManager.S.dialog.DisplayText(
-            "Anonimo",
-            "Sai dov'è tuo fratello?"
+           
+        yield return VisualNovelManager.S.phone.DisplayText(
+           "Anonimo",
+           "Do you know where your brother is?"
         );
         yield return VisualNovelManager.S.dialog.DisplayText(
             "Luca",
-            "Cosa? Chi sei?"
+            "What…? Who are you?"
         );
     
     }
-    public void LeggiNotifica()
-    {}
-
+  
 }

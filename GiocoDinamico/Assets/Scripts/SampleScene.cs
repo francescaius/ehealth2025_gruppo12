@@ -28,7 +28,10 @@ public class SampleScene : MonoBehaviour
         yield return personaggio.Appear();
         yield return VisualNovelManager.S.phone.DisplayText(
            "Luca",
-           "Breve."
+           "Ciao sono luca di cosa hai bisogno?."
+       );yield return VisualNovelManager.S.phone.DisplayText(
+           "Anonimo",
+           "Ciao sono anonimo..... di cosa hai bisogno?."
        );
 
         //yield return VisualNovelManager.S.Element("PuzzlePiece").ChangePose("Puzzle1");

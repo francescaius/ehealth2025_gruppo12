@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Atto2STUDscena : MonoBehaviour
+public class Atto2STUDENTE : MonoBehaviour
 {
     
     [SerializeField] ControllerElementoDiScena background;
     [SerializeField] ControllerElementoDiScena Luca;
-    [SerializeField] ControllerElementoDiScena Anonimo; 
+    [SerializeField] ControllerElementoDiScena Mattia; 
+    [SerializeField] ControllerElementoDiScena tell;
+
 
 
     void Start()
@@ -29,31 +31,131 @@ public class Atto2STUDscena : MonoBehaviour
 
         
         yield return new WaitForSeconds(1);
-        yield return background.Appear("scuola");
+        yield return background.Appear();
         yield return Luca.Appear();
+        yield return Mattia.Appear();
         yield return VisualNovelManager.S.dialog.DisplayText(
-            "Luca",
-            "Anche stanotte è come se non avessi chiuso occhio"
+            "Mattia",
+            "Hey Luca, how’s it going?"
+        ); 
+        yield return new WaitForSeconds(1);
+        
+        yield return new WaitForSeconds(1);
+        yield return VisualNovelManager.S.Element("Overlay").Appear();
+        yield return Luca.Disappear();
+        yield return Mattia.Disappear();
+         yield return background.ChangePose("aula");
+         yield return VisualNovelManager.S.Element("Overlay").Disappear();
+       
+        yield return Luca.Appear();
+        yield return new WaitForSeconds(1);
+        yield return VisualNovelManager.S.Element("Overlay").Appear();
+        yield return Luca.Disappear();
+        yield return background.ChangePose("cellbanco");
+        yield return VisualNovelManager.S.Element("Overlay").Disappear();
+       
+
+        yield return new WaitForSeconds(3);
+        yield return VisualNovelManager.S.Element("Overlay").Appear(); 
+        yield return background.ChangePose("aula");
+        yield return VisualNovelManager.S.Element("Overlay").Disappear();
+      
+        yield return Luca.Appear();
+        yield return Mattia.Appear();
+        yield return VisualNovelManager.S.dialog.DisplayText(
+            "Mattia",
+            "Hey, you there? You look like an antenna that’s lost signal"
         ); 
 
-     yield return VisualNovelManager.S.dialog.DisplayText(
-            "Luca",
-            "Non ho voglia di alzarmi... non ho voglia di niente"
-        );      
-        yield return Anonimo.Appear();
-        Anonimo.MakeClickable (LeggiNotifica);
-        yield return VisualNovelManager.S.dialog.DisplayText(
-            "Anonimo",
-            "Sai dov'è tuo fratello?"
-        );
+        yield return Luca.ChangePose("Triste");
         yield return VisualNovelManager.S.dialog.DisplayText(
             "Luca",
-            "Cosa? Chi sei?"
+            "Yeah… sorry. I didn’t sleep much."
         );
-    
+        yield return VisualNovelManager.S.dialog.DisplayText(
+            "Mattia",
+            "Anyway, I was actually looking for you. I was with the others earlier and they were talking about a library that’s shutting down, and about some guy who drew on the wall right before no one was allowed in anymore. Weird, right?"
+        ); 
+       
+        yield return tell.Appear();
+
+        tell.MakeClickable(SceltaSbagliata);
+        Mattia.MakeClickable(SceltaGiusta); 
     }
-    public void LeggiNotifica()
-    {}
+
+private IEnumerator SceltaSbagliata()
+    {
+        //NON CAMBIARE
+        VisualNovelManager.S.SetSceneData(GetType().Name, SceneProgressStep.WrongChoiceDone);
+        //le due marionette per scegliere non devono più essere cliccabili
+        //fino alla fine di questa scena corrispondente alla scelta "sbagliata"
+        tell.UndoClickable();
+        Mattia.UndoClickable();
+
+        yield return new WaitForSeconds(1);
+        yield return VisualNovelManager.S.Element("Overlay").Appear();
+    
+        yield return Luca.ChangePose("primopiano");
+        yield return background.ChangePose("aula");
+        yield return VisualNovelManager.S.Element("Overlay").Disappear();
+        
+
+        yield return new WaitForSeconds(1);
+        yield return VisualNovelManager.S.Element("Overlay").Appear();
+        yield return Mattia.Appear();
+        yield return Luca.Appear();
+        yield return background.ChangePose("aula");
+        yield return VisualNovelManager.S.Element("Overlay").Disappear();
+       
+
+        ///////// QUI INSERIRE COSA SUCCEDE NELLA SCELTA SBAGLIATA ///////// 
+        ////////////////////////////////////////////////////////////////////
+        
+        //alla fine della scelta sbagliata deve ritornare possibile fare la scelta giusta
+        Mattia.MakeClickable(SceltaGiusta);
+        yield break;
+    }
+private IEnumerator SceltaGiusta()
+    {
+         Debug.Log("SCELTA SBAGLIATA PARTITA!");
+        //NON CAMBIARE
+        VisualNovelManager.S.SetSceneData(GetType().Name, SceneProgressStep.RightChoiceDone);
+        //le due marionette per scegliere non devono più essere cliccabili
+        //fino alla fine di questa scena corrispondente alla scelta "sbagliata"
+        tell.UndoClickable();
+        Mattia.UndoClickable();
+
+        ///////// QUI INSERIRE COSA SUCCEDE NELLA SCELTA SBAGLIATA /////////
+
+        yield return new WaitForSeconds(1);
+        yield return VisualNovelManager.S.Element("Overlay").Appear();
+        yield return tell.Disappear();
+        yield return background.ChangePose("biblioteca");
+        yield return Luca.ChangePose("camminata");
+        yield return VisualNovelManager.S.Element("Overlay").Disappear();
+
+        yield return VisualNovelManager.S.Element("Overlay").Appear();
+        yield return background.ChangePose("graffito");
+        yield return Luca.ChangePose("Preoccupato");
+        yield return VisualNovelManager.S.Element("Overlay").Disappear();
+
+        //a un certo punto dev'essere dato il PUZZLE!!
+        //IMPORTANTE: mettere il numero corrispondente al tassello di puzzle (1-6) 
+        yield return VisualNovelManager.S.ObtainPuzzle(2);
+        VisualNovelManager.S.SetSceneData(GetType().Name, SceneProgressStep.Finished);
+
+
+        ////////////////////////////////////////////////////////////////////
+
+
+        //alla fine lo sfondo diventa nero
+        yield return VisualNovelManager.S.Element("Overlay").Appear(); //NON CAMBIARE
+        
+
+    }
+
+
 }
+
 
 

@@ -54,17 +54,81 @@ public class EmptyScene : MonoBehaviour
 
 
 
-        //se ci sono dei dialoghi solamente per il caso in cui ci sia forte dipendenza
-        //usare il seguente controllo:
+        //Ci sono dei dialoghi che devono apparire solo su certe condizioni
+        //per vedere le condizioni si possono usare i seguenti controlli:
+        
 
-        if(VisualNovelManager.S.ForteDipendenza) //controllo per parti di scena che abbiano forte dipendenza
+        //i nomi delle variabili spiegano da soli quel che significa
+
+        //ANDARE IN FONDO ALLA SEZIONE PER DETTAGLI
+        if (VisualNovelManager.S.StipendioBasso)
+        { 
+            ///.....
+        } 
+         
+
+
+        if (VisualNovelManager.S.NonStudiato)
+        { 
+
+        } 
+
+
+
+        if (VisualNovelManager.S.Single)
+        {
+
+        } 
+
+
+
+        if (VisualNovelManager.S.Insoddisfatto)
+        {
+            //....
+        }
+        else {
+            //....
+        }
+
+
+
+        if (VisualNovelManager.S.Alcool_Azzardo)
         {
 
         }
 
-        
+        if (VisualNovelManager.S.ForteDipendenza)
+        {
+
+        }
 
 
+
+        if (VisualNovelManager.S.Droga_Traumi)
+        {
+
+        }
+        //DETTAGLI
+        //non dovrebbe succedere, ma potrebbe capitare
+        //che certi dialoghi accadano solo se una condizione NON SI VERIFICA
+        //basta fare la negazione con il punto esclamativo:
+
+        //ad esempio questo accade solo se NON ha stipendio basso
+        if (!VisualNovelManager.S.StipendioBasso)
+        {
+
+        }
+        // in alternativa si può fare anche if-else if(StipendioBasso) {...} else {...}
+
+
+        if(VisualNovelManager.S.Insoddisfatto)
+        {
+            //........
+        }
+        else //soddisfatto
+        {
+            //........
+        }
 
 
         //cambiare posa della marionetta personaggio --> il nome dev'essere quello dato nella barra laterale di unity all'oggetto da controllare

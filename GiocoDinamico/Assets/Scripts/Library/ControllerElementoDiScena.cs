@@ -7,13 +7,10 @@ using System;
 using TMPro;
 using UnityEngine.UI;
 
-[System.Serializable] // OBBLIGATORIO: Dice a Unity di includere questa classe nel sistema di serializzazione
+[System.Serializable]
 public class PoseEntry
-{
-    // La chiave (il nome della posa che userai nel codice)
-    public string poseName;
-
-    // Il valore (il GameObject/SpriteRenderer che rappresenta la posa)
+{ 
+    public string poseName; 
     public GameObject poseObject;
 
     public PoseEntry(string poseName, GameObject poseObject)
@@ -174,48 +171,69 @@ public class ControllerElementoDiScena : MonoBehaviour, IPointerClickHandler
 
     public IEnumerator Disappear(string animationName = null)
     {
+        Debug.Log("START Disappearing " + ID);
+
+        // Esegui la parte "pesante" su un altro oggetto
+        if (VisualNovelManager.S != null)
+        {
+            yield return VisualNovelManager.S.StartCoroutine(DisappearInternal(animationName));
+        }
+        else
+        {
+            yield return DisappearInternal(animationName);
+        }
+    }
+
+    public IEnumerator DisappearInternal(string animationName = null)
+    {
+        Debug.Log("Disappearing " + ID);
         if (animator == null)
         {
             SetVisibility(false);
             yield break;
-        }
-           
-
-        EnsureDefaultAnimation();
-         
-        if (!string.IsNullOrEmpty(animationName) && HasAnimation(animationName))
+        } 
+        else
         {
-            animator.speed = 1f;
-            animator.Play(animationName, 0, 0f);
 
-            yield return null;
+            EnsureDefaultAnimation();
 
-            yield return WaitForCurrentClip(); 
-            SetVisibility(false);
-            yield break;
+            if (!string.IsNullOrEmpty(animationName) && HasAnimation(animationName))
+            {
+                animator.speed = 1f;
+                animator.Play(animationName, 0, 0f);
+
+                yield return null;
+
+                yield return WaitForCurrentClip();
+                SetVisibility(false);
+                yield break;
+            }
+
+            else if (HasAnimation("Hide"))
+            {
+                animator.speed = 1f;
+                animator.Play("Hide", 0, 0f);
+
+                yield return null;
+
+                yield return WaitForCurrentClip();
+                yield return null;
+                SetVisibility(false);
+                yield break;
+            }
+            else if (defaultAnimationInitialized)
+            {
+                //non gira al contrario, ma basta andare nell'animator, duplicare "show" chiamarlo "hide" e mettere speed -1
+                //yield return StartCoroutine(PlayBackwards(defaultAnimationName));
+                //yield return WaitForCurrentClip();
+                //SetVisibility(false);
+                //animator.speed = 1f;  
+            }
+
         }
-         
-        if (HasAnimation("Hide"))
-        {
-            animator.speed = 1f;
-            animator.Play("Hide", 0, 0f);
 
-            yield return null;
-
-            yield return WaitForCurrentClip(); 
-            SetVisibility(false);
-            yield break;
-        }
-         
-        if (defaultAnimationInitialized)
-        { 
-            //non gira al contrario, ma basta andare nell'animator, duplicare "show" chiamarlo "hide" e mettere speed -1
-            //yield return StartCoroutine(PlayBackwards(defaultAnimationName));
-            //yield return WaitForCurrentClip();
-            //SetVisibility(false);
-            //animator.speed = 1f;  
-        }
-        SetVisibility(false);
+        yield return null;
+        SetVisibility(false); 
         yield break;
     }
 
@@ -271,11 +289,14 @@ public class ControllerElementoDiScena : MonoBehaviour, IPointerClickHandler
 
     private void SetVisibility(bool isVisible)
     {
+        Debug.Log("Attivazione: " + isVisible);
         gameObject.SetActive(isVisible);
+
+        Debug.Log("Fine cambio");
 
         if (isVisible)
         {
-            Debug.Log("Provo CAMBIO POSA: ");
+            Debug.Log("Provo CAMBIO POSA: "+ID);
             if(currentPoseObject)
             {
 
@@ -344,7 +365,7 @@ public class ControllerElementoDiScena : MonoBehaviour, IPointerClickHandler
         float targetHue = 0f;
         float currentHue = 0f;
 
-        while (t < 1f)
+        while (t < 1f && isShining)
         {
             // Muove lentamente il target hue
             targetHue = Mathf.Repeat(Time.time * 0.2f, 1f);
@@ -381,25 +402,27 @@ public class ControllerElementoDiScena : MonoBehaviour, IPointerClickHandler
             return onClickAction != null;
         }
     }
-    // Versione 1: Per funzioni normali (void)
+    // Per funzioni
     public void MakeClickable(Action a)
     {
         onClickAction = a;
-        StartCoroutine(Shine());
+        if(currentPoseObject != null)
+            VisualNovelManager.S.StartCoroutine(Shine());
     }
 
-    // Versione 2: Per Coroutine
+    // Per coroutine 
     public void MakeClickable(Func<IEnumerator> a)
     {
         onClickAction = a;
-        StartCoroutine(Shine());
+        if (currentPoseObject != null)
+            VisualNovelManager.S.StartCoroutine(Shine());
     }
      
-
-    //questo bisognerebbe usarlo per gli oggetti globali a cui sono stati aggiunti listener di scene non globali (roba strana però)
+     
     public void UndoClickable()
     {
         onClickAction = null;
+        isShining = false; 
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -408,8 +431,8 @@ public class ControllerElementoDiScena : MonoBehaviour, IPointerClickHandler
         {
             // Se ci sono callback configurate
             if(onClickAction is Func<IEnumerator> coroutine)
-            { 
-                StartCoroutine(coroutine());
+            {
+                VisualNovelManager.S.StartCoroutine(coroutine());
             }
             else
             {

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class SondaggioScene : MonoBehaviour
@@ -16,12 +15,12 @@ public class SondaggioScene : MonoBehaviour
     string[] domande = new string[]
     {
         "Trovi di restare online più a lungo di quanto avevi intenzione?",
-        //"Trascuri le faccende domestiche per passare più tempo online?",
-        //"Preferisci l’eccitazione di Internet all’intimità con il tuo partner?",
-        //"Stringi nuove relazioni con altri utenti online?",
-        //"Le persone nella tua vita si lamentano del tempo che trascorri online?",
-        //"I tuoi voti o il tuo rendimento scolastico peggiorano a causa del tempo che trascorri online?",
-        //"Controlli la tua email prima di fare qualcos’altro che dovresti fare?",
+        "Trascuri le faccende domestiche per passare più tempo online?",
+        "Preferisci l’eccitazione di Internet all’intimità con il tuo partner?",
+        "Stringi nuove relazioni con altri utenti online?",
+        "Le persone nella tua vita si lamentano del tempo che trascorri online?",
+        "I tuoi voti o il tuo rendimento scolastico peggiorano a causa del tempo che trascorri online?",
+        "Controlli la tua email prima di fare qualcos’altro che dovresti fare?",
         //"Il tuo rendimento o la tua produttività sul lavoro peggiorano a causa di Internet?",
         //"Diventi difensivo o segreto quando qualcuno ti chiede cosa fai online?",
         //"Blocchi pensieri disturbanti sulla tua vita rifugiandoti in pensieri rassicuranti sull’uso di Internet?",
@@ -138,10 +137,51 @@ public class SondaggioScene : MonoBehaviour
 
     private void Inizia()
     {
-        if(IAT > 80)
+        float soglia1 = 28.75f;
+        float soglia2 = 51.35f;
+        float soglia3 = 78.05f;
+        //la variabile ForteDipendenza serviva per una prima versione del gioco, ora è cambiato
+        //ma la si tiene per evitare errori o punti della storia dove serve
+        if(IAT < soglia1)
+        {
+            VisualNovelManager.S.ForteDipendenza = false;
+            VisualNovelManager.S.StipendioBasso = false;
+            VisualNovelManager.S.Single = false;
+            VisualNovelManager.S.NonStudiato = false;
+            VisualNovelManager.S.Insoddisfatto = false;
+            VisualNovelManager.S.Alcool_Azzardo = false;
+            VisualNovelManager.S.Droga_Traumi = false;
+        }
+        else if (IAT < soglia2)
+        {
+            VisualNovelManager.S.ForteDipendenza = false;
+            VisualNovelManager.S.StipendioBasso = true;
+            VisualNovelManager.S.NonStudiato = true;
+            VisualNovelManager.S.Single = false;
+            VisualNovelManager.S.Insoddisfatto = false;
+            VisualNovelManager.S.Alcool_Azzardo = true;
+            VisualNovelManager.S.Droga_Traumi = false;
+        }
+        else if (IAT < soglia3)
+        {
+            VisualNovelManager.S.ForteDipendenza = IAT > 40; //qui considero solo quelli con IAT ALTO dal paper, ma tanto non serve 
+            VisualNovelManager.S.StipendioBasso = false;
+            VisualNovelManager.S.Single = false;
+            VisualNovelManager.S.NonStudiato = false;
+            VisualNovelManager.S.Insoddisfatto = true;
+            VisualNovelManager.S.Alcool_Azzardo = false;
+            VisualNovelManager.S.Droga_Traumi = true;
+        }
+        else
         {
             VisualNovelManager.S.ForteDipendenza = true;
-        }
+            VisualNovelManager.S.StipendioBasso = true;
+            VisualNovelManager.S.Single = true;
+            VisualNovelManager.S.NonStudiato = true;
+            VisualNovelManager.S.Insoddisfatto = false;
+            VisualNovelManager.S.Alcool_Azzardo = false;
+            VisualNovelManager.S.Droga_Traumi = false;
+        } 
         VisualNovelManager.S.GoToScene("SampleScene"); 
     }
      
