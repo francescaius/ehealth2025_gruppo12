@@ -35,7 +35,7 @@ IEnumerator Part1()
            "Luca",
            "It’s not a who...It’s a what"
         );
-
+        
         yield return Luca.Appear();
         yield return VisualNovelManager.S.dialog.DisplayText(
            "Luca", 

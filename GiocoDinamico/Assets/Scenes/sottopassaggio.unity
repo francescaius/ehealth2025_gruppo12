@@ -987,13 +987,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 820702719}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38ad90639b1ceae498ac5b3e6e9577b8, type: 3}
+  m_Script: {fileID: 11500000, guid: 01c91be92f7ecfd4b965349d72ce5778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Background: {fileID: 1531226541}
-  Luca: {fileID: 1151938909}
-  Marta: {fileID: 1357731991}
-  Anonimo: {fileID: 1132051235}
+  background: {fileID: 0}
+  marionetta1: {fileID: 0}
+  marionetta2: {fileID: 0}
 --- !u!1 &831029529
 GameObject:
   m_ObjectHideFlags: 0

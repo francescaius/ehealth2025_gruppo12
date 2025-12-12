@@ -129,7 +129,7 @@ public class Atto1scena2 : MonoBehaviour
             "Marta",
             "You look exhausted. What’s happening?"
         );
-        yield return Marta.ChangePose("Rilassato");
+        yield return Marta.ChangePose("Rilassata");
         yield return VisualNovelManager.S.dialog.DisplayText(
             "Luca",
             "It’s just that lately I haven’t stopped for a second. A thousand things to fix, a thousand pieces to put back together…"
