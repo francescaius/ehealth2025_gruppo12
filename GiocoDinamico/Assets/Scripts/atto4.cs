@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-// Assicurati che il file si chiami esattamente "atto4.cs"
+
 public class atto4 : MonoBehaviour
 {
     [Header("Personaggi e Scena")]
@@ -58,7 +58,7 @@ public class atto4 : MonoBehaviour
         yield return background.ChangePose("sottopasso1");
         
         yield return VisualNovelManager.S.dialog.DisplayText(
-           "Margherita",
+           "????",
            "Don’t trust what you hold in your hands every day… every hour."
         );
         yield return VisualNovelManager.S.dialog.DisplayText(
@@ -66,7 +66,7 @@ public class atto4 : MonoBehaviour
            "How long have you been missing?"
         );
         yield return VisualNovelManager.S.dialog.DisplayText(
-           "Margherita",
+           "????",
            "I’m someone who has already listened to that voice."
         );
         yield return VisualNovelManager.S.phone.DisplayText(
@@ -91,6 +91,7 @@ public class atto4 : MonoBehaviour
         VisualNovelManager.S.SetSceneData(GetType().Name, SceneProgressStep.WrongChoiceDone);
         Anonimo.UndoClickable();
         Margherita.UndoClickable();
+        yield return Anonimo.Disappear();
 
         yield return new WaitForSeconds(1);
         yield return VisualNovelManager.S.phone.DisplayText(
@@ -119,7 +120,7 @@ public class atto4 : MonoBehaviour
            "Luca",
            "Yes… but I’m not finding anything."
         );
-        yield return Luca.Disappear(); // CORRETTO (era Disppear)
+        yield return Luca.Disappear(); 
         
         yield return VisualNovelManager.S.phone.DisplayText(
            "Anonimo",
@@ -172,6 +173,7 @@ public class atto4 : MonoBehaviour
         VisualNovelManager.S.SetSceneData(GetType().Name, SceneProgressStep.RightChoiceDone);
         Anonimo.UndoClickable();
         Margherita.UndoClickable();
+        yield return Anonimo.Disappear();
 
         yield return Luca.ChangePose("rilassato");
         yield return VisualNovelManager.S.dialog.DisplayText(
