@@ -4,13 +4,13 @@ using UnityEngine;
 
 
 //questo script va trascinato su SceneController (un oggetto vuoto fuori dal canva) 
-public class ATTO5 : MonoBehaviour
+public class ATTO5CAPOLINEA : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     [SerializeField] ControllerElementoDiScena background;
     [SerializeField] ControllerElementoDiScena Luca; //potrebbe essere luca, marta, etc... chiamare questa variabile
-    [SerializeField] ControllerElementoDiScena Lucia;
+    [SerializeField] ControllerElementoDiScena Anonimo;
     [SerializeField] ControllerElementoDiScena monaco;
 
     //inserire in questo elenco tutti gli elementi cliccabili o che devono apparire e sparire!
@@ -34,21 +34,27 @@ public class ATTO5 : MonoBehaviour
             StartCoroutine(Part1());
         }  
     }
-     
 
-    //Questa scena parte in automatico
-    IEnumerator Part1()
+
+     IEnumerator Part1()
     {
         yield return VisualNovelManager.S.Element("Overlay").Disappear(); 
         yield return background.Appear();
-       
-        yield return Lucia.Appear();
-        yield return Luca.ChangePose("incuriosito");
+        yield return Luca.ChangePose("disperato");
         yield return Luca.Appear();
+        yield return Anonimo.Appear();
+        yield return VisualNovelManager.S.dialog.DisplayText ("Luca","Great… I missed the stop because I was using my phone. And now I’m at the final station.");
+
+        yield return VisualNovelManager.S.Element("Overlay").Appear();
+        yield return Anonimo.Disappear();
+        yield return Luca.ChangePose("primo piano");
+        yield return VisualNovelManager.S.Element("Overlay").Disappear();
         
-        
+        yield return new WaitForSeconds(1);
+        yield return VisualNovelManager.S.phone.DisplayText("Anonimo","Hey… here you are.I can feel you're agitated.Is everything alright?");
         
 
     }
 
 }
+
