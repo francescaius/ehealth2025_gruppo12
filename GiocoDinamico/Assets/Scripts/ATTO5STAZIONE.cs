@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 //questo script va trascinato su SceneController (un oggetto vuoto fuori dal canva) 
-public class ATTO5 : MonoBehaviour
+public class ATTO5STAZIONE : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
