@@ -11,6 +11,7 @@ public class PIANTO : MonoBehaviour
     [SerializeField] ControllerElementoDiScena Marta;
     [SerializeField] ControllerElementoDiScena tell;
     [SerializeField] ControllerElementoDiScena panchina;
+    [SerializeField] ControllerElementoDiScena chiave;
 
     void Start()
     {
@@ -45,7 +46,7 @@ IEnumerator Part1()
         yield return new WaitForSeconds(1);
         yield return Luca.Disappear();
         yield return background.ChangePose("parco3");
-        yield return Luca.ChangePose("al telefono");
+        
         yield return VisualNovelManager.S.Element("Overlay").Disappear();
         
         yield return Luca.Appear();
@@ -111,7 +112,7 @@ IEnumerator Part1()
 
        
         yield return tell.Disappear();
-        yield return Luca.ChangePose("stanco");
+        yield return Luca.ChangePose("scioccato");
         yield return Luca.Appear();
         yield return Marta.Appear();
 
@@ -129,9 +130,10 @@ IEnumerator Part1()
         yield return VisualNovelManager.S.dialog.DisplayText(
            "Luca",
            "An apology? Why would you owe me anything?");
-         yield return VisualNovelManager.S.dialog.DisplayText(
+        yield return VisualNovelManager.S.dialog.DisplayText(
            "Marta",
            "Because… I fell into it too.");
+        yield return Luca.ChangePose("stanco");
         yield return VisualNovelManager.S.dialog.DisplayText(
            "Luca",
            "...you too? What do you mean?");
@@ -209,15 +211,23 @@ IEnumerator Part1()
          yield return VisualNovelManager.S.dialog.DisplayText(
            "Luca",
            "Yes. Because she deserves a present husband…and instead I look for answers in a blue light that warms no one.");
+         yield return VisualNovelManager.S.dialog.DisplayText(
+           "Luca",
+           "Maybe I was waiting for myself. Or maybe… I was waiting for another notification.");
+        
         }
         
         ////continuazione dialoghi in comune 
          yield return VisualNovelManager.S.dialog.DisplayText(
            "Luca",
-           "Maybe I was waiting for myself. Or maybe… I was waiting for another notification. This morning… I received some messages. And it’s so strange…Since you walked into the bar they started telling me not to give you anything. To let it go. To stay away from you."); 
+           " This morning… I received some messages. And it’s so strange…");
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Marta",  
+           "Since you walked into the bar they started telling me not to give you anything. To let it go. To stay away from you."); 
          yield return VisualNovelManager.S.dialog.DisplayText(
            "Marta", 
            "And for a moment… I believed them. I listened to those notifications… the same way you do every day. And the more I listened, the more lost and confused I felt.");
+         yield return Luca.ChangePose("scioccato");
          yield return VisualNovelManager.S.dialog.DisplayText(
            "Luca",
            "Marta, I don’t understand… you sound like you’re losing your mind.");
@@ -268,11 +278,29 @@ IEnumerator Part1()
          yield return VisualNovelManager.S.dialog.DisplayText(
            "Marta",
            "This… this is the key Aldo gave me the last time I saw him. He told me that one day you’d come looking for it. That you would understand. I don’t know what door it opens… but I know only you are meant to discover it.");
+         yield return VisualNovelManager.S.Element("Overlay").Appear(); 
+         yield return Luca.Disappear();
+         yield return Marta.Disappear();
+         yield return background.ChangePose("chiave"); 
+         yield return VisualNovelManager.S.Element("Overlay").Disappear(); 
+         yield return new WaitForSeconds(1);
+
+         yield return VisualNovelManager.S.Element("Overlay").Appear(); 
+         yield return Luca.Appear();
+         yield return Marta.Appear();
+         yield return background.ChangePose("parco3"); 
+         yield return VisualNovelManager.S.Element("Overlay").Disappear();
+         
+         
+         //yield return chiave.Appear();
+         //yield return new WaitForSeconds(3);
+         //yield return chiave.Disappear();
+          
           yield return VisualNovelManager.S.dialog.DisplayText(
            "Marta",
            "And this… is a ticket he also gave me. He said you would understand it. I… know nothing. I only know it’s up to you to figure it out.");
          yield return VisualNovelManager.S.ObtainPuzzle(4);
-    
+        yield return VisualNovelManager.S.Element("Overlay").Appear();
     
     }    
     
