@@ -59,11 +59,11 @@ public class ATTO5TEMPIO : MonoBehaviour
     yield return Luca.ChangePose("incuriosito");
     yield return VisualNovelManager.S.dialog.DisplayText("Luca","What do you mean!? He’s not explaining anything! I’m the one looking for him!");
     yield return VisualNovelManager.S.dialog.DisplayText("monaco","He was sure you would arrive.And he left you this.");
-    yield return new WaitForSeconds(1);ss
+    yield return new WaitForSeconds(1);
 
         //a un certo punto dev'essere dato il PUZZLE!!
         //IMPORTANTE: mettere il numero corrispondente al tassello di puzzle (1-6) 
-        yield return VisualNovelManager.S.ObtainPuzzle(2);
+        yield return VisualNovelManager.S.ObtainPuzzle(5);
         VisualNovelManager.S.SetSceneData(GetType().Name, SceneProgressStep.Finished);
 
         yield return VisualNovelManager.S.dialog.DisplayText("monaco","Your brother didn’t disappear.He learned how to truly live.");
