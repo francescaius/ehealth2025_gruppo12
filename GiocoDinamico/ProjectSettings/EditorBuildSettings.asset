@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Atto1Scena1.unity
     guid: d6936ae1aff8c2a44911e0a841ac6421
   - enabled: 1
-    path: Assets/Scenes/Atto1scena2.unity
+    path: Assets/Scenes/Atto1Scena2.unity
     guid: a870e8dc4a44e304ca24225c2e4db172
   - enabled: 1
     path: Assets/Scenes/ATTO5CAPOLINEA.unity
