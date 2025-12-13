@@ -536,8 +536,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   background: {fileID: 1531226541}
-  marionetta1: {fileID: 1151938909}
-  marionetta2: {fileID: 1357731991}
+  Luca: {fileID: 1151938909}
+  Margherita: {fileID: 1357731991}
+  Anonimo: {fileID: 1132051235}
 --- !u!1 &831029529
 GameObject:
   m_ObjectHideFlags: 0
