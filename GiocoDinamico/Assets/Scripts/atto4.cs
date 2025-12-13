@@ -2,22 +2,16 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-
-//questo script va trascinato su SceneController (un oggetto vuoto fuori dal canva) 
+// Assicurati che il file si chiami esattamente "atto4.cs"
 public class atto4 : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-
+    [Header("Personaggi e Scena")]
     [SerializeField] ControllerElementoDiScena background;
-    [SerializeField] ControllerElementoDiScena marionetta1; //potrebbe essere luca, marta, etc... chiamare questa variabile
-    [SerializeField] ControllerElementoDiScena marionetta2; //ipotizziamo 2 marionette
-    //inserire in questo elenco tutti gli elementi cliccabili o che devono apparire e sparire!
-    //poi inserire l'elemento effettivo su unity in questo campo
+    [SerializeField] ControllerElementoDiScena Luca; 
+    [SerializeField] ControllerElementoDiScena Margherita;
 
-    //L'elemento marionetta dev'essere una UI>Image vuota che ha dentro tante UI>Image (pose)
-    //Su queste marionetta va trascinato lo script ControllerElementoDiScena
-    
-
+    [SerializeField] ControllerElementoDiScena Anonimo; 
+ 
     void Start()
     {
         if (VisualNovelManager.S == null )
@@ -27,222 +21,431 @@ public class atto4 : MonoBehaviour
         }
         else
         {
-            //IDEALMENTE IL GIOCO SI POTREBBE EVOLVERE PER CONTROLLARE A CHE PUNTO DELLA SCENA SI FOSSE ARRIVATI PER POTERCI TORNARE
-            //IL PROBLEMA È CHE VA FATTO DOPO CHE TUTTE LE SCENE SONO STATE ULTIMATE, E NON È SEMPRE SEMPLICE
             StartCoroutine(Part1());
         }  
     }
-     
-
-    //Questa scena parte in automatico
+      
     IEnumerator Part1()
     {
-
-        //////////////////// QUESTA PARLA TENERLA SEMPRE UGUALE ///////////////
+        // RESET INIZIALE
         yield return VisualNovelManager.S.Element("Overlay").Disappear(); 
-        //////////////////////////////////////////////////////////////////////
         
+    
 
-
-
-
-        //////////////////// ESEMPI DI COSE CHE SI POSSONO FARE //////////////////
-        //far apparrire gli elementi
-        yield return marionetta1.Appear();
-        yield return marionetta2.Appear();
-        //entrambi appaiono con l'animazione che è creata dall'editor nominata "Show" 
-
-
-
-        //Ci sono dei dialoghi che devono apparire solo su certe condizioni
-        //per vedere le condizioni si possono usare i seguenti controlli:
+        // INIZIO DIALOGHI
+        yield return VisualNovelManager.S.phone.DisplayText(
+           "Anonimo",
+           "You took the wrong path, Luca."
+        );
+        yield return VisualNovelManager.S.phone.DisplayText(
+           "Anonimo",
+           "No need to look for me. I’m watching you from here."
+        );
         
+        yield return Luca.Appear();
 
-        //i nomi delle variabili spiegano da soli quel che significa
-
-        //ANDARE IN FONDO ALLA SEZIONE PER DETTAGLI
-        if (VisualNovelManager.S.StipendioBasso)
-        { 
-            ///.....
-        } 
-         
-
-
-        if (VisualNovelManager.S.NonStudiato)
-        { 
-
-        } 
-
-
-
-        if (VisualNovelManager.S.Single)
-        {
-
-        } 
-
-
-
-        if (VisualNovelManager.S.Insoddisfatto)
-        {
-            //....
-        }
-        else {
-            //....
-        }
-
-
-
-        if (VisualNovelManager.S.Alcool_Azzardo)
-        {
-
-        }
-
-        if (VisualNovelManager.S.ForteDipendenza)
-        {
-
-        }
-
-
-
-        if (VisualNovelManager.S.Droga_Traumi)
-        {
-
-        }
-        //DETTAGLI
-        //non dovrebbe succedere, ma potrebbe capitare
-        //che certi dialoghi accadano solo se una condizione NON SI VERIFICA
-        //basta fare la negazione con il punto esclamativo:
-
-        //ad esempio questo accade solo se NON ha stipendio basso
-        if (!VisualNovelManager.S.StipendioBasso)
-        {
-
-        }
-        // in alternativa si può fare anche if-else if(StipendioBasso) {...} else {...}
-
-
-        if(VisualNovelManager.S.Insoddisfatto)
-        {
-            //........
-        }
-        else //soddisfatto
-        {
-            //........
-        }
-
-
-        //cambiare posa della marionetta personaggio --> il nome dev'essere quello dato nella barra laterale di unity all'oggetto da controllare
-        yield return marionetta1.ChangePose("nomeposa");
-
-        //cambiare sfondo con la posa impostata nella barra laterale di unity
-        yield return background.ChangePose("altrobackground");
-
-        //mostrare un dialogo parlato
         yield return VisualNovelManager.S.dialog.DisplayText(
            "Luca",
-           "Questo è una cosa detta a voce..."
+           "Who are you? What do you want from me?"
         );
 
-        //mostrare un messaggio in cui scrive luca
-        yield return VisualNovelManager.S.phone.DisplayText(
-           "Luca",//LUCA DEV'ESSERE SCRITTO IN QUESTO MODO!
-           "Questo è un messaggio scritto da luca..."
-        );
-
-        //mostrare un messaggio in cui scrive chiunque altro (appare di un colore diverso)
-        //È uguale a prima ma il personaggio si chiama diversamente
-        yield return VisualNovelManager.S.dialog.DisplayText(
-           "Altro nome",
-           "Questo è un messaggio scritto da luca..."
-        );
-
-        //attendere qualche secondo (in questo caso 1) 
         yield return new WaitForSeconds(1);
 
-        //si possono far sparire e riapparire gli elementi
-        yield return marionetta1.Disappear();
-        yield return marionetta1.Appear(); // anche più volte!
-
-        ////////////////////////////////////////////////////////////////////////////
-
-
-
-        /////////////////////////// SCELTA  ///////////////////////////////////////
+        yield return Luca.Disappear();
         
+        
+        
+        yield return background.ChangePose("sottopasso1");
+        
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Margherita",
+           "Don’t trust what you hold in your hands every day… every hour."
+        );
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Luca",
+           "How long have you been missing?"
+        );
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Margherita",
+           "I’m someone who has already listened to that voice."
+        );
+        yield return VisualNovelManager.S.phone.DisplayText(
+           "Anonimo",
+           "Get away from her. Now."
+        );
 
-        //Qui il personaggio deve trovarsi davanti a una scelta, quindi ci devono essere degli elementi cliccabili
-        //ad esempio potrebbe essere: clicco la notifica o clicco la persona e ci parlo?
-        //potrebbe essere: clicco la porta o clicco il telefono?
-        //ovviamente gli oggetti da cliccare devono essere a loro volta marionette nello script e vanno inseriti nella scena!
-
-        //rendere un oggetto cliccabile
-        //--> se si clicca con quell'oggetto si va alla scena/funzione nominata tra parentesi
-        marionetta1.MakeClickable(SceltaSbagliata);
-        marionetta2.MakeClickable(SceltaGiusta); 
+        // --- SCELTA ---
+        yield return background.ChangePose("sottopasso2");
+        yield return Margherita.Appear();
+        yield return Anonimo.Appear();
+        
+        Anonimo.MakeClickable(SceltaSbagliata);
+        Margherita.MakeClickable(SceltaGiusta);
+        
         VisualNovelManager.S.SetSceneData(GetType().Name, SceneProgressStep.Choice);
-        //L'utente cliccando andrà alla scena corrispondente in base a quanto specificato tra parentesi
     }
 
-     
-
-
-
-    //questa scena parte se si clicca sull'elemento che fa fare la scelta sbagliata (telefono, personaggio etc)
+    // --- SCELTA SBAGLIATA ---
     private IEnumerator SceltaSbagliata()
     {
-        //NON CAMBIARE
         VisualNovelManager.S.SetSceneData(GetType().Name, SceneProgressStep.WrongChoiceDone);
-        //le due marionette per scegliere non devono più essere cliccabili
-        //fino alla fine di questa scena corrispondente alla scelta "sbagliata"
-        marionetta1.UndoClickable();
-        marionetta2.UndoClickable();
+        Anonimo.UndoClickable();
+        Margherita.UndoClickable();
 
-        ///////// QUI INSERIRE COSA SUCCEDE NELLA SCELTA SBAGLIATA /////////
-        yield return new WaitForSeconds(1); 
-        ////////////////////////////////////////////////////////////////////
+        yield return new WaitForSeconds(1);
+        yield return VisualNovelManager.S.phone.DisplayText(
+           "Anonimo",
+           "Did you search ‘library graffiti’?"
+        );
+        yield return VisualNovelManager.S.phone.DisplayText(
+           "Anonimo",
+           "Good, now that I have your attention."
+        );
         
-        //alla fine della scelta sbagliata deve ritornare possibile fare la scelta giusta
-        marionetta2.MakeClickable(SceltaGiusta);
+        yield return Luca.Appear();
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Luca",
+           "Are you tricking me?"
+        );
+        yield return Luca.Disappear(); // CORRETTO (era Disppear)
+        
+        yield return VisualNovelManager.S.phone.DisplayText(
+           "Anonimo",
+           "Maybe I have some clues for you. Did you search well online? Everything is always there."
+        );
+        
+        yield return Luca.Appear();
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Luca",
+           "Yes… but I’m not finding anything."
+        );
+        yield return Luca.Disappear(); // CORRETTO (era Disppear)
+        
+        yield return VisualNovelManager.S.phone.DisplayText(
+           "Anonimo",
+           "Maybe you haven’t looked enough."
+        );
+        
+        yield return Margherita.ChangePose("marghe in persona");
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Margherita",
+           "Listen to me."
+        );
+        
+        yield return Luca.ChangePose("arrabbiato");
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Luca",
+           "No. I don’t trust you! They already told me where to look!"
+        );
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Margherita",
+           "And who told you that?"
+        );
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Luca",
+           "Someone… none of your business who."
+        );
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Margherita",
+           "If you think that ‘someone’ is just words placed in a row and sent in a message… you’re on the wrong path."
+        );
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Luca",
+           "Look, he’s real! He wants to help me!"
+        );
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Margherita",
+           "He’s not on your side! He can’t solve your problems for you!"
+        );
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Margherita",
+           "I just want to help you, Luca. It was Aldo who pushed me to find you, turn off your phone. Listen to me."
+        );
+
+        // Ritorna alla scelta
+        Margherita.MakeClickable(SceltaGiusta);
     }
 
-
-    //questa scena parte se si clicca sull'elemento che fa fare la scelta sbagliata (telefono, personaggio etc)
+    // --- SCELTA GIUSTA ---
     private IEnumerator SceltaGiusta()
     {
-
-        //NON CAMBIARE
         VisualNovelManager.S.SetSceneData(GetType().Name, SceneProgressStep.RightChoiceDone);
-        //le due marionette per scegliere non devono più essere cliccabili
-        //fino alla fine di questa scena corrispondente alla scelta "sbagliata"
-        marionetta1.UndoClickable();
-        marionetta2.UndoClickable();
+        Anonimo.UndoClickable();
+        Margherita.UndoClickable();
 
-        ///////// QUI INSERIRE COSA SUCCEDE NELLA SCELTA SBAGLIATA /////////
+        yield return Luca.ChangePose("rilassato");
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Luca",
+           "Alright… I’ll listen. Actually… I’ll even turn off my phone."
+        );
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Margherita",
+           "You feel lighter now that you’re not crushed by notifications, don’t you?"
+        );
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Luca",
+           "Why was he writing to me? Who is he?"
+        );
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Margherita",
+           "It’s not a who. It’s a what. It uses your photos, your contacts, your memories. It learned your voice, your thoughts… and it shows you only what keeps you glued to it."
+        );
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Luca",
+           "I don’t know anyone who would do this to me."
+        );
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Margherita",
+           "Maybe it’s not someone. Maybe it’s something."
+        );
 
         yield return new WaitForSeconds(1);
 
-        //a un certo punto dev'essere dato il PUZZLE!!
-        //IMPORTANTE: mettere il numero corrispondente al tassello di puzzle (1-6) 
-        yield return VisualNovelManager.S.ObtainPuzzle(4);
+        // PUZZLE
+        yield return VisualNovelManager.S.ObtainPuzzle(3);
         VisualNovelManager.S.SetSceneData(GetType().Name, SceneProgressStep.Finished);
+        
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Margherita",
+           "I… wasn’t close to your brother. I barely knew him. But once… we talked. Only for a few minutes He seemed… lost. Like you now."
+        );
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Margherita",
+           "He told me something I didn’t understand at the time: that one day someone would come looking for him. And that this ‘arrival’ would begin… with a train."
+        );
+        
+        yield return Luca.ChangePose("confuso");
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Luca",
+           "Why would he tell you that? Even I didn’t know anything."
+        );
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Margherita",
+           "I don’t know. Maybe he had no one else to talk to. He just told me that place—the mountain, the peak above the city—was the only place where he felt… real."
+        );
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Luca",
+           "But my brother never lacked anything! What would he need to escape from?"
+        );
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Margherita",
+           "What do you mean?"
+        );
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Luca",
+           "He was always the best at everything."
+        );
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Margherita",
+           "Sometimes… the one who seems to have everything is the one who loses himself the easiest."
+        );
 
+        // BLOCCO VARIABILE (STIPENDIO)
+        if (VisualNovelManager.S.StipendioBasso)
+        { 
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Luca",
+               "I, instead… want a life where I can travel, wake up happy, surrounded by people who care… and maybe with a bit more money."
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Luca",
+               "I don’t ask for luxury, only to be able to breathe without counting every cent."
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Luca",
+               "I wish I didn’t have to hope every month to make it to the end, pray nothing unexpected happens, that no bill increases. It’s like living with a weight on my chest… too heavy to carry."
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Luca",
+               "If I had more possibilities, I’d live more. I could try new things, take risks, move. Instead I stay still, stuck. And I know that partly… it’s my fault."
+            ); 
+        } 
+        else // stipendio alto
+        {
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Luca",
+               "I, instead… just want to feel alive. I have a home, a stable job, money to travel… I’m not missing anything, at least on paper."
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Luca",
+               "And yet I wake up and enjoy nothing."
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Luca",
+               "I could buy a plane ticket tomorrow, afford little luxuries… and yet I stay blocked, as if every choice required enormous effort. It’s absurd to have possibilities and be unable to use them."
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Luca",
+               "Sometimes I wonder what’s the point of having everything if you feel like you have nothing. And I know that somehow… that’s also my fault."   
+            );
+        }
 
-        ////////////////////////////////////////////////////////////////////
-
-
-        //alla fine lo sfondo diventa nero
-        yield return VisualNovelManager.S.Element("Overlay").Appear(); //NON CAMBIARE
+        // BLOCCO VARIABILE (DROGA / TRAUMI)
+        if (VisualNovelManager.S.Droga_Traumi)
+        {
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Margherita",
+               "Luca… there’s something I didn’t tell you."
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Margherita",
+               "I did cross paths with your brother, yes… but that’s not why I recognize you."
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Luca",
+               "Then why?"
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Margherita",
+               "Because you and I… we shared the same hell."
+            );
+            yield return Luca.ChangePose("confuso");
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Margherita",
+               "Do you remember the recovery center?"
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Margherita",
+               "The white rooms, the plastic chairs, the meetings at seven in the evening… I was in the room next to yours." 
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Luca",
+               "Margherita… you were there? Really?"
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Margherita",
+               "Yes. Cocaine in my case, but with too many traumas behind me."
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Margherita",
+               "I know I shouldn't blame my family, but I’ve lived through too much."
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Margherita",
+               "You, instead…"
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Luca",
+               "Don’t say it."
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Margherita",
+               "I won’t. We both know. That’s enough."
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Margherita",
+               "I got out. With effort, with shame, with months of relapses."
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Margherita",
+               "I even started therapy with a psychologist to process my past. I recommend it, for any problem, it helps you face it."
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Margherita",
+               "But I made it. You, instead… never truly stopped, Luca."
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Luca",
+               "I quit."
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Margherita",
+               "You quit one thing… and embraced another. And don’t lie, I know you haven’t really quit. That phone is just an extension of your old escape."
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Margherita",
+               "*He steps back, hand instinctively on his pocket.*" // Messo tra asterischi se è un'azione
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Luca",
+               "It’s not the same…"
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Margherita",
+               "No?"
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Margherita",
+               "Then tell me why your hand shakes when you try to leave it behind."
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Margherita",
+               "Why you lose your breath when it doesn’t vibrate."
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Margherita",
+               "Why those notifications control you more than you want to admit."
+            );
+            yield return Luca.ChangePose("sconsolato");
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Margherita",
+               "I saw it in you even back then. The same void you filled by rolling dice, playing slots, chasing thrills everywhere. Now you fill it with screens, feeds, messages. Cleaner, yes… but not less dangerous."
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Luca",
+               "I didn’t think you noticed…"
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Margherita",
+               "I lived it on my own skin. I recognize it anywhere."
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Luca",
+               "You were… one of the few who spoke to me normally, back there. Remember? Sitting outside during the break…"
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Margherita",
+               "I remember you were kind. Lost, but kind."
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Margherita",
+               "I remember you trembled when talking about the future. And I remember that when the program ended… you disappeared."
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Luca",
+               "Yes. Because I was afraid of relapsing. And I did relapse."
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Margherita",
+               "Luca… that’s the point. You think you’re different now. But you’re still running."
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Margherita",
+               "And that screen is just another locked door to hide behind."
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Luca",
+               "And you? How did you get out?"
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Margherita",
+               "I stopped looking for answers where I already knew they didn’t exist."
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Margherita",
+               "And I started looking for people. Not objects. Not substances. People." 
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Margherita",
+               "It’s never too late to get back in the game. It’s almost evening… I have to go. But I can tell you one thing, because it’s what he told me that day."
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Margherita",
+               "Go to the station. Take the first train and climb to the top of the mountain."
+            );
+            yield return VisualNovelManager.S.dialog.DisplayText(
+               "Margherita",
+               "There… you will find what you are looking for. Whatever it is."
+            );
+        }
+        
+        // CHIUSURA
+        yield return VisualNovelManager.S.Element("Overlay").Appear();
         Conclusione();
-
     }
 
     private void Conclusione()
     {
-
-        //infine rimandare alla scena successiva 
-        //il nome corrisponde alle scene sotto File>Build Profiles
-        //Lì ci devono essere tute le robe
-        VisualNovelManager.S.GoToScene("NomeScena");
+        VisualNovelManager.S.GoToScene("NomeScenaSuccessiva"); // Ricordati di cambiare "NomeScenaSuccessiva"
     }
-
 }
