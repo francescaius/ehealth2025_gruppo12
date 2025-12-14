@@ -239,7 +239,9 @@ public class ATTO2LAVORATORE : MonoBehaviour
 
         //alla fine lo sfondo diventa nero
         yield return VisualNovelManager.S.Element("Overlay").Appear(); //NON CAMBIARE
-        
+         
+        VisualNovelManager.S.GoToScene("City");
+
 
     }
     

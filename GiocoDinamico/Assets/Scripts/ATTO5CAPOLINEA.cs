@@ -64,7 +64,12 @@ public class ATTO5CAPOLINEA : MonoBehaviour
         yield return VisualNovelManager.S.phone.DisplayText("Anonimo","You weren’t born to suﬀer. You were born to feel good. And I can guarantee that… always.");
 
         yield return Luca.Disappear();
-        yield return VisualNovelManager.S.dialog.DisplayText ("Luca","Maybe… I didn’t need answers. Maybe I just needed… to feel less alone. But this can’t be the solution. No. I must go to the sanctuary");
+        yield return VisualNovelManager.S.dialog.DisplayText ("Luca","Maybe… I didn’t need answers. Maybe I just needed… to feel less alone. But this can’t be the solution. No. I must go to the sanctuary.");
+
+        //yield return VisualNovelManager.S.dialog.DisplayText("Luca", "Let's take the train again..."); 
+
+        yield return VisualNovelManager.S.Element("Overlay").Appear();
+        VisualNovelManager.S.GoToScene("Atto53");
 
 
     }

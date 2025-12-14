@@ -46,7 +46,13 @@ public class Atto1scena1 : MonoBehaviour
             "Luca",
             "What…? Who are you?"
         );
-    
+        yield return VisualNovelManager.S.dialog.DisplayText(
+                "Luca",
+                "Nevermind, it's time to go..."
+        );
+        yield return VisualNovelManager.S.Element("Overlay").Appear();
+        VisualNovelManager.S.GoToScene("City");
+
     }
   
 }

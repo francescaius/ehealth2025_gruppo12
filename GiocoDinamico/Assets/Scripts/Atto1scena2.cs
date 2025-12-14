@@ -304,9 +304,8 @@ public class Atto1scena2 : MonoBehaviour
         );
         yield return VisualNovelManager.S.ObtainPuzzle(1);
 
-        yield return VisualNovelManager.S.Element("Overlay").Appear();
-        yield return new WaitForSeconds(1);
+        yield return VisualNovelManager.S.Element("Overlay").Appear(); 
         VisualNovelManager.S.SetSceneData(GetType().Name, SceneProgressStep.Finished);
-        VisualNovelManager.S.GoToScene("CityScene");
+        VisualNovelManager.S.GoToScene("City");
     }
 }

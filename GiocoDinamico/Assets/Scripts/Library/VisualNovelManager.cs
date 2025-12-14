@@ -87,6 +87,40 @@ public class VisualNovelManager : MonoBehaviour
 
     }
 
+    void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Alpha1))
+        {
+            if(!takenPuzzlePieces.Contains(1))
+                StartCoroutine(ObtainPuzzle(1));
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha2))
+        {
+            if (!takenPuzzlePieces.Contains(2))
+                StartCoroutine(ObtainPuzzle(2));
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha3))
+        {
+            if (!takenPuzzlePieces.Contains(3))
+                StartCoroutine(ObtainPuzzle(3));
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha4))
+        {
+            if (!takenPuzzlePieces.Contains(4))
+                StartCoroutine(ObtainPuzzle(4));
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha5))
+        {
+            if (!takenPuzzlePieces.Contains(5))
+                StartCoroutine(ObtainPuzzle(5));
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha6))
+        {
+            if (!takenPuzzlePieces.Contains(6))
+                StartCoroutine(ObtainPuzzle(6));
+        }
+    }
+
 
     public ControllerElementoDiScena Element(string ID)
     {
@@ -134,6 +168,12 @@ public class VisualNovelManager : MonoBehaviour
         StartCoroutine(bagBtn.Disappear());
         SceneManager.LoadScene("Puzzle", LoadSceneMode.Additive);
     }
+    public void ShineBag()
+    {
+        bagBtn.UndoClickable();
+        bagBtn.MakeClickable(OpenBag); 
+    }
+
 
 
     public IEnumerator ObtainPuzzle(int puzzle)

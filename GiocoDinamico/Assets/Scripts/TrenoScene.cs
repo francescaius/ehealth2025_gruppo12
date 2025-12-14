@@ -79,8 +79,8 @@ public class TrenoScene : MonoBehaviour
     IEnumerator ProgressoFermate()
     {
         VisualNovelManager.S.dialog.DisplayText(
-               "- Treno -",
-               "Treno in partenza   -  Mancano " + (santuario - fermata) + " fermate al Santuario",
+               "- Train -",
+               "The train is leaving -  Still " + (santuario - fermata) + " stations before the Sanctuary",
                true
         );
         while(nuovafermata < totaleFermate)
@@ -104,7 +104,7 @@ public class TrenoScene : MonoBehaviour
                 if ( ((int)nuovafermata) < santuario)
                 {
                     yield return VisualNovelManager.S.dialog.DisplayText(
-                         "- Treno -",
+                         "- Train -",
                          "Station " + fermata + "/30   -  " + (santuario - fermata) + " stations before the Sanctuary",
                          true
                     );
@@ -133,7 +133,8 @@ public class TrenoScene : MonoBehaviour
                          "ARRIVED!"
                     );
                     //far partire altra scena
-                    yield return VisualNovelManager.S.Element("Overlay").Disappear();
+                    yield return VisualNovelManager.S.Element("Overlay").Appear(); 
+                    VisualNovelManager.S.GoToScene("Atto53");
                     yield break;
                 }
                 if (fermata > santuario)
@@ -147,10 +148,10 @@ public class TrenoScene : MonoBehaviour
 
         yield return VisualNovelManager.S.dialog.DisplayText(
              "Luca",
-             "HO PERSO LA FERMATA!"
+             "I lost my station!"
         );
-        //far partire altra scena
-        yield return VisualNovelManager.S.Element("Overlay").Disappear();
+        yield return VisualNovelManager.S.Element("Overlay").Appear();
+        VisualNovelManager.S.GoToScene("Atto52"); 
         yield break;
     }
 
@@ -166,7 +167,7 @@ public class TrenoScene : MonoBehaviour
         
         yield return VisualNovelManager.S.dialog.DisplayText(
              "Luca",
-             "Ci sono 30 fermate, devo scendere a SANTUARIO - FERMATA 25. Devo stare attento a non perderla!"
+             "There are 30 station, I have to get of at the temple SANCTUARY - STATION 25. Better not to lost it!"
 
         );
         StartCoroutine(ProgressoFermate()); 

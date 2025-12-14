@@ -73,11 +73,14 @@ public class ATTO6 : MonoBehaviour
         yield return VisualNovelManager.S.dialog.DisplayText(
            "Luca",
            "The last clue I was searching for… wasn’t in a house, nor in a secret place. It was in the last thing I couldn’t let go of. My prison. My refuge. My screen.");
-        yield return VisualNovelManager.S.Element("Overlay").Appear(); 
-        yield return background.ChangePose("puzzle");
-        yield return VisualNovelManager.S.Element("Overlay").Disappear(); 
-        yield return new WaitForSeconds(2);
-        yield return VisualNovelManager.S.Element("Overlay").Appear();
+
+
+
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Luca",
+           "Let me look at my puzzle");
+
+        VisualNovelManager.S.ShineBag();  
 
 
 

@@ -44,7 +44,7 @@ public class atto4 : MonoBehaviour
         
         yield return Luca.Appear();
 
-        yield return VisualNovelManager.S.dialog.DisplayText(
+        yield return VisualNovelManager.S.phone.DisplayText(
            "Luca",
            "Who are you? What do you want from me?"
         );
@@ -63,22 +63,25 @@ public class atto4 : MonoBehaviour
         );
         yield return VisualNovelManager.S.dialog.DisplayText(
            "Luca",
-           "How long have you been missing?"
+           "Who's speaking?"
         );
         yield return VisualNovelManager.S.dialog.DisplayText(
            "????",
            "I’m someone who has already listened to that voice."
         );
-        yield return VisualNovelManager.S.phone.DisplayText(
-           "Anonimo",
-           "Get away from her. Now."
-        );
 
         // --- SCELTA ---
         yield return background.ChangePose("sottopasso2");
         yield return Margherita.Appear();
+
+
+        yield return VisualNovelManager.S.phone.DisplayText(
+           "Anonimo",
+           "Get away from her. Now. Listen to what I have to tell you about your brother."
+        );
+
         yield return Anonimo.Appear();
-        
+
         Anonimo.MakeClickable(SceltaSbagliata);
         Margherita.MakeClickable(SceltaGiusta);
         
@@ -102,9 +105,8 @@ public class atto4 : MonoBehaviour
            "Anonimo",
            "Good, now that I have your attention."
         );
-        
-        yield return Luca.Appear();
-        yield return VisualNovelManager.S.dialog.DisplayText(
+         
+        yield return VisualNovelManager.S.phone.DisplayText(
            "Luca",
            "Are you tricking me?"
         );
@@ -114,22 +116,19 @@ public class atto4 : MonoBehaviour
            "Anonimo",
            "Maybe I have some clues for you. Did you search well online? Everything is always there."
         );
-        
-        yield return Luca.Appear();
+         
         yield return VisualNovelManager.S.dialog.DisplayText(
            "Luca",
            "Yes… but I’m not finding anything."
-        );
-        yield return Luca.Disappear(); 
+        ); 
         
         yield return VisualNovelManager.S.phone.DisplayText(
            "Anonimo",
            "Maybe you haven’t looked enough."
         );
         
-        yield return Margherita.ChangePose("marghe in persona");
         yield return VisualNovelManager.S.dialog.DisplayText(
-           "Margherita",
+           "????",
            "Listen to me."
         );
         
@@ -139,27 +138,27 @@ public class atto4 : MonoBehaviour
            "No. I don’t trust you! They already told me where to look!"
         );
         yield return VisualNovelManager.S.dialog.DisplayText(
-           "Margherita",
+           "????",
            "And who told you that?"
         );
         yield return VisualNovelManager.S.dialog.DisplayText(
            "Luca",
-           "Someone… none of your business who."
+           "Someone… It's none of your business!!"
         );
         yield return VisualNovelManager.S.dialog.DisplayText(
-           "Margherita",
-           "If you think that ‘someone’ is just words placed in a row and sent in a message… you’re on the wrong path."
+           "????",
+           "If you think that 'someone' is just words placed in a row and sent in a message… you’re on the wrong path."
         );
         yield return VisualNovelManager.S.dialog.DisplayText(
            "Luca",
            "Look, he’s real! He wants to help me!"
         );
         yield return VisualNovelManager.S.dialog.DisplayText(
-           "Margherita",
+           "????",
            "He’s not on your side! He can’t solve your problems for you!"
         );
         yield return VisualNovelManager.S.dialog.DisplayText(
-           "Margherita",
+           "????",
            "I just want to help you, Luca. It was Aldo who pushed me to find you, turn off your phone. Listen to me."
         );
 
@@ -172,7 +171,8 @@ public class atto4 : MonoBehaviour
     {
         VisualNovelManager.S.SetSceneData(GetType().Name, SceneProgressStep.RightChoiceDone);
         Anonimo.UndoClickable();
-        Margherita.UndoClickable();
+        Margherita.UndoClickable(); 
+        yield return Margherita.ChangePose("marghe in persona");
         yield return Anonimo.Disappear();
 
         yield return Luca.ChangePose("rilassato");
@@ -204,7 +204,7 @@ public class atto4 : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         // PUZZLE
-        yield return VisualNovelManager.S.ObtainPuzzle(3);
+        yield return VisualNovelManager.S.ObtainPuzzle(4);
         VisualNovelManager.S.SetSceneData(GetType().Name, SceneProgressStep.Finished);
         
         yield return VisualNovelManager.S.dialog.DisplayText(
@@ -448,6 +448,6 @@ public class atto4 : MonoBehaviour
 
     private void Conclusione()
     {
-        VisualNovelManager.S.GoToScene("NomeScenaSuccessiva"); // Ricordati di cambiare "NomeScenaSuccessiva"
+        VisualNovelManager.S.GoToScene("Atto51"); 
     }
 }
