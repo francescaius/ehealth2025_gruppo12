@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
+//Meccanismo sviluppato con Gemini e ChatGpt per gestire l'inizializzazione della scena di default
 public enum SceneProgressStep
 {
     NotVisited,      // mai entrato
