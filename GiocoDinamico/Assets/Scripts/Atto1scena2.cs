@@ -28,7 +28,8 @@ public class Atto1scena2 : MonoBehaviour
     }
      
     IEnumerator Part2()
-    { 
+    {
+        VisualNovelManager.S.backtrack("Bar");
         yield return VisualNovelManager.S.Element("Overlay").Disappear();
 
         
@@ -185,6 +186,9 @@ public class Atto1scena2 : MonoBehaviour
             "Marta",
             "I haven’t heard that name in a while. He left something… but I don’t know if I should give it to you."
         );
+        
+        VisualNovelManager.S.playAudio("Vibrazione");
+        VisualNovelManager.S.playAudio("Notifica");
         yield return Anonimo.Appear();
         yield return Luca.ChangePose("Preoccupato");
         yield return VisualNovelManager.S.dialog.DisplayText(

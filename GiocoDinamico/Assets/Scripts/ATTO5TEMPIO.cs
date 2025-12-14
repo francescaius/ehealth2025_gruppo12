@@ -37,9 +37,10 @@ public class ATTO5TEMPIO : MonoBehaviour
 
     //Questa scena parte in automatico
     IEnumerator Part1()
-    {  
-        
-    yield return VisualNovelManager.S.Element("Overlay").Disappear(); 
+    {
+
+        VisualNovelManager.S.backtrack("Temple");
+        yield return VisualNovelManager.S.Element("Overlay").Disappear(); 
     yield return background.Appear();
     yield return VisualNovelManager.S.dialog.DisplayText("Luca","It’s true that the phone makes time pass faster…but sometimes it consumes it entirely.It makes you lose what you really wanted to do.");
     yield return monaco.Appear();

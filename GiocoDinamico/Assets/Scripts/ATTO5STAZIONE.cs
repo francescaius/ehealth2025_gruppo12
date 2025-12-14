@@ -39,6 +39,7 @@ public class ATTO5STAZIONE : MonoBehaviour
     //Questa scena parte in automatico
     IEnumerator Part1()
     {
+        VisualNovelManager.S.backtrack("Metro");
         yield return VisualNovelManager.S.Element("Overlay").Disappear(); 
         yield return background.Appear();
         yield return Lucia.ChangePose("normale");

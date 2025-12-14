@@ -84,7 +84,7 @@ public class VisualNovelManager : MonoBehaviour
 
         foreach (ControllerElementoDiScena prefab in elementiControllati)
         {
-            prefab.Awake(); //forza awake di gestiti (ad esempio overlay che voglio disattivato il resto del tempo)
+            prefab.Awake(); //così forzo awake di elementi gestiti (ad esempio overlay che voglio disattivato il resto del tempo)
         }
 
 
@@ -220,6 +220,8 @@ public class VisualNovelManager : MonoBehaviour
     {
         if (takenPuzzlePieces.Contains(puzzle)) yield break;
         if (puzzle < 1 || puzzle > 6) yield break;
+
+        playAudio("Obtain");
 
 
         var puzzleController = S.Element("PuzzlePiece"); 

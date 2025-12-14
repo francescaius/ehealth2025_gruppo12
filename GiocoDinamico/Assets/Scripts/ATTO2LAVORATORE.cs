@@ -39,6 +39,7 @@ public class ATTO2LAVORATORE : MonoBehaviour
     IEnumerator Part1()
     {
 
+        VisualNovelManager.S.backtrack("Office");
         //////////////////// QUESTA PARLA TENERLA SEMPRE UGUALE ///////////////
         yield return VisualNovelManager.S.Element("Overlay").Disappear(); 
         //////////////////////////////////////////////////////////////////////

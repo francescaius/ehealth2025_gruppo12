@@ -12,7 +12,7 @@ public class SondaggioScene : MonoBehaviour
     [SerializeField] ControllerElementoDiScena sempre;
 
 
-    string[] domande = new string[]
+    /*string[] domande = new string[]
     {
         "Trovi di restare online più a lungo di quanto avevi intenzione?",
         //"Trascuri le faccende domestiche per passare più tempo online?",
@@ -34,6 +34,30 @@ public class SondaggioScene : MonoBehaviour
         //"Cerchi di nascondere per quanto tempo sei stato online?",
         //"Scegli di passare più tempo online invece di uscire con altre persone?",
         //"Ti senti depresso, di cattivo umore o nervoso quando sei offline, e il malessere scompare quando torni online?"
+    };*/
+
+    string[] domande = new string[]
+    {
+        "How often do you find that you stay online longer than you intended?",
+        "How often do you neglect household chores to spend more time online?",
+        "How often do you prefer the excitement of the Internet to intimacy with your partner?",
+        "How often do you form new relationships with fellow online users?",
+        "How often do others in your life complain to you about the amount of time you spend online?",
+        "How often do your grades or school work suffer because of the amount of time you spend online?",
+        "How often do you check your email before something else that you need to do?",
+        "How often does your job performance or productivity suffer because of the Internet?",
+        "How often do you become defensive or secretive when anyone asks you what you do online?",
+        "How often do you block out disturbing thoughts about your life with soothing thoughts of the Internet?",
+        "How often do you find yourself anticipating when you will go online again?",
+        "How often do you fear that life without the Internet would be boring, empty, and joyless?",
+        "How often do you snap, yell, or act annoyed if someone bothers you while you are online?",
+        "How often do you lose sleep due to being online?",
+        "How often do you feel preoccupied with the Internet when off-line, or fantasize about being online?",
+        "How often do you find yourself saying \"just a few more minutes\" when online?",
+        "How often do you try to cut down the amount of time you spend online and fail?",
+        "How often do you try to hide how long you've been online?",
+        "How often do you choose to spend more time online over going out with others?",
+        "How often do you feel depressed, moody, or nervous when you are off-line, which goes away once you are back online?"
     };
 
 
@@ -73,7 +97,7 @@ public class SondaggioScene : MonoBehaviour
 
         yield return VisualNovelManager.S.dialog.DisplayText(
             "Un breve sondaggio",
-            "Prima di iniziare il gioco, ti verrà proposto un sondaggio, clicca sulla risposta per com'è davvero la tua vita e non per come desideri che sia, al click verrà mostrata un'altra domanda."
+            "Before starting the adventure you have to answer some questions: please, select the answer that truly reflect your life."
         );
 
         mai.MakeClickable(maiClick);

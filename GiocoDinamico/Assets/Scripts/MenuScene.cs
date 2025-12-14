@@ -48,6 +48,7 @@ public class MenuScene : MonoBehaviour
         }
 
         yield return puzzle.Appear();
+        VisualNovelManager.S.backtrack("Home");
 
 
         if (VisualNovelManager.S.takenPuzzlePieces.Contains(6))

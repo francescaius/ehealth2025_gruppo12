@@ -21,6 +21,7 @@ public class CityScene : MonoBehaviour
         }
         else
         {
+            VisualNovelManager.S.backtrack("City");
             StartCoroutine(Part1()); 
         }  
     }

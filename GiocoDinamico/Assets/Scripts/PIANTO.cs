@@ -30,6 +30,7 @@ public class PIANTO : MonoBehaviour
 IEnumerator Part1()
     {
 
+        VisualNovelManager.S.backtrack("Parco");
         yield return VisualNovelManager.S.Element("Overlay").Disappear(); 
         yield return background.Appear();
         yield return VisualNovelManager.S.dialog.DisplayText(

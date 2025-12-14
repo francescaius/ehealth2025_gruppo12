@@ -38,10 +38,13 @@ public class ATTO5CAPOLINEA : MonoBehaviour
 
      IEnumerator Part1()
     {
+        VisualNovelManager.S.backtrack("Metro");
         yield return VisualNovelManager.S.Element("Overlay").Disappear(); 
         yield return background.Appear();
         yield return Luca.ChangePose("disperato");
         yield return Luca.Appear();
+        VisualNovelManager.S.playAudio("Vibrazione");
+        VisualNovelManager.S.playAudio("Notifica");
         yield return Anonimo.Appear();
         yield return VisualNovelManager.S.dialog.DisplayText ("Luca","Great… I missed the stop because I was using my phone. And now I’m at the final station.");
 
@@ -57,7 +60,7 @@ public class ATTO5CAPOLINEA : MonoBehaviour
         yield return VisualNovelManager.S.phone.DisplayText("Anonymous","You want to understand? Or keep fooling yourself? You’ve walked, suﬀered, chased shadows…you don’t deserve more pain.");
         yield return VisualNovelManager.S.phone.DisplayText("Luca","But I might find answers there.");
         yield return VisualNovelManager.S.phone.DisplayText(
-        "Anonymous", "Answers? Or sermons?Sanctuaries are for those who have nothing.You already have everything you need… here. Here is your music, the one that calmed you. Here are your photos with your brother. Here are your sweetest messages, your truest memories. Are you really sure you want to abandon the only place where he still exists?"
+        "Anonymous", "Answers? Or sermons? Sanctuaries are for those who have nothing.You already have everything you need… here. Here is your music, the one that calmed you. Here are your photos with your brother. Here are your sweetest messages, your truest memories. Are you really sure you want to abandon the only place where he still exists?"
         );
         yield return VisualNovelManager.S.phone.DisplayText("Luca","I… don’t know…");
         yield return VisualNovelManager.S.phone.DisplayText("Anonymous","Luca, listen to me…Pain isn’t healed by digging. It’s healed by protecting yourself.The phone doesn’t hurt you… it embraces you. It doesn’t judge you. It doesn’t ask sacrifices. It is always with you. Always available. Always ready to understand you without speaking.Stay with me. Sit down. Watch a video. Breathe again. The real world is too loud… but here you can feel safe.");

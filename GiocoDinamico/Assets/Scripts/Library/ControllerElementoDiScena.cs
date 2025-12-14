@@ -408,18 +408,18 @@ public class ControllerElementoDiScena : MonoBehaviour, IPointerClickHandler
         }
     }
     // Per funzioni
-    public void MakeClickable(Action a)
+    public void MakeClickable(Action a, bool shine = true)
     {
         onClickAction = a;
-        if(currentPoseObject != null)
+        if(currentPoseObject != null && shine)
             VisualNovelManager.S.StartCoroutine(Shine());
     }
 
     // Per coroutine 
-    public void MakeClickable(Func<IEnumerator> a)
+    public void MakeClickable(Func<IEnumerator> a, bool shine = true)
     {
         onClickAction = a;
-        if (currentPoseObject != null)
+        if (currentPoseObject != null && shine)
             VisualNovelManager.S.StartCoroutine(Shine());
     }
      

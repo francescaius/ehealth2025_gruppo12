@@ -30,7 +30,8 @@ public class ATTO7 : MonoBehaviour
 
     //Questa scena parte in automatico
     IEnumerator Part1()
-    { 
+    {
+        VisualNovelManager.S.backtrack("FinaleBello");
         yield return VisualNovelManager.S.bagBtn.Disappear();
         yield return VisualNovelManager.S.Element("Overlay").Disappear(); 
         yield return VisualNovelManager.S.dialog.DisplayText(
@@ -114,8 +115,8 @@ public class ATTO7 : MonoBehaviour
          yield return VisualNovelManager.S.dialog.DisplayText(
            "Luca",
            "Thank you, brother.");
-           yield return VisualNovelManager.S.Element("Overlay").Appear();  
-
+           yield return VisualNovelManager.S.Element("Overlay").Appear();
+        VisualNovelManager.S.pauseBacktrack();
     
     }
 }

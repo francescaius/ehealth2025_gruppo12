@@ -27,11 +27,16 @@ public class atto4 : MonoBehaviour
       
     IEnumerator Part1()
     {
+        VisualNovelManager.S.backtrack("Metro");
         // RESET INIZIALE
         yield return VisualNovelManager.S.Element("Overlay").Disappear(); 
         
     
 
+        VisualNovelManager.S.playAudio("Vibrazione");
+        VisualNovelManager.S.playAudio("Notifica");
+        yield return new WaitForSeconds(1);
+           
         // INIZIO DIALOGHI
         yield return VisualNovelManager.S.phone.DisplayText(
            "Anonymous",
@@ -75,11 +80,15 @@ public class atto4 : MonoBehaviour
         yield return Margherita.Appear();
 
 
+        VisualNovelManager.S.playAudio("Vibrazione"); 
+        VisualNovelManager.S.playAudio("Notifica");
+           
         yield return VisualNovelManager.S.phone.DisplayText(
            "Anonymous",
            "Get away from her. Now. Listen to what I have to tell you about your brother."
         );
-
+        VisualNovelManager.S.playAudio("Vibrazione"); 
+        VisualNovelManager.S.playAudio("Notifica");
         yield return Anonimo.Appear();
 
         Anonimo.MakeClickable(SceltaSbagliata);
@@ -96,7 +105,9 @@ public class atto4 : MonoBehaviour
         Margherita.UndoClickable();
         yield return Anonimo.Disappear();
 
-        yield return new WaitForSeconds(1);
+        VisualNovelManager.S.playAudio("Vibrazione");
+        VisualNovelManager.S.playAudio("Notifica");
+        yield return new WaitForSeconds(1); 
         yield return VisualNovelManager.S.phone.DisplayText(
            "Anonymous",
            "Did you search ‘library graffiti’?"

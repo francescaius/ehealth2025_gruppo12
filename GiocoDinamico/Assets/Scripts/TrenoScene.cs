@@ -80,7 +80,7 @@ public class TrenoScene : MonoBehaviour
     {
         VisualNovelManager.S.dialog.DisplayText(
                "- Train -",
-               "The train is leaving -  Still " + (santuario - fermata) + " stations before the Sanctuary",
+               "The train is leaving -  Still " + (santuario - fermata) + " stations before the Temple",
                true
         );
         while(nuovafermata < totaleFermate)
@@ -105,7 +105,7 @@ public class TrenoScene : MonoBehaviour
                 {
                     yield return VisualNovelManager.S.dialog.DisplayText(
                          "- Train -",
-                         "Station " + fermata + "/30   -  " + (santuario - fermata) + " stations before the Sanctuary",
+                         "Station " + fermata + "/30   -  " + (santuario - fermata) + " stations before the Temple",
                          true
                     );
 
@@ -159,6 +159,7 @@ public class TrenoScene : MonoBehaviour
 
     IEnumerator Part1()
     {
+        VisualNovelManager.S.backtrack("Train");
         yield return VisualNovelManager.S.Element("Overlay").Disappear(); 
         telefono.Disappear();
         telefonoBtn.Disappear();
@@ -167,7 +168,7 @@ public class TrenoScene : MonoBehaviour
         
         yield return VisualNovelManager.S.dialog.DisplayText(
              "Luca",
-             "There are 30 station, I have to get of at the temple SANCTUARY - STATION 25. Better not to lost it!"
+             "There are 30 station, I have to get of at the temple TEMPLE - STATION 25. Better not to lost it!"
 
         );
         StartCoroutine(ProgressoFermate()); 
@@ -176,12 +177,14 @@ public class TrenoScene : MonoBehaviour
     IEnumerator Avanza()
     {
         telefonoBtn.UndoClickable(); //il telefono non sarà cliccabile, solo dopo la prima fermata dopo il boost tornerà cliccabile
-        countaUsoTelefono = countaUsoTelefono % 4 + 1;
+        countaUsoTelefono = countaUsoTelefono % 4 + 1; 
+        VisualNovelManager.S.backtrack("Fast");
         yield return telefono.ChangePose("Meme" + countaUsoTelefono);
         boost = true;
         yield return telefono.Appear();
         yield return new WaitForSeconds(secondiPerFermata-2);
         yield return telefono.Disappear();
+        VisualNovelManager.S.backtrack("Train");
         boost = false;
     }
      

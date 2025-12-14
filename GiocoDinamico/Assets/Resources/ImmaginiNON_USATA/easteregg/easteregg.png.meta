@@ -116,10 +116,10 @@ TextureImporter:
       name: easteregg_0
       rect:
         serializedVersion: 2
-        x: 60
-        y: 15
-        width: 602
-        height: 547
+        x: 193
+        y: 41
+        width: 151
+        height: 268
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      easteregg_0: -5041886319669061569
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
