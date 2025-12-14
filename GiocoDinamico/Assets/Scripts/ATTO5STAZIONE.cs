@@ -84,8 +84,10 @@ public class ATTO5STAZIONE : MonoBehaviour
         yield return Lucia.Disappear();
         yield return background.ChangePose("platform 7");
         yield return VisualNovelManager.S.Element("Overlay").Disappear();
-        yield return VisualNovelManager.S.dialog.DisplayText("Luca","This time I know where I need to go…I just need to find the strength to get there.");
+        yield return VisualNovelManager.S.dialog.DisplayText("Luca","This time I know where I need to go… I just need to find the strength to get there.");
 
-        }
+        yield return VisualNovelManager.S.Element("Overlay").Appear(); 
+        VisualNovelManager.S.GoToScene("TrenoScene");
+    }
 
 }

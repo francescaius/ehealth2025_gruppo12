@@ -67,6 +67,9 @@ public class PROLOGO : MonoBehaviour
         yield return VisualNovelManager.S.Element("Overlay").Disappear();
         yield return VisualNovelManager.S.dialog.DisplayText("Luca",
         "I don’t remember the exact color of that room anymore…Maybe it was blue… or maybe it was just the reflection of the summer sky…But now none of that exists anymore, it’s only a distant memory.I only remember the laughter. Ours. Mine and my brother’s.Two children, two worlds without boundaries.");
+
+        yield return VisualNovelManager.S.Element("Overlay").Appear();
+        VisualNovelManager.S.GoToScene("Atto11");
     }
 
 }

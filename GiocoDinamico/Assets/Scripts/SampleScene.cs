@@ -30,7 +30,7 @@ public class SampleScene : MonoBehaviour
            "Luca",
            "Ciao sono luca di cosa hai bisogno?."
        );yield return VisualNovelManager.S.phone.DisplayText(
-           "Anonimo",
+           "Anonymous",
            "Ciao sono anonimo..... di cosa hai bisogno?."
        );
 

@@ -52,35 +52,69 @@ public class ATTO6 : MonoBehaviour
            "Luca",
            "Great! Perfect! Thanks for making me waste my time! Truly brilliant!");
 
-        ///telefono vibra
-        yield return new WaitForSeconds(2);
+        yield return Luca.ChangePose("stanco");
+
         yield return Anonimo.Appear();
-         yield return VisualNovelManager.S.dialog.DisplayText(
-           "Luca",
-           "ENOUGH!!!");
+        Anonimo.MakeClickable(truth);
+        Luca.MakeClickable(spacca);
+         
+
+       
+
+    }
+
+    private IEnumerator truth()
+    {
+        Anonimo.UndoClickable();
+        Luca.UndoClickable();
+        yield return Anonimo.Disappear(); 
+
+        yield return VisualNovelManager.S.phone.DisplayText(
+          "Anonymous",
+          "I know the truth!");
+
+        yield return new WaitForSeconds(1);
+
+        yield return Anonimo.Appear();
+        Anonimo.MakeClickable(truth);
+        Luca.MakeClickable(spacca);
+
+    }
+
+    private IEnumerator spacca()
+    {
+
+        Anonimo.UndoClickable();
+        Luca.UndoClickable();
         yield return Anonimo.Disappear();
 
-        ///butta il cell a terra
-        yield return new WaitForSeconds(2);
-        yield return Luca.ChangePose("scioccato");
-        yield return VisualNovelManager.S.ObtainPuzzle(6);
-        yield return VisualNovelManager.S.Element("Overlay").Appear();
+        yield return Luca.ChangePose("arrabbiato");
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Luca",
+           "ENOUGH!!!");
+        yield return new WaitForSeconds(1);
         yield return Luca.Disappear();
-        yield return background.ChangePose("sfocato");
-        yield return VisualNovelManager.S.Element("Overlay").Disappear();
+        yield return background.ChangePose("telefonorotto");
+        yield return new WaitForSeconds(1);
+        yield return VisualNovelManager.S.ObtainPuzzle(6);
+        yield return Luca.ChangePose("scioccato");
+        yield return background.ChangePose("camera");
+        yield return Luca.Appear();
          
-        
+
         yield return VisualNovelManager.S.dialog.DisplayText(
            "Luca",
            "The last clue I was searching for… wasn’t in a house, nor in a secret place. It was in the last thing I couldn’t let go of. My prison. My refuge. My screen.");
-        yield return VisualNovelManager.S.Element("Overlay").Appear(); 
-        yield return background.ChangePose("puzzle");
-        yield return VisualNovelManager.S.Element("Overlay").Disappear(); 
-        yield return new WaitForSeconds(2);
-        yield return VisualNovelManager.S.Element("Overlay").Appear();
 
+
+
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Luca",
+           "Let me look at my puzzle");
+
+        VisualNovelManager.S.ShineBag();
 
 
     }
-    
+
 }
