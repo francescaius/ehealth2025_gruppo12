@@ -217,7 +217,7 @@ public class Atto1scena2 : MonoBehaviour
             "Luca?"
         );
         yield return VisualNovelManager.S.phone.DisplayText(
-            "Anonimo",
+            "Anonymous",
             "Trust no one. Leave now. I will guide you."
         );
         

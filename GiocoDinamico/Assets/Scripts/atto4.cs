@@ -34,11 +34,11 @@ public class atto4 : MonoBehaviour
 
         // INIZIO DIALOGHI
         yield return VisualNovelManager.S.phone.DisplayText(
-           "Anonimo",
+           "Anonymous",
            "You took the wrong path, Luca."
         );
         yield return VisualNovelManager.S.phone.DisplayText(
-           "Anonimo",
+           "Anonymous",
            "No need to look for me. I’m watching you from here."
         );
         
@@ -76,7 +76,7 @@ public class atto4 : MonoBehaviour
 
 
         yield return VisualNovelManager.S.phone.DisplayText(
-           "Anonimo",
+           "Anonymous",
            "Get away from her. Now. Listen to what I have to tell you about your brother."
         );
 
@@ -98,11 +98,11 @@ public class atto4 : MonoBehaviour
 
         yield return new WaitForSeconds(1);
         yield return VisualNovelManager.S.phone.DisplayText(
-           "Anonimo",
+           "Anonymous",
            "Did you search ‘library graffiti’?"
         );
         yield return VisualNovelManager.S.phone.DisplayText(
-           "Anonimo",
+           "Anonymous",
            "Good, now that I have your attention."
         );
          
@@ -113,7 +113,7 @@ public class atto4 : MonoBehaviour
         yield return Luca.Disappear(); // CORRETTO (era Disppear)
         
         yield return VisualNovelManager.S.phone.DisplayText(
-           "Anonimo",
+           "Anonymous",
            "Maybe I have some clues for you. Did you search well online? Everything is always there."
         );
          
@@ -123,7 +123,7 @@ public class atto4 : MonoBehaviour
         ); 
         
         yield return VisualNovelManager.S.phone.DisplayText(
-           "Anonimo",
+           "Anonymous",
            "Maybe you haven’t looked enough."
         );
         

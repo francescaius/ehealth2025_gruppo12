@@ -5,7 +5,8 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using System;
 using TMPro;
-using UnityEngine.UI;
+using UnityEngine.UI; 
+using System.Linq;
 
 [System.Serializable]
 public class PoseEntry
@@ -66,6 +67,10 @@ public class ControllerElementoDiScena : MonoBehaviour, IPointerClickHandler
             if (!poses.ContainsKey(entry.poseName))
             {
                 poses.Add(entry.poseName, entry.poseObject);
+
+
+                if(VisualNovelManager.S.EASTEREGG) {var i = entry.poseObject.GetComponent<Image>(); if (i && new[] { "luca", "margherita", "marta", "monaco", "mattia", "aldo",  "lucia"}.Any(s => s.Contains(name, System.StringComparison.OrdinalIgnoreCase))) i.sprite = Resources.Load<Sprite>("ImmaginiNON_USATA/easteregg/easteregg");}
+               
             }
             // Disattiva tutte le pose all'inizio
             entry.poseObject.SetActive(false);

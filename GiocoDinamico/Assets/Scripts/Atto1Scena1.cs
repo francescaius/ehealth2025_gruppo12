@@ -39,7 +39,7 @@ public class Atto1scena1 : MonoBehaviour
         );      
            
         yield return VisualNovelManager.S.phone.DisplayText(
-           "Anonimo",
+           "Anonymous",
            "Do you know where your brother is?"
         );
         yield return VisualNovelManager.S.dialog.DisplayText(

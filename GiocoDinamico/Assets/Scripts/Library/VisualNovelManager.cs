@@ -32,7 +32,7 @@ public class VisualNovelManager : MonoBehaviour
     public List<ControllerElementoDiScena> elementiControllati;
     public DialogueManager dialog;
     public PhoneDialogueManager phone;
-    [SerializeField] ControllerElementoDiScena bagBtn;
+    [SerializeField] public ControllerElementoDiScena bagBtn;
 
 
 
@@ -55,10 +55,14 @@ public class VisualNovelManager : MonoBehaviour
     public bool Alcool_Azzardo = false;
     public bool Droga_Traumi = false;
 
+    private bool debug = false;
+    private bool easteregg = false;
+
     public List<int> takenPuzzlePieces = new List<int>();
 
 
-
+    public bool DEBUG { get => debug; }
+    public bool EASTEREGG { get => easteregg; }
 
 
 
@@ -89,36 +93,55 @@ public class VisualNovelManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Alpha1))
+        if(DEBUG)
         {
-            if(!takenPuzzlePieces.Contains(1))
-                StartCoroutine(ObtainPuzzle(1));
+            if (Input.GetKeyUp(KeyCode.Alpha1))
+            {
+                if (!takenPuzzlePieces.Contains(1))
+                    StartCoroutine(ObtainPuzzle(1));
+            }
+            if (Input.GetKeyUp(KeyCode.Alpha2))
+            {
+                if (!takenPuzzlePieces.Contains(2))
+                    StartCoroutine(ObtainPuzzle(2));
+            }
+            if (Input.GetKeyUp(KeyCode.Alpha3))
+            {
+                if (!takenPuzzlePieces.Contains(3))
+                    StartCoroutine(ObtainPuzzle(3));
+            }
+            if (Input.GetKeyUp(KeyCode.Alpha4))
+            {
+                if (!takenPuzzlePieces.Contains(4))
+                    StartCoroutine(ObtainPuzzle(4));
+            }
+            if (Input.GetKeyUp(KeyCode.Alpha5))
+            {
+                if (!takenPuzzlePieces.Contains(5))
+                    StartCoroutine(ObtainPuzzle(5));
+            }
+            if (Input.GetKeyUp(KeyCode.Alpha6))
+            {
+                if (!takenPuzzlePieces.Contains(6))
+                    StartCoroutine(ObtainPuzzle(6));
+            }
+
+
+            if (Input.GetKeyUp(KeyCode.H))
+            {
+                this.easteregg = !this.easteregg;
+            }
+
+
         }
-        if (Input.GetKeyUp(KeyCode.Alpha2))
+
+#if UNITY_EDITOR  
+        if (Input.GetKeyUp(KeyCode.D))
         {
-            if (!takenPuzzlePieces.Contains(2))
-                StartCoroutine(ObtainPuzzle(2));
+            this.debug = !this.debug;
         }
-        if (Input.GetKeyUp(KeyCode.Alpha3))
-        {
-            if (!takenPuzzlePieces.Contains(3))
-                StartCoroutine(ObtainPuzzle(3));
-        }
-        if (Input.GetKeyUp(KeyCode.Alpha4))
-        {
-            if (!takenPuzzlePieces.Contains(4))
-                StartCoroutine(ObtainPuzzle(4));
-        }
-        if (Input.GetKeyUp(KeyCode.Alpha5))
-        {
-            if (!takenPuzzlePieces.Contains(5))
-                StartCoroutine(ObtainPuzzle(5));
-        }
-        if (Input.GetKeyUp(KeyCode.Alpha6))
-        {
-            if (!takenPuzzlePieces.Contains(6))
-                StartCoroutine(ObtainPuzzle(6));
-        }
+#endif
+
     }
 
 
@@ -154,7 +177,22 @@ public class VisualNovelManager : MonoBehaviour
          
         SceneManager.LoadScene(name, LoadSceneMode.Additive);
     }
-     
+
+    public void Restart()
+    {
+        ForteDipendenza = false;
+        StipendioBasso = false;
+        NonStudiato = false;
+        Single = false;
+        Insoddisfatto = false;
+        Alcool_Azzardo = false;
+        Droga_Traumi = false;
+        StartCoroutine(bagBtn.Disappear());
+        takenPuzzlePieces.Clear();
+       
+
+    }
+
     public void CloseBag()
     {
         playAudio("Bag");
@@ -173,6 +211,7 @@ public class VisualNovelManager : MonoBehaviour
         bagBtn.UndoClickable();
         bagBtn.MakeClickable(OpenBag); 
     }
+     
 
 
 

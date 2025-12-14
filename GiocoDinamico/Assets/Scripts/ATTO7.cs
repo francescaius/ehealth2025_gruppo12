@@ -30,13 +30,29 @@ public class ATTO7 : MonoBehaviour
 
     //Questa scena parte in automatico
     IEnumerator Part1()
-    {
+    { 
+        yield return VisualNovelManager.S.bagBtn.Disappear();
+        yield return VisualNovelManager.S.Element("Overlay").Disappear(); 
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Luca",
+           "Now I have all the pieces, and they point exactly to that painting... Aldo's favourite!"
+        );
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Luca",
+           "Of course! It was his favourite painting because that place is real.. and he loved going there"
+        );
+        yield return VisualNovelManager.S.dialog.DisplayText(
+           "Luca",
+           "I'll go there!"
+        );
+        yield return VisualNovelManager.S.Element("Overlay").Appear();
         yield return VisualNovelManager.S.Element("Overlay").Disappear();
+        yield return background.ChangePose("paesaggio");
         yield return background.Appear();
         yield return Luca.Appear();
         yield return VisualNovelManager.S.dialog.DisplayText(
            "Luca",
-           "This is where I needed to come… to find myself again.");
+           "This is where I needed to come… to find him.");
         yield return Luca.ChangePose("sorride");
          yield return VisualNovelManager.S.dialog.DisplayText(
            "Luca",
@@ -85,19 +101,20 @@ public class ATTO7 : MonoBehaviour
         yield return Luca.ChangePose("scioccato");
         yield return VisualNovelManager.S.dialog.DisplayText(
            "Luca",
-           "No… that can’t be… let me think… Of course! The monk told me: ‘Maybe Aldo is already speaking to you.’It wasn’t a journey to find my brother. It was a journey to find myself.And… maybe… that’s what he wanted.And in this journey, I truly lived… and understood what no speech could ever make me understand.");
+           "No… that can’t be… let me think… Of course! The monk told me: ‘Maybe Aldo is already speaking to you.’");
+        yield return VisualNovelManager.S.dialog.DisplayText(
+            "Luca",
+            "It wasn’t a journey to find my brother. It was a journey to find myself!"
+        );
+        yield return VisualNovelManager.S.dialog.DisplayText(
+            "Luca",
+            "And… maybe… that’s what he wanted... in this journey, I truly lived… and understood what no explanation could ever make me understand."
+        );
         yield return Luca.ChangePose("sorride");
          yield return VisualNovelManager.S.dialog.DisplayText(
            "Luca",
            "Thank you, brother.");
-           yield return VisualNovelManager.S.Element("Overlay").Appear(); 
-       
-        
-
-
-
-
-        
+           yield return VisualNovelManager.S.Element("Overlay").Appear();  
 
     
     }

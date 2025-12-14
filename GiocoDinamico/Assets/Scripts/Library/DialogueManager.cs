@@ -127,17 +127,20 @@ public class DialogueManager : MonoBehaviour
                 string text = paragraphs[paragraphIndex];
 
                 bodyText.text = "";
-
-#if UNITY_EDITOR
-
-                bodyText.text = text;
-#else 
-                foreach (char c in text)
+                 
+                if(VisualNovelManager.S.DEBUG)
                 {
-                    bodyText.text += c;
-                    yield return new WaitForSeconds((float)1 / 60);
+
+                    bodyText.text = text;
                 }
-#endif
+                else {  
+                    foreach (char c in text)
+                    {
+                        bodyText.text += c;
+                        yield return new WaitForSeconds((float)1 / 60);
+                    }
+                }
+
 
                 editing = false;
             }
