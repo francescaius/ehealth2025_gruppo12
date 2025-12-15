@@ -188,7 +188,6 @@ public class SondaggioScene : MonoBehaviour
         }
         else if (IAT < soglia3)
         {
-            VisualNovelManager.S.ForteDipendenza = IAT > 40; //qui considero solo quelli con IAT ALTO dal paper, ma tanto non serve 
             VisualNovelManager.S.StipendioBasso = false;
             VisualNovelManager.S.Single = false;
             VisualNovelManager.S.NonStudiato = false;
@@ -198,7 +197,7 @@ public class SondaggioScene : MonoBehaviour
         }
         else
         {
-            VisualNovelManager.S.ForteDipendenza = true;
+            VisualNovelManager.S.ForteDipendenza = IAT > 80; //qui considero solo quelli con IAT ALTO dal paper, ma tanto non serve 
             VisualNovelManager.S.StipendioBasso = true;
             VisualNovelManager.S.Single = true;
             VisualNovelManager.S.NonStudiato = true;
