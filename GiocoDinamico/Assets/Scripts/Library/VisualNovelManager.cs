@@ -126,6 +126,70 @@ public class VisualNovelManager : MonoBehaviour
                 if (!takenPuzzlePieces.Contains(6))
                     StartCoroutine(ObtainPuzzle(6));
             }
+             
+
+            if (Input.GetKeyUp(KeyCode.Q))
+            {
+                GoToScene("MenuScene");
+            }
+            else if (Input.GetKeyUp(KeyCode.W))
+            {
+                GoToScene("SondaggioScene");
+            }
+            else if (Input.GetKeyUp(KeyCode.E))
+            {
+                GoToScene("Atto0");
+            }
+            else if (Input.GetKeyUp(KeyCode.R))
+            {
+                GoToScene("Atto11");
+            }
+            else if (Input.GetKeyUp(KeyCode.T))
+            {
+                GoToScene("City");
+            }
+            else if (Input.GetKeyUp(KeyCode.Y))
+            {
+                GoToScene("Atto12");
+            }
+            else if (Input.GetKeyUp(KeyCode.U))
+            {
+                GoToScene("Atto2");
+            }
+            else if (Input.GetKeyUp(KeyCode.I))
+            {
+                GoToScene("Atto3");
+            }
+            else if (Input.GetKeyUp(KeyCode.O))
+            {
+                GoToScene("Atto4");
+            }
+            else if (Input.GetKeyUp(KeyCode.P))
+            {
+                GoToScene("Atto51");
+            }
+            else if (Input.GetKeyUp(KeyCode.Z))
+            {
+                GoToScene("TrenoScene");
+            }
+            else if (Input.GetKeyUp(KeyCode.X))
+            {
+                GoToScene("Atto52");
+            }
+            else if (Input.GetKeyUp(KeyCode.C))
+            {
+                GoToScene("Atto53");
+            } 
+            else if (Input.GetKeyUp(KeyCode.V))
+            {
+                GoToScene("Atto6");
+            } 
+            else if (Input.GetKeyUp(KeyCode.B))
+            {
+                GoToScene("Atto7");
+            }
+             
+
 
 
             if (Input.GetKeyUp(KeyCode.H))

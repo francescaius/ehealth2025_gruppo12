@@ -23,6 +23,27 @@ The debug mode offers 2 fancy tools:
 
  1. Faster (immediate) dialogues
  2. Puzzle pieces - In the game multiple puzzle pieces are acquired and necessary to get to the final scene - in this mode it's sufficient to press a key from 1 to 6 to get the N-th puzzle piece (where N is the pressed key)
+ 3. Con i pulsanti QWERTYUIOPZXCVB si salta da una scena all'altra del gioco secondo la logica espressa in VisualNovelManager o dalla seguente tabella
+
+| Tasto | Scena |
+| :---: | :--- |
+| **Q** | `MenuScene` |
+| **W** | `SondaggioScene` |
+| **E** | `Atto0` |
+| **R** | `Atto11` |
+| **T** | `CityScene` |
+| **Y** | `Atto12` |
+| **U** | `Atto2` |
+| **I** | `Atto3` |
+| **O** | `Atto4` |
+| **P** | `Atto51` |
+| **Z** | `TrenoScene` |
+| **X** | `Atto52` |
+| **C** | `Atto53` |
+| **V** | `Atto6` |
+| **B** | `Atto7` |
+
+
 
 ### How to read the code
 The code is inside Assets>Scripts

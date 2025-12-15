@@ -63,7 +63,7 @@ public class CityScene : MonoBehaviour
         }
         else
         {
-            yield return VisualNovelManager.S.dialog.DisplayText("Luca", "Before going to work I'll go to the cafe, and maybe I find there my friend marta...");
+            yield return VisualNovelManager.S.dialog.DisplayText("Luca", "Before going to work I'll go to the cafe...");
             yield return bar.Appear();
             yield return new WaitForSeconds(1);
             bar.MakeClickable(() => {
