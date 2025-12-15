@@ -188,6 +188,7 @@ public class SondaggioScene : MonoBehaviour
         }
         else if (IAT < soglia3)
         {
+            VisualNovelManager.S.ForteDipendenza = false;
             VisualNovelManager.S.StipendioBasso = false;
             VisualNovelManager.S.Single = false;
             VisualNovelManager.S.NonStudiato = false;
