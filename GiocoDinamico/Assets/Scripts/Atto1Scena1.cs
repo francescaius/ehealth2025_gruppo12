@@ -24,7 +24,7 @@ public class Atto1scena1 : MonoBehaviour
     }
     IEnumerator Part1()
     {
-
+        VisualNovelManager.S.pauseBacktrack();
         yield return VisualNovelManager.S.Element("Overlay").Disappear();
 
         

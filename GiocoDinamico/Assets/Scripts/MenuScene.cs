@@ -26,8 +26,8 @@ public class MenuScene : MonoBehaviour
     }
 
     IEnumerator Part1()
-    { 
-
+    {
+        yield return VisualNovelManager.S.bagBtn.Disappear();
         yield return VisualNovelManager.S.Element("Overlay").Disappear();
 
         if (VisualNovelManager.S.takenPuzzlePieces.Contains(6))

@@ -47,9 +47,8 @@ public class ATTO7 : MonoBehaviour
            "I'll go there!"
         );
         yield return VisualNovelManager.S.Element("Overlay").Appear();
-        yield return VisualNovelManager.S.Element("Overlay").Disappear();
         yield return background.ChangePose("paesaggio");
-        yield return background.Appear();
+        yield return VisualNovelManager.S.Element("Overlay").Disappear();
         yield return Luca.Appear();
         yield return VisualNovelManager.S.dialog.DisplayText(
            "Luca",
@@ -77,7 +76,7 @@ public class ATTO7 : MonoBehaviour
         yield return VisualNovelManager.S.Element("Overlay").Disappear();
         yield return VisualNovelManager.S.dialog.DisplayText(
             "Aldo",
-           "You came too late. Goodbye.");
+           "You arrived too late. See you later.");
         yield return VisualNovelManager.S.Element("Overlay").Appear(); 
         yield return background.ChangePose("sfocato");
         yield return VisualNovelManager.S.Element("Overlay").Disappear();
@@ -115,8 +114,9 @@ public class ATTO7 : MonoBehaviour
          yield return VisualNovelManager.S.dialog.DisplayText(
            "Luca",
            "Thank you, brother.");
-           yield return VisualNovelManager.S.Element("Overlay").Appear();
+           yield return VisualNovelManager.S.Element("Overlay").Appear(); 
         VisualNovelManager.S.pauseBacktrack();
+        VisualNovelManager.S.GoToScene("MenuScene");
     
     }
 }

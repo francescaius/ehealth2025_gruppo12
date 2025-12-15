@@ -30,7 +30,7 @@ public class UIRootPersistent : MonoBehaviour
              
             if (targetSceneName == gameObject.scene.name)
             {
-                Debug.Log("Avvio diretto da Persistent rilevato: Carico PulsantiESuoni.");
+                Debug.Log("Avvio diretto da Persistent rilevato: Carico MenuScene.");
                 VisualNovelManager.S.GoToScene("MenuScene");
             }
             else
@@ -49,10 +49,8 @@ public class UIRootPersistent : MonoBehaviour
         PlayerPrefs.DeleteKey("LastEditedScene");
         PlayerPrefs.Save();
 
-#else
-        // --- LOGICA BUILD ---
-        // Nella build il codice sopra non esiste, parte sempre da qui.
-        VisualNovelManager.S.GoToScene("PulsantiESuoni");
+#else 
+        VisualNovelManager.S.GoToScene("MenuScene");
 #endif
     }
 }

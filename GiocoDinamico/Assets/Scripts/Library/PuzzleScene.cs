@@ -84,12 +84,7 @@ public class PuzzleScene : MonoBehaviour
         //yield return assemblaBtn.Disappear();
         //finalScene();
     }
-
-    private void finalScene()
-    {
-        VisualNovelManager.S.CloseBag();
-        VisualNovelManager.S.GoToScene("SampleScene");
-    }
+ 
 
     public void closeBtnClick()
     { 

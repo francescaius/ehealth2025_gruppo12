@@ -136,12 +136,12 @@ public class VisualNovelManager : MonoBehaviour
 
         }
 
-#if UNITY_EDITOR  
+//#if UNITY_EDITOR   //lo tengo ovunque, anche in build, per velocizzare
         if (Input.GetKeyUp(KeyCode.D))
         {
             this.debug = !this.debug;
         }
-#endif
+//#endif
 
     }
 
