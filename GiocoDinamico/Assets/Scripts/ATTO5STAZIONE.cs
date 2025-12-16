@@ -39,6 +39,7 @@ public class ATTO5STAZIONE : MonoBehaviour
     //Questa scena parte in automatico
     IEnumerator Part1()
     {
+        VisualNovelManager.S.backtrack("Metro");
         yield return VisualNovelManager.S.Element("Overlay").Disappear(); 
         yield return background.Appear();
         yield return Lucia.ChangePose("normale");
@@ -84,8 +85,10 @@ public class ATTO5STAZIONE : MonoBehaviour
         yield return Lucia.Disappear();
         yield return background.ChangePose("platform 7");
         yield return VisualNovelManager.S.Element("Overlay").Disappear();
-        yield return VisualNovelManager.S.dialog.DisplayText("Luca","This time I know where I need to go…I just need to find the strength to get there.");
+        yield return VisualNovelManager.S.dialog.DisplayText("Luca","This time I know where I need to go… I just need to find the strength to get there.");
 
-        }
+        yield return VisualNovelManager.S.Element("Overlay").Appear(); 
+        VisualNovelManager.S.GoToScene("TrenoScene");
+    }
 
 }

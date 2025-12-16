@@ -24,6 +24,7 @@ public class Atto1scena1 : MonoBehaviour
     }
     IEnumerator Part1()
     {
+        VisualNovelManager.S.pauseBacktrack();
         yield return VisualNovelManager.S.Element("Overlay").Disappear();
 
         
@@ -36,17 +37,26 @@ public class Atto1scena1 : MonoBehaviour
         yield return VisualNovelManager.S.dialog.DisplayText(
             "Luca",
             "I don’t feel like getting up. I don’t feel like anything"
-        );      
-           
+        );
+        VisualNovelManager.S.playAudio("Vibrazione");
+        VisualNovelManager.S.playAudio("Notifica");
+        yield return new WaitForSeconds(1);
+
         yield return VisualNovelManager.S.phone.DisplayText(
-           "Anonimo",
+           "Anonymous",
            "Do you know where your brother is?"
         );
         yield return VisualNovelManager.S.dialog.DisplayText(
             "Luca",
             "What…? Who are you?"
         );
-    
+        yield return VisualNovelManager.S.dialog.DisplayText(
+                "Luca",
+                "Nevermind, it's time to go..."
+        );
+        yield return VisualNovelManager.S.Element("Overlay").Appear();
+        VisualNovelManager.S.GoToScene("City");
+
     }
   
 }

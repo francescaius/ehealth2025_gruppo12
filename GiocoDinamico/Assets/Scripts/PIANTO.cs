@@ -30,6 +30,7 @@ public class PIANTO : MonoBehaviour
 IEnumerator Part1()
     {
 
+        VisualNovelManager.S.backtrack("Parco");
         yield return VisualNovelManager.S.Element("Overlay").Disappear(); 
         yield return background.Appear();
         yield return VisualNovelManager.S.dialog.DisplayText(
@@ -282,9 +283,7 @@ IEnumerator Part1()
          yield return Luca.Disappear();
          yield return Marta.Disappear();
          yield return background.ChangePose("chiave"); 
-         yield return VisualNovelManager.S.Element("Overlay").Disappear(); 
-         yield return new WaitForSeconds(1);
-
+         yield return VisualNovelManager.S.Element("Overlay").Disappear();  
          yield return VisualNovelManager.S.Element("Overlay").Appear(); 
          yield return Luca.Appear();
          yield return Marta.Appear();
@@ -299,9 +298,10 @@ IEnumerator Part1()
           yield return VisualNovelManager.S.dialog.DisplayText(
            "Marta",
            "And this… is a ticket he also gave me. He said you would understand it. I… know nothing. I only know it’s up to you to figure it out.");
-         yield return VisualNovelManager.S.ObtainPuzzle(4);
+         yield return VisualNovelManager.S.ObtainPuzzle(3);
         yield return VisualNovelManager.S.Element("Overlay").Appear();
-    
+        VisualNovelManager.S.GoToScene("City");
+
     }    
     
     

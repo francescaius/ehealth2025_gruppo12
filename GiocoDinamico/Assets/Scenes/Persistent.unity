@@ -855,6 +855,38 @@ MonoBehaviour:
     audio: {fileID: 8300000, guid: 84c2fd2169d9cc946a34ca1e6bb6b00c, type: 3}
   - ID: Bag
     audio: {fileID: 8300000, guid: 85900e1a4c46f0549a8cb918c8144fb6, type: 3}
+  - ID: Notifica
+    audio: {fileID: 8300000, guid: 0cdfd90d8f8348c4c91c8f68c0f47792, type: 3}
+  - ID: Drop
+    audio: {fileID: 8300000, guid: 5560cf166831a2b428f84fbb64f3c453, type: 3}
+  - ID: Vibrazione
+    audio: {fileID: 8300000, guid: 2e224d48ac05471478ba7bdd20919570, type: 3}
+  - ID: Home
+    audio: {fileID: 8300000, guid: fb08027bdb08ae54695b619babca0dd1, type: 3}
+  - ID: Bar
+    audio: {fileID: 8300000, guid: ab3ddff18a5051545abfa2d57b2c9cf4, type: 3}
+  - ID: Casa
+    audio: {fileID: 8300000, guid: 767505a6193bca248ac30ef45b631419, type: 3}
+  - ID: FinaleBello
+    audio: {fileID: 8300000, guid: bd524a8afc25cba429fd48da0f0b9c1e, type: 3}
+  - ID: InizioNostalgico
+    audio: {fileID: 8300000, guid: 9fe9b07f18ff92c4a9d4d5d7aa1d88a9, type: 3}
+  - ID: Metro
+    audio: {fileID: 8300000, guid: 10355e6b25e9b174d9d4dbc88d57406b, type: 3}
+  - ID: Obtain
+    audio: {fileID: 8300000, guid: f95535746f0513744bc3f5075a92fcef, type: 3}
+  - ID: Office
+    audio: {fileID: 8300000, guid: fe33ff8262e79554087728fda98bdefa, type: 3}
+  - ID: Parco
+    audio: {fileID: 8300000, guid: 8fd49cc422cf0294f893882cbf1e2ae2, type: 3}
+  - ID: City
+    audio: {fileID: 8300000, guid: bf3737569d7632e49bf27be7c7ca47a3, type: 3}
+  - ID: Train
+    audio: {fileID: 8300000, guid: a63e2b0854b23f14a893f449a31904e7, type: 3}
+  - ID: Temple
+    audio: {fileID: 8300000, guid: 5468c60fd703aad40a60362885a02b2c, type: 3}
+  - ID: Fast
+    audio: {fileID: 8300000, guid: 728ac1b0912ebbc42b7074267ee90f29, type: 3}
   elementiControllati:
   - {fileID: 47109406}
   - {fileID: 1631941293}
@@ -1187,7 +1219,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.159
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -21,27 +21,33 @@ public class CityScene : MonoBehaviour
         }
         else
         {
+            VisualNovelManager.S.backtrack("City");
             StartCoroutine(Part1()); 
         }  
     }
 
     IEnumerator Part1()
     {
-        yield return VisualNovelManager.S.Element("Overlay").Disappear();
-        yield return VisualNovelManager.S.ObtainPuzzle(2);
+        yield return VisualNovelManager.S.Element("Overlay").Disappear(); 
         if (VisualNovelManager.S.takenPuzzlePieces.Contains(3))
         {
-            yield return VisualNovelManager.S.dialog.DisplayText("Luca", "I have to go to the metro...");
+            yield return VisualNovelManager.S.dialog.DisplayText("Luca", "I have to go to the station...");
             yield return metro.Appear();
             yield return new WaitForSeconds(1);
-            metro.MakeClickable(() => VisualNovelManager.S.GoToScene("SampleScene"));
+            metro.MakeClickable(()=>{
+                StartCoroutine(VisualNovelManager.S.Element("Overlay").Appear()); 
+                VisualNovelManager.S.GoToScene("Atto4");
+            });
         }
         else if (VisualNovelManager.S.takenPuzzlePieces.Contains(2))
         {
             yield return VisualNovelManager.S.dialog.DisplayText("Luca", "After all the day I can finally go home, going throug the park...");
             yield return parco.Appear();
             yield return new WaitForSeconds(1);
-            parco.MakeClickable(()=> VisualNovelManager.S.GoToScene("SampleScene"));
+            parco.MakeClickable(() => {
+                StartCoroutine(VisualNovelManager.S.Element("Overlay").Appear());
+                VisualNovelManager.S.GoToScene("Atto3");
+            });
             yield break;
         }
         else if (VisualNovelManager.S.takenPuzzlePieces.Contains(1))
@@ -49,15 +55,21 @@ public class CityScene : MonoBehaviour
             yield return VisualNovelManager.S.dialog.DisplayText("Luca", "Well, now it is time to work...");
             yield return ufficio.Appear();
             yield return new WaitForSeconds(1);
-            ufficio.MakeClickable(() => VisualNovelManager.S.GoToScene("ATTO2LAVORATORE"));
+            ufficio.MakeClickable(() => {
+                StartCoroutine(VisualNovelManager.S.Element("Overlay").Appear());
+                VisualNovelManager.S.GoToScene("Atto2");
+            });
             yield break;
         }
         else
         {
-            yield return VisualNovelManager.S.dialog.DisplayText("Luca", "Before going to work I'll go to the cafe to see my wife...");
+            yield return VisualNovelManager.S.dialog.DisplayText("Luca", "Before going to work I'll go to the cafe...");
             yield return bar.Appear();
             yield return new WaitForSeconds(1);
-            bar.MakeClickable(() => VisualNovelManager.S.GoToScene("Atto1scena2"));
+            bar.MakeClickable(() => {
+                StartCoroutine(VisualNovelManager.S.Element("Overlay").Appear());
+                VisualNovelManager.S.GoToScene("Atto12");
+            });
             yield break;
         }
     }

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
+//Meccanismo sviluppato con Gemini e ChatGpt per gestire l'inizializzazione della scena di default
 public enum SceneProgressStep
 {
     NotVisited,      // mai entrato
@@ -32,7 +33,7 @@ public class VisualNovelManager : MonoBehaviour
     public List<ControllerElementoDiScena> elementiControllati;
     public DialogueManager dialog;
     public PhoneDialogueManager phone;
-    [SerializeField] ControllerElementoDiScena bagBtn;
+    [SerializeField] public ControllerElementoDiScena bagBtn;
 
 
 
@@ -55,10 +56,14 @@ public class VisualNovelManager : MonoBehaviour
     public bool Alcool_Azzardo = false;
     public bool Droga_Traumi = false;
 
+    private bool debug = false;
+    private bool easteregg = false;
+
     public List<int> takenPuzzlePieces = new List<int>();
 
 
-
+    public bool DEBUG { get => debug; }
+    public bool EASTEREGG { get => easteregg; }
 
 
 
@@ -79,11 +84,128 @@ public class VisualNovelManager : MonoBehaviour
 
         foreach (ControllerElementoDiScena prefab in elementiControllati)
         {
-            prefab.Awake(); //forza awake di gestiti (ad esempio overlay che voglio disattivato il resto del tempo)
+            prefab.Awake(); //così forzo awake di elementi gestiti (ad esempio overlay che voglio disattivato il resto del tempo)
         }
 
 
         bagBtn.MakeClickable(OpenBag);
+
+    }
+
+    void Update()
+    {
+        if(DEBUG)
+        {
+            if (Input.GetKeyUp(KeyCode.Alpha1))
+            {
+                if (!takenPuzzlePieces.Contains(1))
+                    StartCoroutine(ObtainPuzzle(1));
+            }
+            if (Input.GetKeyUp(KeyCode.Alpha2))
+            {
+                if (!takenPuzzlePieces.Contains(2))
+                    StartCoroutine(ObtainPuzzle(2));
+            }
+            if (Input.GetKeyUp(KeyCode.Alpha3))
+            {
+                if (!takenPuzzlePieces.Contains(3))
+                    StartCoroutine(ObtainPuzzle(3));
+            }
+            if (Input.GetKeyUp(KeyCode.Alpha4))
+            {
+                if (!takenPuzzlePieces.Contains(4))
+                    StartCoroutine(ObtainPuzzle(4));
+            }
+            if (Input.GetKeyUp(KeyCode.Alpha5))
+            {
+                if (!takenPuzzlePieces.Contains(5))
+                    StartCoroutine(ObtainPuzzle(5));
+            }
+            if (Input.GetKeyUp(KeyCode.Alpha6))
+            {
+                if (!takenPuzzlePieces.Contains(6))
+                    StartCoroutine(ObtainPuzzle(6));
+            }
+             
+
+            if (Input.GetKeyUp(KeyCode.Q))
+            {
+                GoToScene("MenuScene");
+            }
+            else if (Input.GetKeyUp(KeyCode.W))
+            {
+                GoToScene("SondaggioScene");
+            }
+            else if (Input.GetKeyUp(KeyCode.E))
+            {
+                GoToScene("Atto0");
+            }
+            else if (Input.GetKeyUp(KeyCode.R))
+            {
+                GoToScene("Atto11");
+            }
+            else if (Input.GetKeyUp(KeyCode.T))
+            {
+                GoToScene("City");
+            }
+            else if (Input.GetKeyUp(KeyCode.Y))
+            {
+                GoToScene("Atto12");
+            }
+            else if (Input.GetKeyUp(KeyCode.U))
+            {
+                GoToScene("Atto2");
+            }
+            else if (Input.GetKeyUp(KeyCode.I))
+            {
+                GoToScene("Atto3");
+            }
+            else if (Input.GetKeyUp(KeyCode.O))
+            {
+                GoToScene("Atto4");
+            }
+            else if (Input.GetKeyUp(KeyCode.P))
+            {
+                GoToScene("Atto51");
+            }
+            else if (Input.GetKeyUp(KeyCode.Z))
+            {
+                GoToScene("TrenoScene");
+            }
+            else if (Input.GetKeyUp(KeyCode.X))
+            {
+                GoToScene("Atto52");
+            }
+            else if (Input.GetKeyUp(KeyCode.C))
+            {
+                GoToScene("Atto53");
+            } 
+            else if (Input.GetKeyUp(KeyCode.V))
+            {
+                GoToScene("Atto6");
+            } 
+            else if (Input.GetKeyUp(KeyCode.B))
+            {
+                GoToScene("Atto7");
+            }
+             
+
+
+
+            if (Input.GetKeyUp(KeyCode.H))
+            {
+                this.easteregg = !this.easteregg;
+            }
+
+
+        }
+
+//#if UNITY_EDITOR   //lo tengo ovunque, anche in build, per velocizzare
+        if (Input.GetKeyUp(KeyCode.D))
+        {
+            this.debug = !this.debug;
+        }
+//#endif
 
     }
 
@@ -120,7 +242,22 @@ public class VisualNovelManager : MonoBehaviour
          
         SceneManager.LoadScene(name, LoadSceneMode.Additive);
     }
-     
+
+    public void Restart()
+    {
+        ForteDipendenza = false;
+        StipendioBasso = false;
+        NonStudiato = false;
+        Single = false;
+        Insoddisfatto = false;
+        Alcool_Azzardo = false;
+        Droga_Traumi = false;
+        StartCoroutine(bagBtn.Disappear());
+        takenPuzzlePieces.Clear();
+       
+
+    }
+
     public void CloseBag()
     {
         playAudio("Bag");
@@ -134,12 +271,21 @@ public class VisualNovelManager : MonoBehaviour
         StartCoroutine(bagBtn.Disappear());
         SceneManager.LoadScene("Puzzle", LoadSceneMode.Additive);
     }
+    public void ShineBag()
+    {
+        bagBtn.UndoClickable();
+        bagBtn.MakeClickable(OpenBag); 
+    }
+     
+
 
 
     public IEnumerator ObtainPuzzle(int puzzle)
     {
         if (takenPuzzlePieces.Contains(puzzle)) yield break;
         if (puzzle < 1 || puzzle > 6) yield break;
+
+        playAudio("Obtain");
 
 
         var puzzleController = S.Element("PuzzlePiece"); 

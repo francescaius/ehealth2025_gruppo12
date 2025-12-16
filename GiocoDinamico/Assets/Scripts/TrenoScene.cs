@@ -79,8 +79,8 @@ public class TrenoScene : MonoBehaviour
     IEnumerator ProgressoFermate()
     {
         VisualNovelManager.S.dialog.DisplayText(
-               "- Treno -",
-               "Treno in partenza   -  Mancano " + (santuario - fermata) + " fermate al Santuario",
+               "- Train -",
+               "The train is leaving -  Still " + (santuario - fermata) + " stations before the Temple",
                true
         );
         while(nuovafermata < totaleFermate)
@@ -104,8 +104,8 @@ public class TrenoScene : MonoBehaviour
                 if ( ((int)nuovafermata) < santuario)
                 {
                     yield return VisualNovelManager.S.dialog.DisplayText(
-                         "- Treno -",
-                         "Station " + fermata + "/30   -  " + (santuario - fermata) + " stations before the Sanctuary",
+                         "- Train -",
+                         "Station " + fermata + "/30   -  " + (santuario - fermata) + " stations before the Temple",
                          true
                     );
 
@@ -133,7 +133,8 @@ public class TrenoScene : MonoBehaviour
                          "ARRIVED!"
                     );
                     //far partire altra scena
-                    yield return VisualNovelManager.S.Element("Overlay").Disappear();
+                    yield return VisualNovelManager.S.Element("Overlay").Appear(); 
+                    VisualNovelManager.S.GoToScene("Atto53");
                     yield break;
                 }
                 if (fermata > santuario)
@@ -147,10 +148,10 @@ public class TrenoScene : MonoBehaviour
 
         yield return VisualNovelManager.S.dialog.DisplayText(
              "Luca",
-             "HO PERSO LA FERMATA!"
+             "I lost my station!"
         );
-        //far partire altra scena
-        yield return VisualNovelManager.S.Element("Overlay").Disappear();
+        yield return VisualNovelManager.S.Element("Overlay").Appear();
+        VisualNovelManager.S.GoToScene("Atto52"); 
         yield break;
     }
 
@@ -158,6 +159,7 @@ public class TrenoScene : MonoBehaviour
 
     IEnumerator Part1()
     {
+        VisualNovelManager.S.backtrack("Train");
         yield return VisualNovelManager.S.Element("Overlay").Disappear(); 
         telefono.Disappear();
         telefonoBtn.Disappear();
@@ -166,7 +168,7 @@ public class TrenoScene : MonoBehaviour
         
         yield return VisualNovelManager.S.dialog.DisplayText(
              "Luca",
-             "Ci sono 30 fermate, devo scendere a SANTUARIO - FERMATA 25. Devo stare attento a non perderla!"
+             "There are 30 station, I have to get of at the temple TEMPLE - STATION 25. Better not to lost it!"
 
         );
         StartCoroutine(ProgressoFermate()); 
@@ -175,12 +177,14 @@ public class TrenoScene : MonoBehaviour
     IEnumerator Avanza()
     {
         telefonoBtn.UndoClickable(); //il telefono non sarà cliccabile, solo dopo la prima fermata dopo il boost tornerà cliccabile
-        countaUsoTelefono = countaUsoTelefono % 4 + 1;
+        countaUsoTelefono = countaUsoTelefono % 4 + 1; 
+        VisualNovelManager.S.backtrack("Fast");
         yield return telefono.ChangePose("Meme" + countaUsoTelefono);
         boost = true;
         yield return telefono.Appear();
         yield return new WaitForSeconds(secondiPerFermata-2);
         yield return telefono.Disappear();
+        VisualNovelManager.S.backtrack("Train");
         boost = false;
     }
      

@@ -57,15 +57,15 @@ public class PuzzleScene : MonoBehaviour
             switch(c)
             {
                 case 0: 
-                    testoBorsa.text = "La borsa è vuota.";
+                    testoBorsa.text = "The bag is empty.";
                     break;
                 case 6:
-                    testoBorsa.text = "Sembra tu abbia tutti i pezzi del puzzle!"; 
+                    testoBorsa.text = "It looks like you have all the pieces!"; 
                     StartCoroutine(assemblaBtn.Appear());
                     assemblaBtn.MakeClickable(Assembla);
                     break;
                 default: 
-                    testoBorsa.text = "Il puzzle sembra fatto da 6 pezzi: tu ne hai "+c+"!";
+                    testoBorsa.text = "Looks like a 6 piece puzzle: you have "+c+"!";
                     break;
             } 
             
@@ -77,16 +77,14 @@ public class PuzzleScene : MonoBehaviour
     public IEnumerator Assembla()
     {
         yield return puzzleGroup.Animate("Assembla");
-        //testoBorsa.text = "È il luogo delle vostre vacanze!";
-        yield return assemblaBtn.Disappear();
-        finalScene();
-    }
 
-    private void finalScene()
-    {
-        VisualNovelManager.S.CloseBag();
-        VisualNovelManager.S.GoToScene("SampleScene");
+        yield return VisualNovelManager.S.Element("Overlay").Appear();
+        VisualNovelManager.S.GoToScene("Atto7"); 
+
+        //yield return assemblaBtn.Disappear();
+        //finalScene();
     }
+ 
 
     public void closeBtnClick()
     { 
