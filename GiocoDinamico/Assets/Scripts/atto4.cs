@@ -78,6 +78,8 @@ public class atto4 : MonoBehaviour
         // --- SCELTA ---
         yield return background.ChangePose("sottopasso2");
         yield return Margherita.Appear();
+        yield return Luca.Appear();
+        
 
 
         VisualNovelManager.S.playAudio("Vibrazione"); 
@@ -121,7 +123,7 @@ public class atto4 : MonoBehaviour
            "Luca",
            "Are you tricking me?"
         );
-        yield return Luca.Disappear(); // CORRETTO (era Disppear)
+        yield return Luca.Disappear(); 
         
         yield return VisualNovelManager.S.phone.DisplayText(
            "Anonymous",
