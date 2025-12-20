@@ -88,7 +88,7 @@ public class ATTO2LAVORATORE : MonoBehaviour
         { 
         yield return Mattia.ChangePose("ridendo");
         yield return VisualNovelManager.S.dialog.DisplayText ("Mattia", 
-        "You kept thinking about that job oﬀer?");
+        "You kept thinking about that job offer?");
         yield return VisualNovelManager.S.dialog.DisplayText ("Luca","I gave up on it. Even if I tried, I’d get nowhere. The results speak for themselves. Years working for a promotion and what’s changed?! Nothing.");
         yield return Mattia.ChangePose ("parlando");
         yield return VisualNovelManager.S.dialog.DisplayText ("Mattia","Come on, why say that?");

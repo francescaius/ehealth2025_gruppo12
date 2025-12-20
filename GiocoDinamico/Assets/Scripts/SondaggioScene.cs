@@ -96,7 +96,7 @@ public class SondaggioScene : MonoBehaviour
         yield return VisualNovelManager.S.Element("Overlay").Disappear();
 
         yield return VisualNovelManager.S.dialog.DisplayText(
-            "Un breve sondaggio",
+            "A short survey",
             "Before starting the adventure you have to answer some questions: please, select the answer that truly reflect your life."
         );
 
@@ -126,7 +126,7 @@ public class SondaggioScene : MonoBehaviour
         }
 
         yield return VisualNovelManager.S.dialog.DisplayText(
-            "DOMANDA "+(indice+1)+"/20",
+            "QUESTION "+(indice+1)+"/20",
              domande[indice]
         );
         IAT += aggiunta; 

@@ -16,7 +16,7 @@ public class DialogueManager : MonoBehaviour
 
     public int segmentLength = 200;
 
-    bool active = false; //mi dice se il dialog è acceso
+    bool active = false; //mi dice se il dialog Ã¨ acceso
     bool editing = false; //mi dice se sto modificando
     int paragraphIndex = -1;
     List<string> paragraphs;
@@ -51,8 +51,8 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    //mostra un testo di un personaggio e restituisce un evento che termina quando è terminato il dialogo
-    //il dialogo può andare a
+    //mostra un testo di un personaggio e restituisce un evento che termina quando Ã¨ terminato il dialogo
+    //il dialogo puÃ¨ andare a
     public virtual CustomYieldInstruction DisplayText(string speaker, string text, bool autoContinue = false)
     {
 
@@ -182,7 +182,7 @@ public class DialogueManager : MonoBehaviour
                 length = Math.Min(segmentLength - 3, remainingLength);
             }
 
-            // Se c'è ancora testo
+            // Se c'Ã¨ ancora testo
             if (currentIndex + length < totalLength)
             {
                 // Cerca l'ultimo spazio prima della fine del segmento
@@ -208,7 +208,7 @@ public class DialogueManager : MonoBehaviour
             }
             else
             {
-                // se è l'ultimo segmento, prendi tutto
+                // se Ã¨ l'ultimo segmento, prendi tutto
                 segment += text.Substring(currentIndex, length);
                 currentIndex += length;
                 previousWasTruncated = false;

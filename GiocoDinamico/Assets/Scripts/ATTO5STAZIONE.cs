@@ -76,7 +76,7 @@ public class ATTO5STAZIONE : MonoBehaviour
         yield return VisualNovelManager.S.dialog.DisplayText("Luca","No. But staying here makes it worse. I need to detach from what drowns me, from what keeps pulling me into the same cycles. I want to change, Lucia. For the first time… I really want to change.");
         yield return VisualNovelManager.S.dialog.DisplayText("Lucia","Then at least promise me you won’t use ‘thinking’ as an excuse to destroy yourself this time.");
         yield return VisualNovelManager.S.dialog.DisplayText("Luca","I promise. And for once… I truly want to keep it.");
-        yield return VisualNovelManager.S.dialog.DisplayText("Luca","This time I won’t back out. But first I need to solve a riddle my brother created. I still don’t know what he wants to tell me… I haven’t heard from him in a while. Who knows.");
+        yield return VisualNovelManager.S.dialog.DisplayText("Luca","This time I won’t back out. But first I need to solve a riddle I don't fully understand. I still don’t know what he wants to tell me… I haven’t heard from him in a while. Who knows.");
         yield return VisualNovelManager.S.dialog.DisplayText("Lucia","Then have a good trip. See you in the meeting room!");
         }
 
